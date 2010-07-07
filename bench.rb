@@ -1,12 +1,11 @@
 # encoding: utf-8
 require "rubygems"
 require "rbench"
-require "unicode"
 require File.expand_path("../init", __FILE__)
 
 SAMPLE = "Ja, żołnierz Wojska Polskiego, przysięgam służyć wiernie Rzeczypospolitej Polskiej".to_slug
 
-RBench.run(10_000) do
+RBench.run(1_000) do
 
   column :times
   column :time
