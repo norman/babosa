@@ -39,6 +39,19 @@ whose length is limited by bytes rather than UTF-8 characters.
 There are many more features; check the API docs and source code to find out
 more.
 
+## Getting it
+
+Babosa can be installed via Rubygems:
+
+    gem install babosa
+
+You can get the source code from its [Github repository](http://github.com/norman/babosa).
+
+## Reporting bugs
+
+Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issues).
+
+
 ## Misc
 
 The speed and quality of Babosa's UTF-8 support depends on which Ruby and which
@@ -49,9 +62,18 @@ On JRuby 1.5 and above, Babosa uses Java's native UTF-8 support. If you require
 Babosa, it will use the support provided by those libraries. Otherwise, Babosa
 defaults to very basic UTF-8 support for Latin characters only.
 
+"Babosa" means slug in Spanish.
+
 ## Author
 
 [Norman Clarke](http://njclarke.com)
+
+## Slugs
+
+Here's a video of a slug that has absolutely no reason for being here. Is that
+Throbbing Gristle playing in the background?
+
+<object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/TCFavfrUVjQ&amp;hl=en_US&amp;fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/TCFavfrUVjQ&amp;hl=en_US&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
 
 ## Copyright
 
