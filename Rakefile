@@ -1,10 +1,11 @@
 require "rake/testtask"
 require "rake/clean"
+require "rake/gempackagetask"
 
 task :default => :test
 
 CLEAN << "pkg" << "doc" << "coverage" << ".yardoc"
-
+Rake::GemPackageTask.new(eval(File.read("babosa.gemspec"))) { |pkg| }
 Rake::TestTask.new(:test) { |t| t.pattern = "test/**/*_test.rb" }
 
 begin
