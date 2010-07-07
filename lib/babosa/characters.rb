@@ -1,8 +1,9 @@
 # encoding: utf-8
 module Babosa
 
+  # This module provides sets of characters needed for various UTF-8 aware
+  # string operations.
   module Characters
-
     extend self
 
     # Hash of UTF-8 - ASCII approximations.
@@ -18,7 +19,6 @@ module Babosa
       151, 152, 153, 154, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165, 166,
       167, 168, 169, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 182, 183,
       184, 185, 187, 188, 189, 190, 191, 215, 247]
-
 
     # Adds a hash of approximations.
     # @example

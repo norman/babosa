@@ -2,6 +2,7 @@ include Java
 
 module Babosa
   module UTF8
+    # A UTF-8 proxy module using Java's built-in Unicode support. Requires JRuby 1.5+.
     module JavaProxy
       extend UTF8Proxy
       extend self

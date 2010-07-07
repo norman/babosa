@@ -34,12 +34,16 @@ module Babosa
       UTF8::DumbProxy
     end
 
+    # Return the proxy used for UTF-8 support.
+    # @see Babosa::UTF8::UTF8Proxy
     def self.utf8_proxy
       @@utf8_proxy
     end
 
-    def self.utf8_proxy=(klass)
-      @@utf8_proxy = klass
+    # Set a proxy object used for UTF-8 support.
+    # @see Babosa::UTF8::UTF8Proxy
+    def self.utf8_proxy=(obj)
+      @@utf8_proxy = obj
     end
 
     def method_missing(symbol, *args, &block)

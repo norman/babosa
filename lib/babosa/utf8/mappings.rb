@@ -1,5 +1,8 @@
 module Babosa
   module UTF8
+
+    # A small subset of the mappings provided by Unicode.org, limited to Latin
+    # characters. This is used for Babosa's default "dumb" UTF-8 support.
     module Mappings
       DOWNCASE = Hash[65, 97, 66, 98, 67, 99, 68, 100, 69, 101, 70, 102,
         71, 103, 72, 104, 73, 105, 74, 106, 75, 107, 76, 108, 77, 109, 78, 110,

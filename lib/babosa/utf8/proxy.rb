@@ -6,6 +6,8 @@ module Babosa
     autoload :ActiveSupportProxy, "babosa/utf8/active_support_proxy"
     autoload :DumbProxy,          "babosa/utf8/dumb_proxy"
 
+    # A UTF-8 proxy for Babosa can be any object which responds to the methods in this module.
+    # The following proxies are provided by Babosa: {ActiveSupportProxy}, {DumbProxy}, {JavaProxy}, and {UnicodeProxy}.
     module UTF8Proxy
       CP1252  = {
         128 => [226, 130, 172],
@@ -41,6 +43,24 @@ module Babosa
         158 => [197, 190],
         159 => [197, 184]
       }
+
+      # This is a stub for a method that should return a Unicode-aware
+      # downcased version of the given string.
+      def downcase(string)
+        raise NotImplementedError
+      end
+
+      # This is a stub for a method that should return a Unicode-aware
+      # upcased version of the given string.
+      def upcase(string)
+        raise NotImplementedError
+      end
+
+      # This is a stub for a method that should return the Unicode NFC
+      # normalization of the given string.
+      def normalize_utf8(string)
+        raise NotImplementedError
+      end
 
       # Attempt to replace invalid UTF-8 bytes with valid ones. This method
       # naively assumes if you have invalid UTF8 bytes, they are either Windows
@@ -87,6 +107,8 @@ module Babosa
         end
         bytes.empty? ? "" : bytes.flatten.compact.pack("C*").unpack("U*").pack("U*")
       end
+
+      private
 
       def tidy_byte(byte)
         byte < 160 ? CP1252[byte] : byte < 192 ? [194, byte] : [195, byte - 64]
