@@ -58,11 +58,11 @@ class  BabosaTest < Test::Unit::TestCase
   end
 
   test "approximate_ascii should transliterate to ascii" do
-    slug = (0xC0..0x17E).to_a.pack("U*").to_slug
-    output = slug.approximate_ascii
-    assert output.length   > slug.length
-    assert output.bytesize < slug.bytesize
-    assert_match /[\x0-\x7f]*/, output
+    slug = (0xC0..0x17E).to_a.each do |codepoint|
+      ss = [codepoint].pack("U*").to_slug
+      approx = ss.approximate_ascii
+      assert_match /[\x0-\x7f]/, approx.to_s
+    end
   end
 
   test "should lowercase strings" do
