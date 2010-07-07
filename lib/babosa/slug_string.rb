@@ -135,20 +135,32 @@ module Babosa
       @wrapped_string = unpack("U*")[0...max].pack("U*")
     end
 
-    def truncate_bytes!(len)
-      return @wrapped_string if @wrapped_string.bytesize < len
+    # Truncate the string to +max+ bytes. This can be useful for ensuring that
+    # a UTF-8 string will always fit into a database column with a certain max
+    # byte length. The resulting string may be less than +max+ if the string must
+    # be truncated at a multibyte character boundary.
+    # @example
+    #   "üéøá".to_slug.truncate_bytes(3) #=> "ü"
+    # @return String
+    def truncate_bytes!(max)
+      return @wrapped_string if @wrapped_string.bytesize <= max
       curr = 0
-      @wrapped_string = unpack("U*").map do |char|
-        break if curr > len
-        curr += [char].pack("U").bytesize
-        char if curr <= len
-      end.to_a.compact.pack("U*")
+      new = []
+      unpack("U*").each do |char|
+        break if curr > max
+        char = [char].pack("U")
+        curr += char.bytesize
+        if curr <= max
+          new << char
+        end
+      end
+      @wrapped_string = new.join
     end
 
     # Replaces whitespace with dashes ("-").
     # @return String
     def with_dashes!
-      @wrapped_string = @wrapped_string.gsub(/\s/u, "-").squeeze("-")
+      @wrapped_string = @wrapped_string.gsub(/\s/u, "-")
     end
 
     # Perform UTF-8 sensitive upcasing.

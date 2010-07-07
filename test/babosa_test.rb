@@ -130,6 +130,7 @@ class  BabosaTest < Test::Unit::TestCase
     assert_equal "ü",  "üa".to_slug.truncate_bytes!(2)
     assert_equal "",   "üa".to_slug.truncate_bytes!(1)
     assert_equal "üa", "üa".to_slug.truncate_bytes!(100)
+    assert_equal "ü",  "üéøá".to_slug.truncate_bytes!(3)
   end
 
   test "should truncate string by char length" do
@@ -141,6 +142,19 @@ class  BabosaTest < Test::Unit::TestCase
   test "should transliterate uncomposed utf8" do
     string = [117, 776].pack("U*") # "ü" as ASCII "u" plus COMBINING DIAERESIS
     assert_equal "u", string.to_slug.approximate_ascii!
+  end
+
+  test "with_dashes should not change byte size when replacing spaces" do
+    assert_equal "".bytesize, "".to_slug.with_dashes.bytesize
+    assert_equal " ".bytesize, " ".to_slug.with_dashes.bytesize
+    assert_equal "-abc-".bytesize, "-abc-".to_slug.with_dashes.bytesize
+    assert_equal " abc ".bytesize, " abc ".to_slug.with_dashes.bytesize
+    assert_equal " a  bc ".bytesize, " a  bc ".to_slug.with_dashes.bytesize
+  end
+
+  test "normalize! with ascii should approximate and strip non ascii" do
+    ss = "カタカナ: katakana is über cool".to_slug
+    assert_equal "katakana-is-uber-cool", ss.normalize!(true)
   end
 
 end
