@@ -62,7 +62,7 @@ module Babosa
     #   string = SlugString.new "日本"
     #   string.approximate_ascii                 # => "日本"
     #
-    # You can pass any key(s) from {APPROXIMATIONS} as arguments. This allows
+    # You can pass any key(s) from +Characters.approximations+ as arguments. This allows
     # for contextual approximations. By default; +:spanish+ and +:german+ are
     # provided:
     #
@@ -90,8 +90,8 @@ module Babosa
       @wrapped_string = unpack("U*").map { |char| approx_char(char, overrides) }.flatten.pack("U*")
     end
 
-    # Removes leading and trailing spaces or dashses, and replaces multiple
-    # whitespace characters with a single space.
+    # Converts dashes to spaces, removes leading and trailing spaces, and
+    # replaces multiple whitespace characters with a single space.
     # @return String
     def clean!
       @wrapped_string = @wrapped_string.gsub(/\A\-|\-\z/, "").gsub(/\s+/u, " ").strip
@@ -121,7 +121,9 @@ module Babosa
       @wrapped_string = @wrapped_string.gsub(/[^\x00-\x7f]/u, '')
     end
 
-    # Truncate the string to +max+ length.
+    # Truncate the string to +max+ characters.
+    # @example
+    #   "üéøá".to_slug.truncate(3) #=> "üéø"
     # @return String
     def truncate!(max)
       @wrapped_string = unpack("U*")[0...max].pack("U*")
@@ -143,18 +145,27 @@ module Babosa
       @wrapped_string = @wrapped_string.gsub(/\s/u, "-").squeeze("-")
     end
 
+    # Perform UTF-8 sensitive upcasing.
+    # @return String
     def upcase!
       @wrapped_string = @@utf8_proxy.upcase(@wrapped_string)
     end
 
+    # Perform UTF-8 sensitive downcasing.
+    # @return String
     def downcase!
       @wrapped_string = @@utf8_proxy.downcase(@wrapped_string)
     end
 
+    # Perform Unicode composition on the wrapped string.
+    # @return String
     def normalize_utf8!
       @wrapped_string = @@utf8_proxy.normalize_utf8(@wrapped_string)
     end
 
+    # Attempt to convert characters encoded using CP1252 and IS0-8859-1 to
+    # UTF-8.
+    # @return String
     def tidy_bytes!
       @wrapped_string = @@utf8_proxy.tidy_bytes(@wrapped_string)
     end
