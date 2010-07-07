@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Documentation by YARD 0.5.8</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html" title="Index">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><div id='filecontents'><h1 id='babosa'>Babosa</h1>
+
+<p>Babosa is a library for creating slugs. It is an extraction and improvement of the string code from <a href='http://github.com/norman/friendly_id'>FriendlyId</a>, intended to help developers create libraries similar to FriendlyId.</p>
+
+<h2 id='features__usage'>Features / Usage</h2>
+
+<h3 id='ascii_transliteration'>ASCII transliteration</h3>
+
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;Golcuk, Turkey&quot;</span></pre>
+
+<h3 id='special_cases_for_german_and_spanish'>Special cases for German and Spanish</h3>
+
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span>           <span class='comment'>#=&gt; &quot;Jurgen Muller&quot;
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:german</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>  <span class='comment'>#=&gt; &quot;Juergen Mueller&quot;
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feliz año</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span>               <span class='comment'>#=&gt; &quot;feliz ano&quot;
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feliz año</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:spanish</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>     <span class='comment'>#=&gt; &quot;feliz anio&quot;</span></pre>
+
+<h3 id='nonascii_removal'>Non-ASCII removal</h3>
+
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id to_ascii'>to_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;Glck, Turkey&quot;</span></pre>
+
+<h3 id='truncate_by_characters'>Truncate by characters</h3>
+
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üüü</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate'>truncate</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;üü&quot;</span></pre>
+
+<h3 id='truncate_by_bytes'>Truncate by bytes</h3>
+
+<p>This can be useful to ensure the generated slug will fit in a database column whose length is limited by bytes rather than UTF-8 characters.</p>
+
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üüü</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate_bytes'>truncate_bytes</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;ü&quot;</span></pre>
+
+<h3 id='allinone'>All-in-one</h3>
+
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id normalize'>normalize</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;golcuk-turkey&quot;</span></pre>
+
+<p>There are many more features; check the API docs and source code to find out more.</p>
+
+<h2 id='misc'>Misc</h2>
+
+<p>The speed and quality of Babosa&#8217;s UTF-8 support depends on which Ruby and which gems you are using.</p>
+
+<p>On JRuby 1.5 and above, Babosa uses Java&#8217;s native UTF-8 support. If you require <a href='http://github.com/blackwinter/unicode'>Unicode</a> or ActiveSupport before Babosa, it will use the support provided by those libraries. Otherwise, Babosa defaults to very basic UTF-8 support for Latin characters only.</p>
+
+<h2 id='author'>Author</h2>
+
+<p><a href='http://njclarke.com'>Norman Clarke</a></p>
+
+<h2 id='copyright'>Copyright</h2>
+
+<p>Copyright (c) 2010 Norman Clarke</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &#8220;Software&#8221;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div>
+    
+    <div id="footer">
+  Generated on Wed Jul  7 14:30:33 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.8 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

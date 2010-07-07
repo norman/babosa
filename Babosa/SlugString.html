@@ -1,0 +1,1679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Babosa::SlugString</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (S)</a> &raquo; 
+    <span class='title'><a href="../Babosa.html" title="Babosa (module)">Babosa</a></span>
+     &raquo; 
+    <span class="title">SlugString</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Babosa::SlugString
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Babosa::SlugString</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/babosa/slug_string.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+This class provides some string-manipulation methods specific to slugs.
+</p>
+<p>
+Note that this class includes many &#8220;bang methods&#8221; such as
+<tt><a href="#clean%21-instance_method" title="Babosa::SlugString#clean! (method)">SlugString#clean!</a></tt> and <tt><a href="#normalize%21-instance_method" title="Babosa::SlugString#normalize! (method)">SlugString#normalize!</a></tt> that perform actions on the string in-place.
+Each of these methods has a corresponding &#8220;bangless&#8221; method
+(i.e., <tt>SlugString#clean!</tt> and <tt>SlugString#clean</tt>) which does not appear in
+the documentation because it is generated dynamically.
+</p>
+<p>
+All of the bang methods return an instance of String, while the bangless
+versions return an instance of Babosa::SlugString, so that calls to methods
+specific to this class can be chained:
+</p>
+<pre class="code">
+  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hello world</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id with_dashes!'>with_dashes!</span> <span class='comment'># =&gt; &quot;hello-world&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id with_dashes'>with_dashes</span>  <span class='comment'># =&gt; &lt;Babosa::SlugString:0x000001013e1590 @wrapped_string=&quot;hello-world&quot;&gt;</span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="http://www.utf8-chartable.de/unicode-utf8-table.pl?utf8=dec" target="_parent" title="Unicode character table">Unicode character table</a></li>
+    
+  </ul>
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="utf8_proxy-classvariable" class="">@@utf8_proxy =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>if</span> <span class='const'>Babosa</span><span class='period'>.</span><span class='id jruby15?'>jruby15?</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>JavaProxy</span>
+<span class='kw'>elsif</span> <span class='kw'>defined?</span> <span class='const'>Unicode</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>UnicodeProxy</span>
+<span class='kw'>elsif</span> <span class='kw'>defined?</span> <span class='const'>ActiveSupport</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>ActiveSupportProxy</span>
+<span class='kw'>else</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>DumbProxy</span>
+<span class='kw'>end</span></pre></dd>
+      
+    </dl>
+  
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wrapped_string-instance_method" title="#wrapped_string (instance method)">- (Object) <strong>wrapped_string</strong> </a>
+    
+
+    
+      (also: #to_s)
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute wrapped_string.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#utf8_proxy-class_method" title="utf8_proxy (class method)">+ (Object) <strong>utf8_proxy</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Return the proxy used for UTF-8 support.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#utf8_proxy%3D-class_method" title="utf8_proxy= (class method)">+ (Object) <strong>utf8_proxy=</strong>(obj) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Set a proxy object used for UTF-8 support.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#approximate_ascii%21-instance_method" title="#approximate_ascii! (instance method)">- (Object) <strong>approximate_ascii!</strong>(overrides = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Approximate an ASCII string.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clean%21-instance_method" title="#clean! (instance method)">- (Object) <strong>clean!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Converts dashes to spaces, removes leading and trailing spaces, and
+replaces multiple whitespace characters with a single space.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#downcase%21-instance_method" title="#downcase! (instance method)">- (Object) <strong>downcase!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Perform UTF-8 sensitive downcasing.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (SlugString) <strong>initialize</strong>(string) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of SlugString.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Object) <strong>method_missing</strong>(symbol, *args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalize%21-instance_method" title="#normalize! (instance method)">- (Object) <strong>normalize!</strong>(ascii = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Normalize the string for use as a slug.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#normalize_utf8%21-instance_method" title="#normalize_utf8! (instance method)">- (Object) <strong>normalize_utf8!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Perform Unicode composition on the wrapped string.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tidy_bytes%21-instance_method" title="#tidy_bytes! (instance method)">- (Object) <strong>tidy_bytes!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Attempt to convert characters encoded using CP1252 and IS0-8859-1 to UTF-8.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_ascii%21-instance_method" title="#to_ascii! (instance method)">- (Object) <strong>to_ascii!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Delete any non-ascii characters.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#truncate%21-instance_method" title="#truncate! (instance method)">- (Object) <strong>truncate!</strong>(max) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Truncate the string to <tt>max</tt> characters.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#truncate_bytes%21-instance_method" title="#truncate_bytes! (instance method)">- (Object) <strong>truncate_bytes!</strong>(max) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Truncate the string to <tt>max</tt> bytes.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#upcase%21-instance_method" title="#upcase! (instance method)">- (Object) <strong>upcase!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Perform UTF-8 sensitive upcasing.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_dashes%21-instance_method" title="#with_dashes! (instance method)">- (Object) <strong>with_dashes!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Replaces whitespace with dashes (&#8220;-&#8221;).
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#word_chars%21-instance_method" title="#word_chars! (instance method)">- (Object) <strong>word_chars!</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Remove any non-word characters.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><a href="" title="Babosa::SlugString (class)">SlugString</a></tt>) <strong>initialize</strong>(string) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of SlugString
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt><a href="../String.html" title="String (class)">String</a></tt>)</span>
+      
+      
+        <span class='name'>string</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+The string to use as the basis of the SlugString.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id string'>string</span>
+  <span class='id tidy_bytes!'>tidy_bytes!</span>
+  <span class='id normalize_utf8!'>normalize_utf8!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+<div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <p class="signature first" id="method_missing-instance_method">
+  
+    - (<tt>Object</tt>) <strong>method_missing</strong>(symbol, *args, &amp;block) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='id method_missing'>method_missing</span><span class='lparen'>(</span><span class='id symbol'>symbol</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span><span class='rparen'>)</span>
+  <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id __send__'>__send__</span><span class='lparen'>(</span><span class='id symbol'>symbol</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <span id="wrapped_string-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="wrapped_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>wrapped_string</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='to_s-instance_method'>to_s</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute wrapped_string
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id wrapped_string'>wrapped_string</span>
+  <span class='ivar'>@wrapped_string</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="utf8_proxy-class_method">
+  
+    + (<tt>Object</tt>) <strong>utf8_proxy</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Return the proxy used for UTF-8 support.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="UTF8/UTF8Proxy.html" title="Babosa::UTF8::UTF8Proxy (module)">Babosa::UTF8::UTF8Proxy</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id utf8_proxy'>utf8_proxy</span>
+  <span class='cvar'>@@utf8_proxy</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="utf8_proxy=-class_method">
+  
+    + (<tt>Object</tt>) <strong>utf8_proxy=</strong>(obj) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Set a proxy object used for UTF-8 support.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="UTF8/UTF8Proxy.html" title="Babosa::UTF8::UTF8Proxy (module)">Babosa::UTF8::UTF8Proxy</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+45
+46
+47</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 45</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id utf8_proxy='>utf8_proxy=</span><span class='lparen'>(</span><span class='id obj'>obj</span><span class='rparen'>)</span>
+  <span class='cvar'>@@utf8_proxy</span> <span class='op'>=</span> <span class='id obj'>obj</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="approximate_ascii!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>approximate_ascii!</strong>(overrides = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Approximate an ASCII string. This works only for Western strings using
+characters that are Roman-alphabet characters + diacritics. Non-letter
+characters are left unmodified.
+</p>
+<pre class="code">
+  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Łódź, Poland</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;Lodz, Poland&quot;
+</span>  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>日本</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;日本&quot;
+</span></pre>
+<p>
+You can pass any key(s) from <tt>Characters.approximations</tt> as
+arguments. This allows for contextual approximations. By default;
+<tt>:spanish</tt> and <tt>:german</tt> are provided:
+</p>
+<pre class="code">
+  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;Jurgen Muller&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span> <span class='symbol'>:german</span>         <span class='comment'># =&gt; &quot;Juergen Mueller&quot;
+</span>  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡Feliz año!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;¡Feliz ano!&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span> <span class='symbol'>:spanish</span>        <span class='comment'># =&gt; &quot;¡Feliz anio!&quot;
+</span></pre>
+<p>
+You can modify the built-in approximations, or add your own:
+</p>
+<pre class="code">
+  <span class='comment'># Make Spanish use &quot;nh&quot; rather than &quot;nn&quot;
+</span>  <span class='const'>Babosa</span><span class='op'>::</span><span class='const'>Characters</span><span class='period'>.</span><span class='id add_approximations'>add_approximations</span><span class='lparen'>(</span><span class='symbol'>:spanish</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ñ</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nh</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+</pre>
+<p>
+Notice that this method does not simply convert to ASCII; if you want to
+remove non-ASCII characters such as &#8220;¡&#8221; and &#8220;¿&#8221;,
+use <tt><a href="#to_ascii%21-instance_method" title="Babosa::SlugString#to_ascii! (method)">#to_ascii!</a></tt>:
+</p>
+<pre class="code">
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii!'>approximate_ascii!</span><span class='lparen'>(</span><span class='symbol'>:spanish</span><span class='rparen'>)</span>       <span class='comment'># =&gt; &quot;¡Feliz anio!&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id to_ascii!'>to_ascii!</span>                          <span class='comment'># =&gt; &quot;Feliz anio!&quot;</span></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+        <span class='name'>*args</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id approximate_ascii!'>approximate_ascii!</span><span class='lparen'>(</span><span class='id overrides'>overrides</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id overrides'>overrides</span> <span class='op'>=</span> <span class='const'>Characters</span><span class='period'>.</span><span class='id approximations'>approximations</span><span class='lbracket'>[</span><span class='id overrides'>overrides</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id overrides'>overrides</span><span class='period'>.</span><span class='id kind_of?'>kind_of?</span> <span class='const'>Symbol</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id char'>char</span><span class='op'>|</span> <span class='id approx_char'>approx_char</span><span class='lparen'>(</span><span class='id char'>char</span><span class='comma'>,</span> <span class='id overrides'>overrides</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id flatten'>flatten</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="clean!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>clean!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Converts dashes to spaces, removes leading and trailing spaces, and
+replaces multiple whitespace characters with a single space.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id clean!'>clean!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id squeeze'>squeeze</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id strip'>strip</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="downcase!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>downcase!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Perform UTF-8 sensitive downcasing.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id downcase!'>downcase!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id downcase'>downcase</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="normalize!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>normalize!</strong>(ascii = false) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Normalize the string for use as a slug. Note that in this context,
+<tt>normalize</tt> means, strip, remove non-letters/numbers, downcasing,
+truncating to 255 bytes and converting whitespace to dashes.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+        <span class='name'>Boolean</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+ascii If true, approximate ASCII and then remove any non-ASCII characters.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='id normalize!'>normalize!</span><span class='lparen'>(</span><span class='id ascii'>ascii</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id ascii'>ascii</span>
+    <span class='id approximate_ascii!'>approximate_ascii!</span>
+    <span class='id to_ascii!'>to_ascii!</span>
+  <span class='kw'>end</span>
+  <span class='id clean!'>clean!</span>
+  <span class='id word_chars!'>word_chars!</span>
+  <span class='id clean!'>clean!</span>
+  <span class='id downcase!'>downcase!</span>
+  <span class='id truncate_bytes!'>truncate_bytes!</span><span class='lparen'>(</span><span class='int'>255</span><span class='rparen'>)</span>
+  <span class='id with_dashes!'>with_dashes!</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="normalize_utf8!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>normalize_utf8!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Perform Unicode composition on the wrapped string.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185
+186</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 184</span>
+
+<span class='kw'>def</span> <span class='id normalize_utf8!'>normalize_utf8!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id normalize_utf8'>normalize_utf8</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="tidy_bytes!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>tidy_bytes!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Attempt to convert characters encoded using CP1252 and IS0-8859-1 to UTF-8.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+191
+192
+193</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 191</span>
+
+<span class='kw'>def</span> <span class='id tidy_bytes!'>tidy_bytes!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id tidy_bytes'>tidy_bytes</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="to_ascii!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_ascii!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Delete any non-ascii characters.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id to_ascii!'>to_ascii!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[^\x00-\x7f]</span><span class='regexp_end'>/u</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="truncate!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>truncate!</strong>(max) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Truncate the string to <tt>max</tt> characters.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üéøá</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate'>truncate</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;üéø&quot;</span></pre>
+    
+  </div>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id truncate!'>truncate!</span><span class='lparen'>(</span><span class='id max'>max</span><span class='rparen'>)</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id max'>max</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="truncate_bytes!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>truncate_bytes!</strong>(max) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Truncate the string to <tt>max</tt> bytes. This can be useful for ensuring
+that a UTF-8 string will always fit into a database column with a certain
+max byte length. The resulting string may be less than <tt>max</tt> if the
+string must be truncated at a multibyte character boundary.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üéøá</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate_bytes'>truncate_bytes</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;ü&quot;</span></pre>
+    
+  </div>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 149</span>
+
+<span class='kw'>def</span> <span class='id truncate_bytes!'>truncate_bytes!</span><span class='lparen'>(</span><span class='id max'>max</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='ivar'>@wrapped_string</span> <span class='kw'>if</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id bytesize'>bytesize</span> <span class='op'>&lt;=</span> <span class='id max'>max</span>
+  <span class='id curr'>curr</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id new'>new</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id char'>char</span><span class='op'>|</span>
+    <span class='kw'>break</span> <span class='kw'>if</span> <span class='id curr'>curr</span> <span class='op'>&gt;</span> <span class='id max'>max</span>
+    <span class='id char'>char</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id char'>char</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id curr'>curr</span> <span class='op'>+=</span> <span class='id char'>char</span><span class='period'>.</span><span class='id bytesize'>bytesize</span>
+    <span class='kw'>if</span> <span class='id curr'>curr</span> <span class='op'>&lt;=</span> <span class='id max'>max</span>
+      <span class='id new'>new</span> <span class='op'>&lt;&lt;</span> <span class='id char'>char</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id new'>new</span><span class='period'>.</span><span class='id join'>join</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="upcase!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>upcase!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Perform UTF-8 sensitive upcasing.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 172</span>
+
+<span class='kw'>def</span> <span class='id upcase!'>upcase!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id upcase'>upcase</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="with_dashes!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>with_dashes!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Replaces whitespace with dashes (&#8220;-&#8221;).
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 166</span>
+
+<span class='kw'>def</span> <span class='id with_dashes!'>with_dashes!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s</span><span class='regexp_end'>/u</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="word_chars!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>word_chars!</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Remove any non-word characters.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'></span>
+      
+      
+      
+      
+        
+        <div class='inline'><p>
+String
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='id word_chars!'>word_chars!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>-</span> <span class='const'>Characters</span><span class='period'>.</span><span class='id strippable'>strippable</span><span class='rparen'>)</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Jul  7 14:30:34 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.8 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

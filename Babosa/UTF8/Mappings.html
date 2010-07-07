@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Module: Babosa::UTF8::Mappings</title>
+<link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '../..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../_index.html">Index (M)</a> &raquo; 
+    <span class='title'><a href="../../Babosa.html" title="Babosa (module)">Babosa</a></span> &raquo; <span class='title'><a href="../UTF8.html" title="Babosa::UTF8 (module)">UTF8</a></span>
+     &raquo; 
+    <span class="title">Mappings</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: Babosa::UTF8::Mappings
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/babosa/utf8/mappings.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+A small subset of the mappings provided by Unicode.org, limited to Latin
+characters. This is used for Babosa&#8217;s default &#8220;dumb&#8221;
+UTF-8 support.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DOWNCASE-constant" class="">DOWNCASE =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Hash</span><span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span> <span class='int'>97</span><span class='comma'>,</span> <span class='int'>66</span><span class='comma'>,</span> <span class='int'>98</span><span class='comma'>,</span> <span class='int'>67</span><span class='comma'>,</span> <span class='int'>99</span><span class='comma'>,</span> <span class='int'>68</span><span class='comma'>,</span> <span class='int'>100</span><span class='comma'>,</span> <span class='int'>69</span><span class='comma'>,</span> <span class='int'>101</span><span class='comma'>,</span> <span class='int'>70</span><span class='comma'>,</span> <span class='int'>102</span><span class='comma'>,</span>
+<span class='int'>71</span><span class='comma'>,</span> <span class='int'>103</span><span class='comma'>,</span> <span class='int'>72</span><span class='comma'>,</span> <span class='int'>104</span><span class='comma'>,</span> <span class='int'>73</span><span class='comma'>,</span> <span class='int'>105</span><span class='comma'>,</span> <span class='int'>74</span><span class='comma'>,</span> <span class='int'>106</span><span class='comma'>,</span> <span class='int'>75</span><span class='comma'>,</span> <span class='int'>107</span><span class='comma'>,</span> <span class='int'>76</span><span class='comma'>,</span> <span class='int'>108</span><span class='comma'>,</span> <span class='int'>77</span><span class='comma'>,</span> <span class='int'>109</span><span class='comma'>,</span> <span class='int'>78</span><span class='comma'>,</span> <span class='int'>110</span><span class='comma'>,</span>
+<span class='int'>79</span><span class='comma'>,</span> <span class='int'>111</span><span class='comma'>,</span> <span class='int'>80</span><span class='comma'>,</span> <span class='int'>112</span><span class='comma'>,</span> <span class='int'>81</span><span class='comma'>,</span> <span class='int'>113</span><span class='comma'>,</span> <span class='int'>82</span><span class='comma'>,</span> <span class='int'>114</span><span class='comma'>,</span> <span class='int'>83</span><span class='comma'>,</span> <span class='int'>115</span><span class='comma'>,</span> <span class='int'>84</span><span class='comma'>,</span> <span class='int'>116</span><span class='comma'>,</span> <span class='int'>85</span><span class='comma'>,</span> <span class='int'>117</span><span class='comma'>,</span> <span class='int'>86</span><span class='comma'>,</span> <span class='int'>118</span><span class='comma'>,</span>
+<span class='int'>87</span><span class='comma'>,</span> <span class='int'>119</span><span class='comma'>,</span> <span class='int'>88</span><span class='comma'>,</span> <span class='int'>120</span><span class='comma'>,</span> <span class='int'>89</span><span class='comma'>,</span> <span class='int'>121</span><span class='comma'>,</span> <span class='int'>90</span><span class='comma'>,</span> <span class='int'>122</span><span class='comma'>,</span> <span class='int'>181</span><span class='comma'>,</span> <span class='int'>956</span><span class='comma'>,</span> <span class='int'>192</span><span class='comma'>,</span> <span class='int'>224</span><span class='comma'>,</span> <span class='int'>193</span><span class='comma'>,</span> <span class='int'>225</span><span class='comma'>,</span> <span class='int'>194</span><span class='comma'>,</span>
+<span class='int'>226</span><span class='comma'>,</span> <span class='int'>195</span><span class='comma'>,</span> <span class='int'>227</span><span class='comma'>,</span> <span class='int'>196</span><span class='comma'>,</span> <span class='int'>228</span><span class='comma'>,</span> <span class='int'>197</span><span class='comma'>,</span> <span class='int'>229</span><span class='comma'>,</span> <span class='int'>198</span><span class='comma'>,</span> <span class='int'>230</span><span class='comma'>,</span> <span class='int'>199</span><span class='comma'>,</span> <span class='int'>231</span><span class='comma'>,</span> <span class='int'>200</span><span class='comma'>,</span> <span class='int'>232</span><span class='comma'>,</span> <span class='int'>201</span><span class='comma'>,</span>
+<span class='int'>233</span><span class='comma'>,</span> <span class='int'>202</span><span class='comma'>,</span> <span class='int'>234</span><span class='comma'>,</span> <span class='int'>203</span><span class='comma'>,</span> <span class='int'>235</span><span class='comma'>,</span> <span class='int'>204</span><span class='comma'>,</span> <span class='int'>236</span><span class='comma'>,</span> <span class='int'>205</span><span class='comma'>,</span> <span class='int'>237</span><span class='comma'>,</span> <span class='int'>206</span><span class='comma'>,</span> <span class='int'>238</span><span class='comma'>,</span> <span class='int'>207</span><span class='comma'>,</span> <span class='int'>239</span><span class='comma'>,</span> <span class='int'>208</span><span class='comma'>,</span>
+<span class='int'>240</span><span class='comma'>,</span> <span class='int'>209</span><span class='comma'>,</span> <span class='int'>241</span><span class='comma'>,</span> <span class='int'>210</span><span class='comma'>,</span> <span class='int'>242</span><span class='comma'>,</span> <span class='int'>211</span><span class='comma'>,</span> <span class='int'>243</span><span class='comma'>,</span> <span class='int'>212</span><span class='comma'>,</span> <span class='int'>244</span><span class='comma'>,</span> <span class='int'>213</span><span class='comma'>,</span> <span class='int'>245</span><span class='comma'>,</span> <span class='int'>214</span><span class='comma'>,</span> <span class='int'>246</span><span class='comma'>,</span> <span class='int'>216</span><span class='comma'>,</span>
+<span class='int'>248</span><span class='comma'>,</span> <span class='int'>217</span><span class='comma'>,</span> <span class='int'>249</span><span class='comma'>,</span> <span class='int'>218</span><span class='comma'>,</span> <span class='int'>250</span><span class='comma'>,</span> <span class='int'>219</span><span class='comma'>,</span> <span class='int'>251</span><span class='comma'>,</span> <span class='int'>220</span><span class='comma'>,</span> <span class='int'>252</span><span class='comma'>,</span> <span class='int'>221</span><span class='comma'>,</span> <span class='int'>253</span><span class='comma'>,</span> <span class='int'>222</span><span class='comma'>,</span> <span class='int'>254</span><span class='comma'>,</span> <span class='int'>223</span><span class='comma'>,</span>
+<span class='lbracket'>[</span><span class='int'>115</span><span class='comma'>,</span> <span class='int'>115</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='int'>256</span><span class='comma'>,</span> <span class='int'>257</span><span class='comma'>,</span> <span class='int'>258</span><span class='comma'>,</span> <span class='int'>259</span><span class='comma'>,</span> <span class='int'>260</span><span class='comma'>,</span> <span class='int'>261</span><span class='comma'>,</span> <span class='int'>262</span><span class='comma'>,</span> <span class='int'>263</span><span class='comma'>,</span> <span class='int'>264</span><span class='comma'>,</span> <span class='int'>265</span><span class='comma'>,</span> <span class='int'>266</span><span class='comma'>,</span> <span class='int'>267</span><span class='comma'>,</span>
+<span class='int'>268</span><span class='comma'>,</span> <span class='int'>269</span><span class='comma'>,</span> <span class='int'>270</span><span class='comma'>,</span> <span class='int'>271</span><span class='comma'>,</span> <span class='int'>272</span><span class='comma'>,</span> <span class='int'>273</span><span class='comma'>,</span> <span class='int'>274</span><span class='comma'>,</span> <span class='int'>275</span><span class='comma'>,</span> <span class='int'>276</span><span class='comma'>,</span> <span class='int'>277</span><span class='comma'>,</span> <span class='int'>278</span><span class='comma'>,</span> <span class='int'>279</span><span class='comma'>,</span> <span class='int'>280</span><span class='comma'>,</span> <span class='int'>281</span><span class='comma'>,</span>
+<span class='int'>282</span><span class='comma'>,</span> <span class='int'>283</span><span class='comma'>,</span> <span class='int'>284</span><span class='comma'>,</span> <span class='int'>285</span><span class='comma'>,</span> <span class='int'>286</span><span class='comma'>,</span> <span class='int'>287</span><span class='comma'>,</span> <span class='int'>288</span><span class='comma'>,</span> <span class='int'>289</span><span class='comma'>,</span> <span class='int'>290</span><span class='comma'>,</span> <span class='int'>291</span><span class='comma'>,</span> <span class='int'>292</span><span class='comma'>,</span> <span class='int'>293</span><span class='comma'>,</span> <span class='int'>294</span><span class='comma'>,</span> <span class='int'>295</span><span class='comma'>,</span>
+<span class='int'>296</span><span class='comma'>,</span> <span class='int'>297</span><span class='comma'>,</span> <span class='int'>298</span><span class='comma'>,</span> <span class='int'>299</span><span class='comma'>,</span> <span class='int'>300</span><span class='comma'>,</span> <span class='int'>301</span><span class='comma'>,</span> <span class='int'>302</span><span class='comma'>,</span> <span class='int'>303</span><span class='comma'>,</span> <span class='int'>304</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span> <span class='int'>775</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='int'>306</span><span class='comma'>,</span> <span class='int'>307</span><span class='comma'>,</span> <span class='int'>308</span><span class='comma'>,</span>
+<span class='int'>309</span><span class='comma'>,</span> <span class='int'>310</span><span class='comma'>,</span> <span class='int'>311</span><span class='comma'>,</span> <span class='int'>313</span><span class='comma'>,</span> <span class='int'>314</span><span class='comma'>,</span> <span class='int'>315</span><span class='comma'>,</span> <span class='int'>316</span><span class='comma'>,</span> <span class='int'>317</span><span class='comma'>,</span> <span class='int'>318</span><span class='comma'>,</span> <span class='int'>319</span><span class='comma'>,</span> <span class='int'>320</span><span class='comma'>,</span> <span class='int'>321</span><span class='comma'>,</span> <span class='int'>322</span><span class='comma'>,</span> <span class='int'>323</span><span class='comma'>,</span>
+<span class='int'>324</span><span class='comma'>,</span> <span class='int'>325</span><span class='comma'>,</span> <span class='int'>326</span><span class='comma'>,</span> <span class='int'>327</span><span class='comma'>,</span> <span class='int'>328</span><span class='comma'>,</span> <span class='int'>329</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='int'>700</span><span class='comma'>,</span> <span class='int'>110</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='int'>330</span><span class='comma'>,</span> <span class='int'>331</span><span class='comma'>,</span> <span class='int'>332</span><span class='comma'>,</span> <span class='int'>333</span><span class='comma'>,</span> <span class='int'>334</span><span class='comma'>,</span> <span class='int'>335</span><span class='comma'>,</span>
+<span class='int'>336</span><span class='comma'>,</span> <span class='int'>337</span><span class='comma'>,</span> <span class='int'>338</span><span class='comma'>,</span> <span class='int'>339</span><span class='comma'>,</span> <span class='int'>340</span><span class='comma'>,</span> <span class='int'>341</span><span class='comma'>,</span> <span class='int'>342</span><span class='comma'>,</span> <span class='int'>343</span><span class='comma'>,</span> <span class='int'>344</span><span class='comma'>,</span> <span class='int'>345</span><span class='comma'>,</span> <span class='int'>346</span><span class='comma'>,</span> <span class='int'>347</span><span class='comma'>,</span> <span class='int'>348</span><span class='comma'>,</span> <span class='int'>349</span><span class='comma'>,</span>
+<span class='int'>350</span><span class='comma'>,</span> <span class='int'>351</span><span class='comma'>,</span> <span class='int'>352</span><span class='comma'>,</span> <span class='int'>353</span><span class='comma'>,</span> <span class='int'>354</span><span class='comma'>,</span> <span class='int'>355</span><span class='comma'>,</span> <span class='int'>356</span><span class='comma'>,</span> <span class='int'>357</span><span class='comma'>,</span> <span class='int'>358</span><span class='comma'>,</span> <span class='int'>359</span><span class='comma'>,</span> <span class='int'>360</span><span class='comma'>,</span> <span class='int'>361</span><span class='comma'>,</span> <span class='int'>362</span><span class='comma'>,</span> <span class='int'>363</span><span class='comma'>,</span>
+<span class='int'>364</span><span class='comma'>,</span> <span class='int'>365</span><span class='comma'>,</span> <span class='int'>366</span><span class='comma'>,</span> <span class='int'>367</span><span class='comma'>,</span> <span class='int'>368</span><span class='comma'>,</span> <span class='int'>369</span><span class='comma'>,</span> <span class='int'>370</span><span class='comma'>,</span> <span class='int'>371</span><span class='comma'>,</span> <span class='int'>372</span><span class='comma'>,</span> <span class='int'>373</span><span class='comma'>,</span> <span class='int'>374</span><span class='comma'>,</span> <span class='int'>375</span><span class='comma'>,</span> <span class='int'>376</span><span class='comma'>,</span> <span class='int'>255</span><span class='comma'>,</span>
+<span class='int'>377</span><span class='comma'>,</span> <span class='int'>378</span><span class='comma'>,</span> <span class='int'>379</span><span class='comma'>,</span> <span class='int'>380</span><span class='comma'>,</span> <span class='int'>381</span><span class='comma'>,</span> <span class='int'>382</span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="UPCASE-constant" class="">UPCASE =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>DOWNCASE</span><span class='period'>.</span><span class='id invert'>invert</span></pre></dd>
+      
+        <dt id="COMPOSITION-constant" class="">COMPOSITION =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>192</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>193</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>194</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>195</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>196</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>778</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>197</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>67</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>199</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>200</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>201</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>202</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>203</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>204</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>205</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>206</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>207</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>78</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>209</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>210</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>211</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>212</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>213</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>214</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>217</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>218</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>219</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>220</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>89</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>221</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>224</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>225</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>226</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>227</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>228</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>778</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>229</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>99</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>231</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>232</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>233</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>234</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>235</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>236</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>237</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>238</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>239</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>110</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>241</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>242</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>243</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>244</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>245</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>246</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>768</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>249</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>250</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>251</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>252</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>121</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>253</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>121</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>255</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>256</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>257</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>258</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>259</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>65</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>260</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>97</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>261</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>67</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>262</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>99</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>263</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>67</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>264</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>99</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>265</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>67</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>266</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>99</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>267</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>67</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>268</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>99</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>269</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>68</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>270</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>100</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>271</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>274</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>275</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>276</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>277</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>278</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>279</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>280</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>281</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>69</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>282</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>101</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>283</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>71</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>284</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>103</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>285</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>71</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>286</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>103</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>287</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>71</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>288</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>103</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>289</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>71</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>290</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>103</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>291</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>72</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>292</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>104</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>293</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>296</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>297</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>298</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>299</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>300</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>301</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>302</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>105</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>303</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>73</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>304</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>74</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>308</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>106</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>309</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>75</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>310</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>107</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>311</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>76</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>313</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>108</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>314</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>76</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>315</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>108</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>316</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>76</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>317</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>108</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>318</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>78</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>323</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>110</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>324</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>78</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>325</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>110</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>326</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>78</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>327</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>110</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>328</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>332</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>333</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>334</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>335</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>79</span><span class='comma'>,</span><span class='int'>779</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>336</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>111</span><span class='comma'>,</span><span class='int'>779</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>337</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>82</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>340</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>114</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>341</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>82</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>342</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>114</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>343</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>82</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>344</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>114</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>345</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>83</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>346</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>115</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>347</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>83</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>348</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>115</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>349</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>83</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>350</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>115</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>351</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>83</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>352</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>115</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>353</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>84</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>354</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>116</span><span class='comma'>,</span><span class='int'>807</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>355</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>84</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>356</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>116</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>357</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>360</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>771</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>361</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>362</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>772</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>363</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>364</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>774</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>365</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>778</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>366</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>778</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>367</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>779</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>368</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>779</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>369</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>85</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>370</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>117</span><span class='comma'>,</span><span class='int'>808</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>371</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>87</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>372</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>119</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>373</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>89</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>374</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>121</span><span class='comma'>,</span><span class='int'>770</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>375</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>89</span><span class='comma'>,</span><span class='int'>776</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>376</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>90</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>377</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>122</span><span class='comma'>,</span><span class='int'>769</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>378</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>90</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>379</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>122</span><span class='comma'>,</span><span class='int'>775</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>380</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>90</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span>  <span class='op'>=&gt;</span> <span class='int'>381</span><span class='comma'>,</span>
+  <span class='lbracket'>[</span><span class='int'>122</span><span class='comma'>,</span><span class='int'>780</span><span class='rbracket'>]</span> <span class='op'>=&gt;</span> <span class='int'>382</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Jul  7 14:30:34 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
+  0.5.8 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
