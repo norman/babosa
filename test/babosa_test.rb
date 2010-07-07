@@ -34,8 +34,7 @@ module UTF8ProxyTest
   end
 end
 
-
-if RUBY_ENGINE == "java"
+if Babosa.jruby15?
   class JavaProxyTest < Test::Unit::TestCase
     include UTF8ProxyTest
     def proxy

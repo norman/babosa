@@ -24,7 +24,7 @@ module Babosa
     attr_reader :wrapped_string
     alias to_s wrapped_string
 
-    @@utf8_proxy = if RUBY_ENGINE == "java"
+    @@utf8_proxy = if Babosa.jruby15?
       UTF8::JavaProxy
     elsif defined? Unicode
       UTF8::UnicodeProxy
