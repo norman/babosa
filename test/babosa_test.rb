@@ -74,35 +74,35 @@ class  BabosaTest < Test::Unit::TestCase
   end
 
   test "should replace whitespace with dashes" do
-    assert_equal "a-b", "a b".to_slug.clean.with_dashes!
+    assert_equal "a-b", "a b".to_slug.clean.normalize!
   end
 
   test "should replace multiple spaces with 1 dash" do
-    assert_equal "a-b", "a    b".to_slug.clean.with_dashes!
+    assert_equal "a-b", "a    b".to_slug.clean.normalize!
   end
 
   test "should replace multiple dashes with 1 dash" do
-    assert_equal "male-female", "male - female".to_slug.clean.with_dashes!
+    assert_equal "male-female", "male - female".to_slug.normalize!
   end
 
   test "should strip trailing space" do
-    assert_equal "ab", "ab ".to_slug.clean!
+    assert_equal "ab", "ab ".to_slug.normalize!
   end
 
   test "should strip leading space" do
-    assert_equal "ab", " ab".to_slug.clean!
+    assert_equal "ab", " ab".to_slug.normalize!
   end
 
   test "should strip trailing slashes" do
-    assert_equal "ab", "ab-".to_slug.clean!
+    assert_equal "ab", "ab-".to_slug.normalize!
   end
 
   test "should strip leading slashes" do
-    assert_equal "ab", "-ab".to_slug.clean!
+    assert_equal "ab", "-ab".to_slug.normalize!
   end
 
   test "should not modify valid name strings" do
-    assert_equal "a-b-c-d", "a-b-c-d".to_slug.clean!
+    assert_equal "a-b-c-d", "a-b-c-d".to_slug.normalize!
   end
 
   test "should do special approximations for German" do
@@ -114,7 +114,7 @@ class  BabosaTest < Test::Unit::TestCase
   end
 
   test "should work with non roman chars" do
-    assert_equal "検-索", "検 索".to_slug.with_dashes!
+    assert_equal "検-索", "検 索".to_slug.normalize!
   end
 
   test "should work with invalid UTF-8 strings" do

@@ -94,7 +94,7 @@ module Babosa
     # replaces multiple whitespace characters with a single space.
     # @return String
     def clean!
-      @wrapped_string = @wrapped_string.gsub(/\A\-|\-\z/, "").gsub(/\s+/u, " ").strip
+      @wrapped_string = @wrapped_string.gsub("-", " ").squeeze(" ").strip
     end
 
     # Remove any non-word characters.
@@ -106,10 +106,16 @@ module Babosa
     # Normalize the string for use as a slug. Note that in this context,
     # +normalize+ means, strip, remove non-letters/numbers, downcasing,
     # truncating to 255 bytes and converting whitespace to dashes.
+    # @param Boolean ascii If true, approximate ASCII and then remove any non-ASCII characters.
     # @return String
-    def normalize!
+    def normalize!(ascii = false)
+      if ascii
+        approximate_ascii!
+        to_ascii!
+      end
       clean!
       word_chars!
+      clean!
       downcase!
       truncate_bytes!(255)
       with_dashes!
