@@ -52,7 +52,7 @@ module Babosa
 
     # @param string [String] The string to use as the basis of the SlugString.
     def initialize(string)
-      @wrapped_string = string
+      @wrapped_string = string.to_s
       tidy_bytes!
       normalize_utf8!
     end
