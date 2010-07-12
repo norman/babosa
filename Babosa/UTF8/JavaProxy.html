@@ -204,9 +204,10 @@ JRuby 1.5+.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/utf8/java_proxy.rb', line 11</span>
 
-<span class='kw'>def</span> <span class='id downcase'>downcase</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
-  <span class='id string'>string</span><span class='period'>.</span><span class='id to_java'>to_java</span><span class='period'>.</span><span class='id to_lower_case'>to_lower_case</span><span class='period'>.</span><span class='id to_s'>to_s</span>
-<span class='kw'>end</span></pre>
+<span class='def def kw'>def</span> <span class='downcase identifier id'>downcase</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='to_java identifier id'>to_java</span><span class='dot token'>.</span><span class='to_lower_case identifier id'>to_lower_case</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+<span class='end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -232,9 +233,10 @@ JRuby 1.5+.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/utf8/java_proxy.rb', line 19</span>
 
-<span class='kw'>def</span> <span class='id normalize_utf8'>normalize_utf8</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
-  <span class='const'>Normalizer</span><span class='period'>.</span><span class='id normalize'>normalize</span><span class='lparen'>(</span><span class='id string'>string</span><span class='comma'>,</span> <span class='const'>Normalizer</span><span class='op'>::</span><span class='const'>Form</span><span class='op'>::</span><span class='const'>NFC</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>
-<span class='kw'>end</span></pre>
+<span class='def def kw'>def</span> <span class='normalize_utf8 identifier id'>normalize_utf8</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='Normalizer constant id'>Normalizer</span><span class='dot token'>.</span><span class='normalize identifier id'>normalize</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='comma token'>,</span> <span class='Normalizer constant id'>Normalizer</span><span class='colon2 op'>::</span><span class='Form constant id'>Form</span><span class='colon2 op'>::</span><span class='NFC constant id'>NFC</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+<span class='end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -260,9 +262,10 @@ JRuby 1.5+.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/utf8/java_proxy.rb', line 15</span>
 
-<span class='kw'>def</span> <span class='id upcase'>upcase</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
-  <span class='id string'>string</span><span class='period'>.</span><span class='id to_java'>to_java</span><span class='period'>.</span><span class='id to_upper_case'>to_upper_case</span><span class='period'>.</span><span class='id to_s'>to_s</span>
-<span class='kw'>end</span></pre>
+<span class='def def kw'>def</span> <span class='upcase identifier id'>upcase</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='to_java identifier id'>to_java</span><span class='dot token'>.</span><span class='to_upper_case identifier id'>to_upper_case</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
+<span class='end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -273,9 +276,9 @@ JRuby 1.5+.
 </div>
     
     <div id="footer">
-  Generated on Wed Jul  7 15:29:22 2010 by 
+  Generated on Mon Jul 12 15:37:07 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.9.2).
+  0.5.8 (ruby-1.8.6).
 </div>
 
   </body>

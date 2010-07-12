@@ -211,9 +211,10 @@ library&#8217;s purposes (i.e., Roman-based codepoints, up to U+017E).
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/utf8/dumb_proxy.rb', line 15</span>
 
-<span class='kw'>def</span> <span class='id downcase'>downcase</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
-  <span class='id string'>string</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id char'>char</span><span class='op'>|</span> <span class='const'>Mappings</span><span class='op'>::</span><span class='const'>DOWNCASE</span><span class='lbracket'>[</span><span class='id char'>char</span><span class='rbracket'>]</span> <span class='kw'>or</span> <span class='id char'>char</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id flatten'>flatten</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
+<span class='def def kw'>def</span> <span class='downcase identifier id'>downcase</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='char identifier id'>char</span><span class='bitor op'>|</span> <span class='Mappings constant id'>Mappings</span><span class='colon2 op'>::</span><span class='DOWNCASE constant id'>DOWNCASE</span><span class='lbrack token'>[</span><span class='char identifier id'>char</span><span class='rbrack token'>]</span> <span class='or or kw'>or</span> <span class='char identifier id'>char</span><span class='rbrace token'>}</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='pack identifier id'>pack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -257,23 +258,26 @@ or ActiveSupport instead.
 35
 36
 37
-38</pre>
+38
+39</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/utf8/dumb_proxy.rb', line 27</span>
 
-<span class='kw'>def</span> <span class='id normalize_utf8'>normalize_utf8</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
-  <span class='id codepoints'>codepoints</span> <span class='op'>=</span> <span class='id string'>string</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-  <span class='id new'>new</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='kw'>until</span> <span class='id codepoints'>codepoints</span><span class='period'>.</span><span class='id empty?'>empty?</span> <span class='kw'>do</span>
-    <span class='kw'>if</span> <span class='const'>Mappings</span><span class='op'>::</span><span class='const'>COMPOSITION</span><span class='lbracket'>[</span><span class='id codepoints'>codepoints</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
-      <span class='id new'>new</span> <span class='op'>&lt;&lt;</span> <span class='const'>Mappings</span><span class='op'>::</span><span class='const'>COMPOSITION</span><span class='lbracket'>[</span><span class='id codepoints'>codepoints</span><span class='period'>.</span><span class='id slice!'>slice!</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>2</span><span class='rparen'>)</span><span class='rbracket'>]</span>
-    <span class='kw'>else</span>
-      <span class='id new'>new</span> <span class='op'>&lt;&lt;</span> <span class='id codepoints'>codepoints</span><span class='period'>.</span><span class='id shift'>shift</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-  <span class='id new'>new</span><span class='period'>.</span><span class='id compact'>compact</span><span class='period'>.</span><span class='id flatten'>flatten</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
+<span class='def def kw'>def</span> <span class='normalize_utf8 identifier id'>normalize_utf8</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+    <span class='codepoints identifier id'>codepoints</span> <span class='assign token'>=</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span>
+    <span class='new identifier id'>new</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='until until kw'>until</span> <span class='codepoints identifier id'>codepoints</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='do do kw'>do</span>
+      <span class='if if kw'>if</span> <span class='Mappings constant id'>Mappings</span><span class='colon2 op'>::</span><span class='COMPOSITION constant id'>COMPOSITION</span><span class='lbrack token'>[</span><span class='codepoints identifier id'>codepoints</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='dot2 op'>..</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span>
+        <span class='new identifier id'>new</span> <span class='lshft op'>&lt;&lt;</span> <span class='Mappings constant id'>Mappings</span><span class='colon2 op'>::</span><span class='COMPOSITION constant id'>COMPOSITION</span><span class='lbrack token'>[</span><span class='codepoints identifier id'>codepoints</span><span class='dot token'>.</span><span class='slice! fid id'>slice!</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>2</span><span class='rparen token'>)</span><span class='rbrack token'>]</span>
+      <span class='else else kw'>else</span>
+        <span class='new identifier id'>new</span> <span class='lshft op'>&lt;&lt;</span> <span class='codepoints identifier id'>codepoints</span><span class='dot token'>.</span><span class='shift identifier id'>shift</span>
+      <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+    <span class='new identifier id'>new</span><span class='dot token'>.</span><span class='compact identifier id'>compact</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='pack identifier id'>pack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -299,9 +303,10 @@ or ActiveSupport instead.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/utf8/dumb_proxy.rb', line 19</span>
 
-<span class='kw'>def</span> <span class='id upcase'>upcase</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
-  <span class='id string'>string</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id char'>char</span><span class='op'>|</span> <span class='const'>Mappings</span><span class='op'>::</span><span class='const'>UPCASE</span><span class='lbracket'>[</span><span class='id char'>char</span><span class='rbracket'>]</span> <span class='kw'>or</span> <span class='id char'>char</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id flatten'>flatten</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
+<span class='def def kw'>def</span> <span class='upcase identifier id'>upcase</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
+  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='char identifier id'>char</span><span class='bitor op'>|</span> <span class='Mappings constant id'>Mappings</span><span class='colon2 op'>::</span><span class='UPCASE constant id'>UPCASE</span><span class='lbrack token'>[</span><span class='char identifier id'>char</span><span class='rbrack token'>]</span> <span class='or or kw'>or</span> <span class='char identifier id'>char</span><span class='rbrace token'>}</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='pack identifier id'>pack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -312,9 +317,9 @@ or ActiveSupport instead.
 </div>
     
     <div id="footer">
-  Generated on Wed Jul  7 15:29:22 2010 by 
+  Generated on Mon Jul 12 15:37:08 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.9.2).
+  0.5.8 (ruby-1.8.6).
 </div>
 
   </body>
