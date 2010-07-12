@@ -201,6 +201,10 @@ module Babosa
       EOM
     end
 
+    def to_slug
+      self
+    end
+
     private
 
     # Look up the character's approximation in the configured maps.
