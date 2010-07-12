@@ -36,8 +36,21 @@ whose length is limited by bytes rather than UTF-8 characters.
 
     "Gölcük, Turkey".to_slug.normalize.to_s #=> "golcuk-turkey"
 
-There are many more features; check the API docs and source code to find out
-more.
+
+### UTF-8 support
+
+Babosa has no hard dependencies, but if you have either the Unicode or
+ActiveSupport gems installed and required prior to requiring "babosa", these
+will be used to perform upcasing and downcasing on UTF-8 strings. On JRuby 1.5
+and above, Java's native Unicode support will be used.
+
+If none of these libraries are available, Babosa falls back to a simple module
+which supports only Unicode strings only with Latin characters. I recommend
+using the Unicode gem where possible since it's a C extension and is very fast.
+
+### More info
+
+Please see the [API docs](http://norman.github.com/babosa) and source code for more info.
 
 ## Getting it
 
@@ -47,6 +60,9 @@ Babosa can be installed via Rubygems:
 
 You can get the source code from its [Github repository](http://github.com/norman/babosa).
 
+Babosa is tested to be compatible with Ruby 1.8.6-1.9.2, JRuby 1.4-1.5,
+Rubinius 1.0, and is probably compatible with other Rubies as well.
+
 ## Reporting bugs
 
 Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issues).
@@ -54,26 +70,11 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Misc
 
-The speed and quality of Babosa's UTF-8 support depends on which Ruby and which
-gems you are using.
-
-On JRuby 1.5 and above, Babosa uses Java's native UTF-8 support. If you require
-[Unicode](http://github.com/blackwinter/unicode) or ActiveSupport before
-Babosa, it will use the support provided by those libraries. Otherwise, Babosa
-defaults to very basic UTF-8 support for Latin characters only.
-
 "Babosa" means slug in Spanish.
 
 ## Author
 
 [Norman Clarke](http://njclarke.com)
-
-## Slugs
-
-Here's a video of a slug that has absolutely no reason for being here. Is that
-Throbbing Gristle playing in the background?
-
-<object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/TCFavfrUVjQ&amp;hl=en_US&amp;fs=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/TCFavfrUVjQ&amp;hl=en_US&amp;fs=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
 
 ## Copyright
 
