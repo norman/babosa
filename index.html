@@ -43,50 +43,54 @@
     
     <div id="content"><div id='filecontents'><h1 id='babosa'>Babosa</h1>
 
-<p>Babosa is a library for creating slugs. It is an extraction and improvement of the string code from <a href='http://github.com/norman/friendly_id'>FriendlyId</a>, intended to help developers create libraries similar to FriendlyId.</p>
+<p>Babosa is a library for creating slugs. It is an extraction and improvement of the string code from <a href='http://github.com/norman/friendly_id'>FriendlyId</a>, intended to help developers create similar libraries and plugins.</p>
 
 <h2 id='features__usage'>Features / Usage</h2>
 
 <h3 id='ascii_transliteration'>ASCII transliteration</h3>
 
-<pre class="code"><span class='string val'>&quot;Gölcük, Turkey&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;Golcuk, Turkey&quot;</span>
-</pre>
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;Golcuk, Turkey&quot;</span></pre>
 
 <h3 id='special_cases_for_german_and_spanish'>Special cases for German and Spanish</h3>
 
-<pre class="code"><span class='string val'>&quot;Jürgen Müller&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>           <span class='comment val'>#=&gt; &quot;Jurgen Muller&quot;</span>
-<span class='string val'>&quot;Jürgen Müller&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='lparen token'>(</span><span class='symbol val'>:german</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>  <span class='comment val'>#=&gt; &quot;Juergen Mueller&quot;</span>
-<span class='string val'>&quot;feliz año&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>               <span class='comment val'>#=&gt; &quot;feliz ano&quot;</span>
-<span class='string val'>&quot;feliz año&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='lparen token'>(</span><span class='symbol val'>:spanish</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>     <span class='comment val'>#=&gt; &quot;feliz anio&quot;</span>
-</pre>
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span>           <span class='comment'>#=&gt; &quot;Jurgen Muller&quot;
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:german</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>  <span class='comment'>#=&gt; &quot;Juergen Mueller&quot;
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feliz año</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span>               <span class='comment'>#=&gt; &quot;feliz ano&quot;
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feliz año</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:spanish</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>     <span class='comment'>#=&gt; &quot;feliz anio&quot;</span></pre>
 
 <h3 id='nonascii_removal'>Non-ASCII removal</h3>
 
-<pre class="code"><span class='string val'>&quot;Gölcük, Turkey&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='to_ascii identifier id'>to_ascii</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;Glck, Turkey&quot;</span>
-</pre>
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id to_ascii'>to_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;Glck, Turkey&quot;</span></pre>
 
 <h3 id='truncate_by_characters'>Truncate by characters</h3>
 
-<pre class="code"><span class='string val'>&quot;üüü&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='truncate identifier id'>truncate</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;üü&quot;</span>
-</pre>
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üüü</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate'>truncate</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;üü&quot;</span></pre>
 
 <h3 id='truncate_by_bytes'>Truncate by bytes</h3>
 
 <p>This can be useful to ensure the generated slug will fit in a database column whose length is limited by bytes rather than UTF-8 characters.</p>
 
-<pre class="code"><span class='string val'>&quot;üüü&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='truncate_bytes identifier id'>truncate_bytes</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;ü&quot;</span>
-</pre>
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üüü</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate_bytes'>truncate_bytes</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;ü&quot;</span></pre>
+
+<h3 id='remove_punctuation_chars'>Remove punctuation chars</h3>
+
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this is, um, **really** cool, huh?</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id word_chars'>word_chars</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;this is um really cool huh&quot;</span></pre>
 
 <h3 id='allinone'>All-in-one</h3>
 
-<pre class="code"><span class='string val'>&quot;Gölcük, Turkey&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='normalize identifier id'>normalize</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;golcuk-turkey&quot;</span>
-</pre>
+<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id normalize'>normalize</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;golcuk-turkey&quot;</span></pre>
 
 <h3 id='utf8_support'>UTF-8 support</h3>
 
 <p>Babosa has no hard dependencies, but if you have either the Unicode or ActiveSupport gems installed and required prior to requiring &#8220;babosa&#8221;, these will be used to perform upcasing and downcasing on UTF-8 strings. On JRuby 1.5 and above, Java&#8217;s native Unicode support will be used.</p>
 
 <p>If none of these libraries are available, Babosa falls back to a simple module which supports only Unicode strings only with Latin characters. I recommend using the Unicode gem where possible since it&#8217;s a C extension and is very fast.</p>
+
+<h3 id='rails_3'>Rails 3</h3>
+
+<p>Most of Babosa&#8217;s functionality is already present in Active Support/Rails 3. Babosa exists primarily to support non-Rails applications, and Rails apps prior to 3.0. Most of the code here was originally written for FriendlyId. Several things, like tidy_bytes and ASCII transliteration, were later added to Rails and I18N.</p>
+
+<p>Babosa differs from ActiveSupport primarily in that it supports non-Latin strings by default. If you are considering using Babosa with Rails 3, you should first take a look at Active Support&#8217;s <a href='http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565'>transliterate</a> and <a href='http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566'>parameterize</a> because it&#8217;s very likely they already do what you need.</p>
 
 <h3 id='more_info'>More info</h3>
 
@@ -96,8 +100,7 @@
 
 <p>Babosa can be installed via Rubygems:</p>
 
-<pre class="code"><span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='babosa identifier id'>babosa</span>
-</pre>
+<pre class="code"><span class='id gem'>gem</span> <span class='id install'>install</span> <span class='id babosa'>babosa</span></pre>
 
 <p>You can get the source code from its <a href='http://github.com/norman/babosa'>Github repository</a>.</p>
 
@@ -126,9 +129,9 @@
 <p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div>
     
     <div id="footer">
-  Generated on Mon Jul 12 15:37:07 2010 by 
+  Generated on Mon Jul 12 21:33:36 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.8.6).
+  0.5.8 (ruby-1.9.2).
 </div>
 
   </body>

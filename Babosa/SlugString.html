@@ -97,10 +97,9 @@ versions return an instance of Babosa::SlugString, so that calls to methods
 specific to this class can be chained:
 </p>
 <pre class="code">
-  <span class='string identifier id'>string</span> <span class='assign token'>=</span> <span class='SlugString constant id'>SlugString</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;hello world&quot;</span><span class='rparen token'>)</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='with_dashes! fid id'>with_dashes!</span> <span class='comment val'># =&gt; &quot;hello-world&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='with_dashes identifier id'>with_dashes</span>  <span class='comment val'># =&gt; &lt;Babosa::SlugString:0x000001013e1590 @wrapped_string=&quot;hello-world&quot;&gt;</span>
-</pre>
+  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>hello world</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id with_dashes!'>with_dashes!</span> <span class='comment'># =&gt; &quot;hello-world&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id with_dashes'>with_dashes</span>  <span class='comment'># =&gt; &lt;Babosa::SlugString:0x000001013e1590 @wrapped_string=&quot;hello-world&quot;&gt;</span></pre>
 
 
   </div>
@@ -122,8 +121,15 @@ specific to this class can be chained:
         <dt id="utf8_proxy-classvariable" class="">@@utf8_proxy =
           
         </dt>
-        <dd><pre class="code"><span class='if if kw'>if</span> <span class='Babosa constant id'>Babosa</span><span class='dot token'>.</span><span class='jruby15? fid id'>jruby15?</span>
-</pre></dd>
+        <dd><pre class="code"><span class='kw'>if</span> <span class='const'>Babosa</span><span class='period'>.</span><span class='id jruby15?'>jruby15?</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>JavaProxy</span>
+<span class='kw'>elsif</span> <span class='kw'>defined?</span> <span class='const'>Unicode</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>UnicodeProxy</span>
+<span class='kw'>elsif</span> <span class='kw'>defined?</span> <span class='const'>ActiveSupport</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>ActiveSupportProxy</span>
+<span class='kw'>else</span>
+  <span class='const'>UTF8</span><span class='op'>::</span><span class='const'>DumbProxy</span>
+<span class='kw'>end</span></pre></dd>
       
     </dl>
   
@@ -614,7 +620,7 @@ A new instance of SlugString
   
     <li>
       
-        <span class='type'>(<tt><a href="../String.html" title="String (class)">String</a></tt>)</span>
+        <span class='type'>(<tt>#to_s</tt>)</span>
       
       
         <span class='name'>string</span>
@@ -646,12 +652,11 @@ The string to use as the basis of the SlugString.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 54</span>
 
-<span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='string identifier id'>string</span><span class='rparen token'>)</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>
-  <span class='tidy_bytes! fid id'>tidy_bytes!</span>
-  <span class='normalize_utf8! fid id'>normalize_utf8!</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id string'>string</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+  <span class='id tidy_bytes!'>tidy_bytes!</span>
+  <span class='id normalize_utf8!'>normalize_utf8!</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -685,10 +690,9 @@ The string to use as the basis of the SlugString.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 49</span>
 
-<span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span><span class='dot token'>.</span><span class='__send__ identifier id'>__send__</span><span class='lparen token'>(</span><span class='symbol identifier id'>symbol</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id method_missing'>method_missing</span><span class='lparen'>(</span><span class='id symbol'>symbol</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span><span class='rparen'>)</span>
+  <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id __send__'>__send__</span><span class='lparen'>(</span><span class='id symbol'>symbol</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -737,10 +741,9 @@ Returns the value of attribute wrapped_string
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 24</span>
 
-<span class='def def kw'>def</span> <span class='wrapped_string identifier id'>wrapped_string</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id wrapped_string'>wrapped_string</span>
+  <span class='ivar'>@wrapped_string</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -791,10 +794,9 @@ Return the proxy used for UTF-8 support.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 39</span>
 
-<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='utf8_proxy identifier id'>utf8_proxy</span>
-  <span class='@@utf8_proxy ivar id'>@@utf8_proxy</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id utf8_proxy'>utf8_proxy</span>
+  <span class='cvar'>@@utf8_proxy</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -838,10 +840,9 @@ Set a proxy object used for UTF-8 support.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 45</span>
 
-<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='utf8_proxy identifier id'>utf8_proxy</span><span class='assign token'>=</span><span class='lparen token'>(</span><span class='obj identifier id'>obj</span><span class='rparen token'>)</span>
-  <span class='@@utf8_proxy ivar id'>@@utf8_proxy</span> <span class='assign token'>=</span> <span class='obj identifier id'>obj</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id utf8_proxy='>utf8_proxy=</span><span class='lparen'>(</span><span class='id obj'>obj</span><span class='rparen'>)</span>
+  <span class='cvar'>@@utf8_proxy</span> <span class='op'>=</span> <span class='id obj'>obj</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -868,30 +869,30 @@ characters that are Roman-alphabet characters + diacritics. Non-letter
 characters are left unmodified.
 </p>
 <pre class="code">
-  <span class='string identifier id'>string</span> <span class='assign token'>=</span> <span class='SlugString constant id'>SlugString</span><span class='dot token'>.</span><span class='new identifier id'>new</span> <span class='string val'>&quot;Łódź, Poland&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span>                 <span class='comment val'># =&gt; &quot;Lodz, Poland&quot;</span>
-  <span class='string identifier id'>string</span> <span class='assign token'>=</span> <span class='SlugString constant id'>SlugString</span><span class='dot token'>.</span><span class='new identifier id'>new</span> <span class='string val'>&quot;日本&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span>                 <span class='comment val'># =&gt; &quot;日本&quot;</span>
-</pre>
+  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Łódź, Poland</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;Lodz, Poland&quot;
+</span>  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>日本</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;日本&quot;
+</span></pre>
 <p>
 You can pass any key(s) from <tt>Characters.approximations</tt> as
 arguments. This allows for contextual approximations. By default;
 <tt>:spanish</tt> and <tt>:german</tt> are provided:
 </p>
 <pre class="code">
-  <span class='string identifier id'>string</span> <span class='assign token'>=</span> <span class='SlugString constant id'>SlugString</span><span class='dot token'>.</span><span class='new identifier id'>new</span> <span class='string val'>&quot;Jürgen Müller&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span>                 <span class='comment val'># =&gt; &quot;Jurgen Muller&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span> <span class='symbol val'>:german</span>         <span class='comment val'># =&gt; &quot;Juergen Mueller&quot;</span>
-  <span class='string identifier id'>string</span> <span class='assign token'>=</span> <span class='SlugString constant id'>SlugString</span><span class='dot token'>.</span><span class='new identifier id'>new</span> <span class='string val'>&quot;¡Feliz año!&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span>                 <span class='comment val'># =&gt; &quot;¡Feliz ano!&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span> <span class='symbol val'>:spanish</span>        <span class='comment val'># =&gt; &quot;¡Feliz anio!&quot;</span>
-</pre>
+  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;Jurgen Muller&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span> <span class='symbol'>:german</span>         <span class='comment'># =&gt; &quot;Juergen Mueller&quot;
+</span>  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>SlugString</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡Feliz año!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span>                 <span class='comment'># =&gt; &quot;¡Feliz ano!&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span> <span class='symbol'>:spanish</span>        <span class='comment'># =&gt; &quot;¡Feliz anio!&quot;
+</span></pre>
 <p>
 You can modify the built-in approximations, or add your own:
 </p>
 <pre class="code">
-  <span class='comment val'># Make Spanish use &quot;nh&quot; rather than &quot;nn&quot;</span>
-  <span class='Babosa constant id'>Babosa</span><span class='colon2 op'>::</span><span class='Characters constant id'>Characters</span><span class='dot token'>.</span><span class='add_approximations identifier id'>add_approximations</span><span class='lparen token'>(</span><span class='symbol val'>:spanish</span><span class='comma token'>,</span> <span class='string val'>&quot;ñ&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;nh&quot;</span><span class='rparen token'>)</span>
+  <span class='comment'># Make Spanish use &quot;nh&quot; rather than &quot;nn&quot;
+</span>  <span class='const'>Babosa</span><span class='op'>::</span><span class='const'>Characters</span><span class='period'>.</span><span class='id add_approximations'>add_approximations</span><span class='lparen'>(</span><span class='symbol'>:spanish</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ñ</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>nh</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 </pre>
 <p>
 Notice that this method does not simply convert to ASCII; if you want to
@@ -899,9 +900,8 @@ remove non-ASCII characters such as &#8220;¡&#8221; and &#8220;¿&#8221;,
 use <tt><a href="#to_ascii%21-instance_method" title="Babosa::SlugString#to_ascii! (method)">#to_ascii!</a></tt>:
 </p>
 <pre class="code">
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='approximate_ascii! fid id'>approximate_ascii!</span><span class='lparen token'>(</span><span class='symbol val'>:spanish</span><span class='rparen token'>)</span>       <span class='comment val'># =&gt; &quot;¡Feliz anio!&quot;</span>
-  <span class='string identifier id'>string</span><span class='dot token'>.</span><span class='to_ascii! fid id'>to_ascii!</span>                          <span class='comment val'># =&gt; &quot;Feliz anio!&quot;</span>
-</pre>
+  <span class='id string'>string</span><span class='period'>.</span><span class='id approximate_ascii!'>approximate_ascii!</span><span class='lparen'>(</span><span class='symbol'>:spanish</span><span class='rparen'>)</span>       <span class='comment'># =&gt; &quot;¡Feliz anio!&quot;
+</span>  <span class='id string'>string</span><span class='period'>.</span><span class='id to_ascii!'>to_ascii!</span>                          <span class='comment'># =&gt; &quot;Feliz anio!&quot;</span></pre>
 
 
   </div>
@@ -956,11 +956,10 @@ String
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 92</span>
 
-<span class='def def kw'>def</span> <span class='approximate_ascii! fid id'>approximate_ascii!</span><span class='lparen token'>(</span><span class='overrides identifier id'>overrides</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
-  <span class='overrides identifier id'>overrides</span> <span class='assign token'>=</span> <span class='Characters constant id'>Characters</span><span class='dot token'>.</span><span class='approximations identifier id'>approximations</span><span class='lbrack token'>[</span><span class='overrides identifier id'>overrides</span><span class='rbrack token'>]</span> <span class='if if_mod kw'>if</span> <span class='overrides identifier id'>overrides</span><span class='dot token'>.</span><span class='kind_of? fid id'>kind_of?</span> <span class='Symbol constant id'>Symbol</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='char identifier id'>char</span><span class='bitor op'>|</span> <span class='approx_char identifier id'>approx_char</span><span class='lparen token'>(</span><span class='char identifier id'>char</span><span class='comma token'>,</span> <span class='overrides identifier id'>overrides</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span><span class='dot token'>.</span><span class='pack identifier id'>pack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id approximate_ascii!'>approximate_ascii!</span><span class='lparen'>(</span><span class='id overrides'>overrides</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id overrides'>overrides</span> <span class='op'>=</span> <span class='const'>Characters</span><span class='period'>.</span><span class='id approximations'>approximations</span><span class='lbracket'>[</span><span class='id overrides'>overrides</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id overrides'>overrides</span><span class='period'>.</span><span class='id kind_of?'>kind_of?</span> <span class='const'>Symbol</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id char'>char</span><span class='op'>|</span> <span class='id approx_char'>approx_char</span><span class='lparen'>(</span><span class='id char'>char</span><span class='comma'>,</span> <span class='id overrides'>overrides</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id flatten'>flatten</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1017,10 +1016,9 @@ String
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 100</span>
 
-<span class='def def kw'>def</span> <span class='clean! fid id'>clean!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='@wrapped_string ivar id'>@wrapped_string</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='string val'>&quot;-&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot; &quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='squeeze identifier id'>squeeze</span><span class='lparen token'>(</span><span class='string val'>&quot; &quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='strip identifier id'>strip</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id clean!'>clean!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id squeeze'>squeeze</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id strip'>strip</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1069,17 +1067,16 @@ String
       <pre class="lines">
 
 
-178
 179
-180</pre>
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 178</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 179</span>
 
-<span class='def def kw'>def</span> <span class='downcase! fid id'>downcase!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='@@utf8_proxy ivar id'>@@utf8_proxy</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span><span class='lparen token'>(</span><span class='@wrapped_string ivar id'>@wrapped_string</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id downcase!'>downcase!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id downcase'>downcase</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1151,7 +1148,6 @@ String
       <pre class="lines">
 
 
-115
 116
 117
 118
@@ -1162,24 +1158,24 @@ String
 123
 124
 125
-126</pre>
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 116</span>
 
-<span class='def def kw'>def</span> <span class='normalize! fid id'>normalize!</span><span class='lparen token'>(</span><span class='ascii identifier id'>ascii</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
-  <span class='if if kw'>if</span> <span class='ascii identifier id'>ascii</span>
-    <span class='approximate_ascii! fid id'>approximate_ascii!</span>
-    <span class='to_ascii! fid id'>to_ascii!</span>
-  <span class='end end kw'>end</span>
-  <span class='clean! fid id'>clean!</span>
-  <span class='word_chars! fid id'>word_chars!</span>
-  <span class='clean! fid id'>clean!</span>
-  <span class='downcase! fid id'>downcase!</span>
-  <span class='truncate_bytes! fid id'>truncate_bytes!</span><span class='lparen token'>(</span><span class='integer val'>255</span><span class='rparen token'>)</span>
-  <span class='with_dashes! fid id'>with_dashes!</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id normalize!'>normalize!</span><span class='lparen'>(</span><span class='id ascii'>ascii</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id ascii'>ascii</span>
+    <span class='id approximate_ascii!'>approximate_ascii!</span>
+    <span class='id to_ascii!'>to_ascii!</span>
+  <span class='kw'>end</span>
+  <span class='id clean!'>clean!</span>
+  <span class='id word_chars!'>word_chars!</span>
+  <span class='id clean!'>clean!</span>
+  <span class='id downcase!'>downcase!</span>
+  <span class='id truncate_bytes!'>truncate_bytes!</span><span class='lparen'>(</span><span class='int'>255</span><span class='rparen'>)</span>
+  <span class='id with_dashes!'>with_dashes!</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1228,17 +1224,16 @@ String
       <pre class="lines">
 
 
-184
 185
-186</pre>
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 185</span>
 
-<span class='def def kw'>def</span> <span class='normalize_utf8! fid id'>normalize_utf8!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='@@utf8_proxy ivar id'>@@utf8_proxy</span><span class='dot token'>.</span><span class='normalize_utf8 identifier id'>normalize_utf8</span><span class='lparen token'>(</span><span class='@wrapped_string ivar id'>@wrapped_string</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id normalize_utf8!'>normalize_utf8!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id normalize_utf8'>normalize_utf8</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1287,17 +1282,16 @@ String
       <pre class="lines">
 
 
-191
 192
-193</pre>
+193
+194</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 191</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 192</span>
 
-<span class='def def kw'>def</span> <span class='tidy_bytes! fid id'>tidy_bytes!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='@@utf8_proxy ivar id'>@@utf8_proxy</span><span class='dot token'>.</span><span class='tidy_bytes identifier id'>tidy_bytes</span><span class='lparen token'>(</span><span class='@wrapped_string ivar id'>@wrapped_string</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id tidy_bytes!'>tidy_bytes!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id tidy_bytes'>tidy_bytes</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1346,17 +1340,16 @@ String
       <pre class="lines">
 
 
-130
 131
-132</pre>
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 131</span>
 
-<span class='def def kw'>def</span> <span class='to_ascii! fid id'>to_ascii!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='@wrapped_string ivar id'>@wrapped_string</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/[^\x00-\x7f]/</span><span class='u identifier id'>u</span><span class='comma token'>,</span> <span class='string val'>''</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id to_ascii!'>to_ascii!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[^\x00-\x7f]</span><span class='regexp_end'>/u</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1382,10 +1375,9 @@ String
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 205</span>
 
-<span class='def def kw'>def</span> <span class='to_slug identifier id'>to_slug</span>
-  <span class='self self kw'>self</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id to_slug'>to_slug</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1413,8 +1405,7 @@ Truncate the string to <tt>max</tt> characters.
     <h3>Examples:</h3>
     
       <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='string val'>&quot;üéøá&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='truncate identifier id'>truncate</span><span class='lparen token'>(</span><span class='integer val'>3</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;üéø&quot;</span>
-</pre>
+      <pre class="example code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üéøá</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate'>truncate</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;üéø&quot;</span></pre>
     
   </div>
 <h3>Returns:</h3>
@@ -1443,17 +1434,16 @@ String
       <pre class="lines">
 
 
-138
 139
-140</pre>
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 139</span>
 
-<span class='def def kw'>def</span> <span class='truncate! fid id'>truncate!</span><span class='lparen token'>(</span><span class='max identifier id'>max</span><span class='rparen token'>)</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='dot3 op'>...</span><span class='max identifier id'>max</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='pack identifier id'>pack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id truncate!'>truncate!</span><span class='lparen'>(</span><span class='id max'>max</span><span class='rparen'>)</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id max'>max</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1484,8 +1474,7 @@ string must be truncated at a multibyte character boundary.
     <h3>Examples:</h3>
     
       <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='string val'>&quot;üéøá&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='truncate_bytes identifier id'>truncate_bytes</span><span class='lparen token'>(</span><span class='integer val'>3</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;ü&quot;</span>
-</pre>
+      <pre class="example code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üéøá</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate_bytes'>truncate_bytes</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span> <span class='comment'>#=&gt; &quot;ü&quot;</span></pre>
     
   </div>
 <h3>Returns:</h3>
@@ -1514,7 +1503,6 @@ String
       <pre class="lines">
 
 
-149
 150
 151
 152
@@ -1527,26 +1515,26 @@ String
 159
 160
 161
-162</pre>
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 150</span>
 
-<span class='def def kw'>def</span> <span class='truncate_bytes! fid id'>truncate_bytes!</span><span class='lparen token'>(</span><span class='max identifier id'>max</span><span class='rparen token'>)</span>
-  <span class='return return kw'>return</span> <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='if if_mod kw'>if</span> <span class='@wrapped_string ivar id'>@wrapped_string</span><span class='dot token'>.</span><span class='bytesize identifier id'>bytesize</span> <span class='leq op'>&lt;=</span> <span class='max identifier id'>max</span>
-  <span class='curr identifier id'>curr</span> <span class='assign token'>=</span> <span class='integer val'>0</span>
-  <span class='new identifier id'>new</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
-  <span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='char identifier id'>char</span><span class='bitor op'>|</span>
-    <span class='break break kw'>break</span> <span class='if if_mod kw'>if</span> <span class='curr identifier id'>curr</span> <span class='gt op'>&gt;</span> <span class='max identifier id'>max</span>
-    <span class='char identifier id'>char</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='char identifier id'>char</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='pack identifier id'>pack</span><span class='lparen token'>(</span><span class='string val'>&quot;U&quot;</span><span class='rparen token'>)</span>
-    <span class='curr identifier id'>curr</span> <span class='opasgn op'>+=</span> <span class='char identifier id'>char</span><span class='dot token'>.</span><span class='bytesize identifier id'>bytesize</span>
-    <span class='if if kw'>if</span> <span class='curr identifier id'>curr</span> <span class='leq op'>&lt;=</span> <span class='max identifier id'>max</span>
-      <span class='new identifier id'>new</span> <span class='lshft op'>&lt;&lt;</span> <span class='char identifier id'>char</span>
-    <span class='end end kw'>end</span>
-  <span class='end end kw'>end</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='new identifier id'>new</span><span class='dot token'>.</span><span class='join identifier id'>join</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id truncate_bytes!'>truncate_bytes!</span><span class='lparen'>(</span><span class='id max'>max</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='ivar'>@wrapped_string</span> <span class='kw'>if</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id bytesize'>bytesize</span> <span class='op'>&lt;=</span> <span class='id max'>max</span>
+  <span class='id curr'>curr</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id new'>new</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id char'>char</span><span class='op'>|</span>
+    <span class='kw'>break</span> <span class='kw'>if</span> <span class='id curr'>curr</span> <span class='op'>&gt;</span> <span class='id max'>max</span>
+    <span class='id char'>char</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id char'>char</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id curr'>curr</span> <span class='op'>+=</span> <span class='id char'>char</span><span class='period'>.</span><span class='id bytesize'>bytesize</span>
+    <span class='kw'>if</span> <span class='id curr'>curr</span> <span class='op'>&lt;=</span> <span class='id max'>max</span>
+      <span class='id new'>new</span> <span class='op'>&lt;&lt;</span> <span class='id char'>char</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='id new'>new</span><span class='period'>.</span><span class='id join'>join</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1595,17 +1583,16 @@ String
       <pre class="lines">
 
 
-172
 173
-174</pre>
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 173</span>
 
-<span class='def def kw'>def</span> <span class='upcase! fid id'>upcase!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='@@utf8_proxy ivar id'>@@utf8_proxy</span><span class='dot token'>.</span><span class='upcase identifier id'>upcase</span><span class='lparen token'>(</span><span class='@wrapped_string ivar id'>@wrapped_string</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id upcase!'>upcase!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='cvar'>@@utf8_proxy</span><span class='period'>.</span><span class='id upcase'>upcase</span><span class='lparen'>(</span><span class='ivar'>@wrapped_string</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1654,17 +1641,16 @@ String
       <pre class="lines">
 
 
-166
 167
-168</pre>
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 166</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 167</span>
 
-<span class='def def kw'>def</span> <span class='with_dashes! fid id'>with_dashes!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='@wrapped_string ivar id'>@wrapped_string</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/\s/</span><span class='u identifier id'>u</span><span class='comma token'>,</span> <span class='string val'>&quot;-&quot;</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id with_dashes!'>with_dashes!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='ivar'>@wrapped_string</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s</span><span class='regexp_end'>/u</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1680,7 +1666,8 @@ String
 </p><div class="docstring">
   <div class="discussion">
     <p>
-Remove any non-word characters.
+Remove any non-word characters. For this library&#8217;s purposes, this
+means anything other than letters, numbers, spaces, newlines and linefeeds.
 </p>
 
 
@@ -1713,17 +1700,16 @@ String
       <pre class="lines">
 
 
-106
 107
-108</pre>
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/slug_string.rb', line 107</span>
 
-<span class='def def kw'>def</span> <span class='word_chars! fid id'>word_chars!</span>
-  <span class='@wrapped_string ivar id'>@wrapped_string</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span> <span class='minus op'>-</span> <span class='Characters constant id'>Characters</span><span class='dot token'>.</span><span class='strippable identifier id'>strippable</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='pack identifier id'>pack</span><span class='lparen token'>(</span><span class='string val'>&quot;U*&quot;</span><span class='rparen token'>)</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id word_chars!'>word_chars!</span>
+  <span class='ivar'>@wrapped_string</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>-</span> <span class='const'>Characters</span><span class='period'>.</span><span class='id strippable'>strippable</span><span class='rparen'>)</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -1734,9 +1720,9 @@ String
 </div>
     
     <div id="footer">
-  Generated on Mon Jul 12 15:37:08 2010 by 
+  Generated on Mon Jul 12 21:33:37 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.8.6).
+  0.5.8 (ruby-1.9.2).
 </div>
 
   </body>

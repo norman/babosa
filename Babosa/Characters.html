@@ -219,10 +219,9 @@ Hash of UTF-8 - ASCII approximations.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/characters.rb', line 10</span>
 
-<span class='def def kw'>def</span> <span class='approximations identifier id'>approximations</span>
-  <span class='@approximations ivar id'>@approximations</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id approximations'>approximations</span>
+  <span class='ivar'>@approximations</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -262,10 +261,9 @@ Punctuation and control characters to remove from slug strings.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/characters.rb', line 12</span>
 
-<span class='def def kw'>def</span> <span class='strippable identifier id'>strippable</span>
-  <span class='@strippable ivar id'>@strippable</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id strippable'>strippable</span>
+  <span class='ivar'>@strippable</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -300,8 +298,7 @@ Adds a hash of approximations.
     <h3>Examples:</h3>
     
       <h4><div class='inline'></div></h4>
-      <pre class="example code"><span class='add_approximations identifier id'>add_approximations</span> <span class='symbol val'>:spanish</span><span class='comma token'>,</span> <span class='string val'>&quot;ñ&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;ni&quot;</span>
-</pre>
+      <pre class="example code"><span class='id add_approximations'>add_approximations</span> <span class='symbol'>:spanish</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ñ</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ni</span><span class='tstring_end'>&quot;</span></span></pre>
     
   </div>
 <h3>Parameters:</h3>
@@ -362,16 +359,15 @@ hash The approximations to add.
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa/characters.rb', line 28</span>
 
-<span class='def def kw'>def</span> <span class='add_approximations identifier id'>add_approximations</span><span class='lparen token'>(</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='hash identifier id'>hash</span><span class='rparen token'>)</span>
-  <span class='@approximations ivar id'>@approximations</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
-  <span class='@approximations ivar id'>@approximations</span><span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_sym identifier id'>to_sym</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='hash identifier id'>hash</span><span class='dot token'>.</span><span class='inject identifier id'>inject</span><span class='lparen token'>(</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='memo identifier id'>memo</span><span class='comma token'>,</span> <span class='object identifier id'>object</span><span class='bitor op'>|</span>
-    <span class='key identifier id'>key</span> <span class='assign token'>=</span> <span class='object identifier id'>object</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;U&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='shift identifier id'>shift</span>
-    <span class='value identifier id'>value</span> <span class='assign token'>=</span> <span class='object identifier id'>object</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='unpack identifier id'>unpack</span><span class='lparen token'>(</span><span class='string val'>&quot;C*&quot;</span><span class='rparen token'>)</span>
-    <span class='memo identifier id'>memo</span><span class='lbrack token'>[</span><span class='key identifier id'>key</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='value identifier id'>value</span><span class='dot token'>.</span><span class='length identifier id'>length</span> <span class='eq op'>==</span> <span class='integer val'>1</span> <span class='question op'>?</span> <span class='value identifier id'>value</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span> <span class='colon op'>:</span> <span class='value identifier id'>value</span>
-    <span class='memo identifier id'>memo</span>
-  <span class='end end kw'>end</span>
-<span class='end end kw'>end</span>
-</pre>
+<span class='kw'>def</span> <span class='id add_approximations'>add_approximations</span><span class='lparen'>(</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id hash'>hash</span><span class='rparen'>)</span>
+  <span class='ivar'>@approximations</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@approximations</span><span class='lbracket'>[</span><span class='id name'>name</span><span class='period'>.</span><span class='id to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id hash'>hash</span><span class='period'>.</span><span class='id inject'>inject</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id memo'>memo</span><span class='comma'>,</span> <span class='id object'>object</span><span class='op'>|</span>
+    <span class='id key'>key</span> <span class='op'>=</span> <span class='id object'>object</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id shift'>shift</span>
+    <span class='id value'>value</span> <span class='op'>=</span> <span class='id object'>object</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id memo'>memo</span><span class='lbracket'>[</span><span class='id key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id value'>value</span><span class='period'>.</span><span class='id length'>length</span> <span class='op'>==</span> <span class='int'>1</span> <span class='op'>?</span> <span class='id value'>value</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id value'>value</span>
+    <span class='id memo'>memo</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -382,9 +378,9 @@ hash The approximations to add.
 </div>
     
     <div id="footer">
-  Generated on Mon Jul 12 15:37:08 2010 by 
+  Generated on Mon Jul 12 21:33:36 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.8.6).
+  0.5.8 (ruby-1.9.2).
 </div>
 
   </body>
