@@ -2,7 +2,7 @@
 
 Babosa is a library for creating slugs. It is an extraction and improvement of
 the string code from [FriendlyId](http://github.com/norman/friendly_id),
-intended to help developers create libraries similar to FriendlyId.
+intended to help developers create similar libraries and plugins.
 
 ## Features / Usage
 
@@ -32,6 +32,10 @@ whose length is limited by bytes rather than UTF-8 characters.
 
     "üüü".to_slug.truncate_bytes(2).to_s #=> "ü"
 
+### Remove punctuation chars
+
+    "this is, um, **really** cool, huh?".to_slug.word_chars.to_s #=> "this is um really cool huh"
+
 ### All-in-one
 
     "Gölcük, Turkey".to_slug.normalize.to_s #=> "golcuk-turkey"
@@ -47,6 +51,22 @@ and above, Java's native Unicode support will be used.
 If none of these libraries are available, Babosa falls back to a simple module
 which supports only Unicode strings only with Latin characters. I recommend
 using the Unicode gem where possible since it's a C extension and is very fast.
+
+
+### Rails 3
+
+Most of Babosa's functionality is already present in Active Support/Rails 3.
+Babosa exists primarily to support non-Rails applications, and Rails apps prior
+to 3.0. Most of the code here was originally written for FriendlyId. Several
+things, like tidy_bytes and ASCII transliteration, were later added to Rails and I18N.
+
+Babosa differs from ActiveSupport primarily in that it supports non-Latin
+strings by default. If you are considering using Babosa with Rails 3, you should first
+take a look at Active Support's
+[transliterate](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565)
+and
+[parameterize](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566)
+because it's very likely they already do what you need.
 
 ### More info
 
