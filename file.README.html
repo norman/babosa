@@ -51,12 +51,12 @@
 
 <pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;Golcuk, Turkey&quot;</span></pre>
 
-<h3 id='special_cases_for_german_and_spanish'>Special cases for German and Spanish</h3>
+<h3 id='perlocale_transliteration'>Per-locale transliteration</h3>
 
 <pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span>           <span class='comment'>#=&gt; &quot;Jurgen Muller&quot;
-</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:german</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>  <span class='comment'>#=&gt; &quot;Juergen Mueller&quot;
-</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feliz año</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span>               <span class='comment'>#=&gt; &quot;feliz ano&quot;
-</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>feliz año</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:spanish</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>     <span class='comment'>#=&gt; &quot;feliz anio&quot;</span></pre>
+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:german</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>  <span class='comment'>#=&gt; &quot;Juergen Mueller&quot;</span></pre>
+
+<p>Currently, only German, Spanish and Serbian are supported. I&#8217;ll gladly accept contributions and support more languages.</p>
 
 <h3 id='nonascii_removal'>Non-ASCII removal</h3>
 
@@ -118,6 +118,28 @@
 
 <p><a href='http://njclarke.com'>Norman Clarke</a></p>
 
+<h2 id='contributors'>Contributors</h2>
+
+<ul>
+<li><a href='http://github.com/milandobrota'>Milan Dobrota</a> - Serbian support</li>
+</ul>
+
+<h2 id='changelog'>Changelog</h2>
+
+<ul>
+<li>
+<li>
+<li>1 - Added support for Serbian.</li>
+</li>
+</li>
+
+<li>
+<li>
+<li>0 - Initial extraction from FriendlyId.</li>
+</li>
+</li>
+</ul>
+
 <h2 id='copyright'>Copyright</h2>
 
 <p>Copyright (c) 2010 Norman Clarke</p>
@@ -129,7 +151,7 @@
 <p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div>
     
     <div id="footer">
-  Generated on Mon Jul 12 21:33:36 2010 by 
+  Generated on Mon Aug  9 15:56:40 2010 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
   0.5.8 (ruby-1.9.2).
 </div>
