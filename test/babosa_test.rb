@@ -113,6 +113,10 @@ class  BabosaTest < Test::Unit::TestCase
     assert_equal "anio", "año".to_slug.approximate_ascii!(:spanish)
   end
 
+  test "should do special approximations for Serbian" do
+    assert_equal "Indjija", "Inđija".to_slug.approximate_ascii!(:serbian)
+  end
+
   test "should work with non roman chars" do
     assert_equal "検-索", "検 索".to_slug.normalize!
   end

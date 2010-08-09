@@ -37,6 +37,7 @@ module Babosa
 
     add_approximations :spanish, "ñ" => "ni"
     add_approximations :german, "ä" => "ae", "ö" => "oe", "ü" => "ue"
+    add_approximations :serbian, "Ð" => "Dj", "đ" => "dj" ,"Č" => "Ch", "č" => "ch", "Š" => "Sh", "š" => "sh"
     add_approximations :latin, {
       "À" => "A", "Á" => "A", "Â" => "A", "Ã" => "A", "Ä" => "A", "Å" => "A",
       "Æ" => "AE", "Ç" => "C", "È" => "E", "É" => "E", "Ê" => "E", "Ë" => "E",
