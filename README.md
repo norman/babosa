@@ -50,8 +50,8 @@ will be used to perform upcasing and downcasing on UTF-8 strings. On JRuby 1.5
 and above, Java's native Unicode support will be used.
 
 If none of these libraries are available, Babosa falls back to a simple module
-which supports only Unicode strings only with Latin characters. I recommend
-using the Unicode gem where possible since it's a C extension and is very fast.
+which only supports Latin characters. I recommend using the Unicode gem where
+possible since it's a C extension and is very fast.
 
 
 ### Rails 3
@@ -62,12 +62,13 @@ to 3.0. Most of the code here was originally written for FriendlyId. Several
 things, like tidy_bytes and ASCII transliteration, were later added to Rails and I18N.
 
 Babosa differs from ActiveSupport primarily in that it supports non-Latin
-strings by default. If you are considering using Babosa with Rails 3, you should first
-take a look at Active Support's
+strings by default, and has per-locale transliterations already baked-in. If
+you are considering using Babosa with Rails 3, you should first take a look at
+Active Support's
 [transliterate](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565)
 and
 [parameterize](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566)
-because it's very likely they already do what you need.
+because it may already do what you need.
 
 ### More info
 
