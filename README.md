@@ -10,12 +10,13 @@ intended to help developers create similar libraries and plugins.
 
     "Gölcük, Turkey".to_slug.approximate_ascii.to_s #=> "Golcuk, Turkey"
 
-### Special cases for German and Spanish
+### Per-locale transliteration
 
     "Jürgen Müller".to_slug.approximate_ascii.to_s           #=> "Jurgen Muller"
     "Jürgen Müller".to_slug.approximate_ascii(:german).to_s  #=> "Juergen Mueller"
-    "feliz año".to_slug.approximate_ascii.to_s               #=> "feliz ano"
-    "feliz año".to_slug.approximate_ascii(:spanish).to_s     #=> "feliz anio"
+
+Currently, only German, Spanish and Serbian are supported. I'll gladly accept
+contributions and support more languages.
 
 ### Non-ASCII removal
 
@@ -95,6 +96,16 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 ## Author
 
 [Norman Clarke](http://njclarke.com)
+
+## Contributors
+
+* [Milan Dobrota](http://github.com/milandobrota) - Serbian support
+
+
+## Changelog
+
+* 0.1.1 - Added support for Serbian.
+* 0.1.0 - Initial extraction from FriendlyId.
 
 ## Copyright
 
