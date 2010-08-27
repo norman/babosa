@@ -235,9 +235,10 @@ module Babosa
 
     # Used as the basis of the bangless methods.
     def send_to_new_instance(*args)
-      string = Identifier.new self
-      string.send(*args)
-      string
+      id = Identifier.allocate
+      id.instance_variable_set :@wrapped_string, to_s
+      id.send(*args)
+      id
     end
   end
 end
