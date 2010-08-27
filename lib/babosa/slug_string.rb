@@ -164,8 +164,8 @@ module Babosa
 
     # Replaces whitespace with dashes ("-").
     # @return String
-    def with_dashes!
-      @wrapped_string = @wrapped_string.gsub(/\s/u, "-")
+    def with_separators!(char = "-")
+      @wrapped_string = @wrapped_string.gsub(/\s/u, char)
     end
 
     # Perform UTF-8 sensitive upcasing.
