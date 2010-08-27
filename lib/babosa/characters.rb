@@ -26,13 +26,14 @@ module Babosa
     # @param [#to_sym] name The name of the approximations to add.
     # @param Hash hash The approximations to add.
     def add_approximations(name, hash)
-      @approximations ||= {}
-      @approximations[name.to_sym] = hash.inject({}) do |memo, object|
+      approximations = @approximations ? @approximations.dup : {}
+      approximations[name.to_sym] = hash.inject({}) do |memo, object|
         key = object[0].unpack("U").shift
         value = object[1].unpack("C*")
         memo[key] = value.length == 1 ? value[0] : value
         memo
-      end
+      end.freeze
+      @approximations = approximations.freeze
     end
 
     add_approximations :spanish, "ñ" => "ni"
