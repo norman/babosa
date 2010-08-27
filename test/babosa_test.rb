@@ -155,8 +155,13 @@ class  BabosaTest < Test::Unit::TestCase
     assert_equal " a  bc ".bytesize, " a  bc ".to_slug.with_dashes.bytesize
   end
 
-  test "normalize! with ascii should approximate and strip non ascii" do
+  test "normalize! with ascii option should approximate and strip non ascii" do
     ss = "カタカナ: katakana is über cool".to_slug
-    assert_equal "katakana-is-uber-cool", ss.normalize!(true)
+    assert_equal "katakana-is-uber-cool", ss.normalize!(:to_ascii => true)
+  end
+
+  test "should get a string suitable for use as a ruby method" do
+    ss = "カタカナ: katakana is über cool".to_identifier
+    assert_equal "katakana_is_uber_cool", ss.to_ruby_method!
   end
 end

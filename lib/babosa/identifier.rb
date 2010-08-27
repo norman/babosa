@@ -107,22 +107,32 @@ module Babosa
       @wrapped_string = (unpack("U*") - Characters.strippable).pack("U*")
     end
 
-    # Normalize the string for use as a slug. Note that in this context,
+    # Normalize the string for use as a URL slug. Note that in this context,
     # +normalize+ means, strip, remove non-letters/numbers, downcasing,
     # truncating to 255 bytes and converting whitespace to dashes.
-    # @param Boolean ascii If true, approximate ASCII and then remove any non-ASCII characters.
+    # @param Options
     # @return String
-    def normalize!(ascii = false)
-      if ascii
-        approximate_ascii!
-        to_ascii!
+    def normalize!(options = nil)
+      # Handle deprecated usage
+      if options == true
+        warn "#normalize! now takes a hash of options rather than a boolean"
+        options = default_normalize_options.merge(:to_ascii => true)
+      else
+        options = default_normalize_options.merge(options || {})
       end
+      transliterate! if options[:transliterate]
+      to_ascii! if options[:to_ascii]
       clean!
       word_chars!
       clean!
       downcase!
-      truncate_bytes!(255)
-      with_dashes!
+      truncate_bytes!(options[:max_length])
+      with_separators!(options[:separator])
+    end
+
+    # Normalize a string so that it can safely be used as a Ruby method name.
+    def to_ruby_method!
+      normalize!(:to_ascii => true, :separator => "_")
     end
 
     # Delete any non-ascii characters.
@@ -203,6 +213,11 @@ module Babosa
 
     def to_identifier
       self
+    end
+
+    # The default options for {#normalize!}. Override to set your own defaults.
+    def default_normalize_options
+      {:transliterate => true, :max_length => 255, :separator => "-"}
     end
 
     alias approximate_ascii transliterate
