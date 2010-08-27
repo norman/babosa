@@ -1,39 +1,39 @@
 # encoding: utf-8
-require "rubygems"
-require "bundler"
-Bundler.setup
-require "active_support"
-require "rbench"
+require "benchmark"
 require File.expand_path("../init", __FILE__)
-
 
 def sample
   "Ja, żołnierz Wojska Polskiego, przysięgam służyć wiernie Rzeczypospolitej Polskiej".to_slug
 end
-
-RBench.run(1000) do
-
-  column :times
-  column :time
-
-  report 'Truncate bytes' do
-    time { sample.truncate_bytes!(20) }
+N = 1000
+Benchmark.bmbm do |x|
+  x.report 'Truncate bytes' do
+    N.times do
+      sample.truncate_bytes!(20)
+    end
   end
 
-  report 'Truncate chars' do
-    time { sample.truncate!(20) }
+  x.report 'Truncate chars' do
+    N.times do
+      sample.truncate!(20)
+    end
   end
 
-  report 'Approximate ASCII' do
-    time { sample.approximate_ascii! }
+  x.report 'Approximate ASCII' do
+    N.times do
+      sample.approximate_ascii!
+    end
   end
 
-  report 'Approximate with override' do
-    time { sample.approximate_ascii!("ć" => "C") }
+  x.report 'Approximate with override' do
+    N.times do
+      sample.approximate_ascii!("ć" => "C")
+    end
   end
 
-  report 'Strip non-ASCII' do
-    time { sample.to_ascii! }
+  x.report 'Strip non-ASCII' do
+    N.times do
+      sample.to_ascii!
+    end
   end
-
 end

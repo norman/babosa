@@ -4,8 +4,7 @@ $LOAD_PATH << File.expand_path("../../lib", __FILE__)
 $LOAD_PATH.uniq!
 
 require "rubygems"
-require "bundler"
-Bundler.setup
+require "bundler/setup"
 require "test/unit"
 require "babosa"
 
@@ -160,5 +159,4 @@ class  BabosaTest < Test::Unit::TestCase
     ss = "カタカナ: katakana is über cool".to_slug
     assert_equal "katakana-is-uber-cool", ss.normalize!(true)
   end
-
 end
