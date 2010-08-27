@@ -1,25 +1,24 @@
 # encoding: utf-8
-
 module Babosa
 
   # This class provides some string-manipulation methods specific to slugs.
   #
   # Note that this class includes many "bang methods" such as {#clean!} and
   # {#normalize!} that perform actions on the string in-place. Each of these
-  # methods has a corresponding "bangless" method (i.e., +SlugString#clean!+
-  # and +SlugString#clean+) which does not appear in the documentation because
+  # methods has a corresponding "bangless" method (i.e., +Identifier#clean!+
+  # and +Identifier#clean+) which does not appear in the documentation because
   # it is generated dynamically.
   #
   # All of the bang methods return an instance of String, while the bangless
-  # versions return an instance of Babosa::SlugString, so that calls to methods
+  # versions return an instance of Babosa::Identifier, so that calls to methods
   # specific to this class can be chained:
   #
-  #   string = SlugString.new("hello world")
-  #   string.with_dashes! # => "hello-world"
-  #   string.with_dashes  # => <Babosa::SlugString:0x000001013e1590 @wrapped_string="hello-world">
+  #   string = Identifier.new("hello world")
+  #   string.with_separators! # => "hello-world"
+  #   string.with_separators  # => <Babosa::Identifier:0x000001013e1590 @wrapped_string="hello-world">
   #
   # @see http://www.utf8-chartable.de/unicode-utf8-table.pl?utf8=dec Unicode character table
-  class SlugString
+  class Identifier
 
     attr_reader :wrapped_string
     alias to_s wrapped_string
@@ -50,7 +49,7 @@ module Babosa
       @wrapped_string.__send__(symbol, *args, &block)
     end
 
-    # @param string [#to_s] The string to use as the basis of the SlugString.
+    # @param string [#to_s] The string to use as the basis of the Identifier.
     def initialize(string)
       @wrapped_string = string.to_s
       tidy_bytes!
@@ -61,21 +60,21 @@ module Babosa
     # characters that are Roman-alphabet characters + diacritics. Non-letter
     # characters are left unmodified.
     #
-    #   string = SlugString.new "Łódź, Poland"
-    #   string.approximate_ascii                 # => "Lodz, Poland"
-    #   string = SlugString.new "日本"
-    #   string.approximate_ascii                 # => "日本"
+    #   string = Identifier.new "Łódź, Poland"
+    #   string.transliterate                 # => "Lodz, Poland"
+    #   string = Identifier.new "日本"
+    #   string.transliterate                 # => "日本"
     #
     # You can pass any key(s) from +Characters.approximations+ as arguments. This allows
     # for contextual approximations. By default; +:spanish+ and +:german+ are
     # provided:
     #
-    #   string = SlugString.new "Jürgen Müller"
-    #   string.approximate_ascii                 # => "Jurgen Muller"
-    #   string.approximate_ascii :german         # => "Juergen Mueller"
-    #   string = SlugString.new "¡Feliz año!"
-    #   string.approximate_ascii                 # => "¡Feliz ano!"
-    #   string.approximate_ascii :spanish        # => "¡Feliz anio!"
+    #   string = Identifier.new "Jürgen Müller"
+    #   string.transliterate                 # => "Jurgen Muller"
+    #   string.transliterate :german         # => "Juergen Mueller"
+    #   string = Identifier.new "¡Feliz año!"
+    #   string.transliterate                 # => "¡Feliz ano!"
+    #   string.transliterate :spanish        # => "¡Feliz anio!"
     #
     # You can modify the built-in approximations, or add your own:
     #
@@ -85,13 +84,13 @@ module Babosa
     # Notice that this method does not simply convert to ASCII; if you want
     # to remove non-ASCII characters such as "¡" and "¿", use {#to_ascii!}:
     #
-    #   string.approximate_ascii!(:spanish)       # => "¡Feliz anio!"
-    #   string.to_ascii!                          # => "Feliz anio!"
+    #   string.transliterate!(:spanish)       # => "¡Feliz anio!"
+    #   string.transliterate!                 # => "Feliz anio!"
     # @param *args <Symbol>
     # @return String
-    def approximate_ascii!(overrides = {})
-      overrides = Characters.approximations[overrides] if overrides.kind_of? Symbol
-      @wrapped_string = unpack("U*").map { |char| approx_char(char, overrides) }.flatten.pack("U*")
+    def transliterate!(transliterations = {})
+      transliterations = Characters.approximations[transliterations] if transliterations.kind_of? Symbol
+      @wrapped_string = unpack("U*").map { |char| approx_char(char, transliterations) }.flatten.pack("U*")
     end
 
     # Converts dashes to spaces, removes leading and trailing spaces, and
@@ -134,7 +133,7 @@ module Babosa
 
     # Truncate the string to +max+ characters.
     # @example
-    #   "üéøá".to_slug.truncate(3) #=> "üéø"
+    #   "üéøá".to_identifier.truncate(3) #=> "üéø"
     # @return String
     def truncate!(max)
       @wrapped_string = unpack("U*")[0...max].pack("U*")
@@ -145,7 +144,7 @@ module Babosa
     # byte length. The resulting string may be less than +max+ if the string must
     # be truncated at a multibyte character boundary.
     # @example
-    #   "üéøá".to_slug.truncate_bytes(3) #=> "ü"
+    #   "üéøá".to_identifier.truncate_bytes(3) #=> "ü"
     # @return String
     def truncate_bytes!(max)
       return @wrapped_string if @wrapped_string.bytesize <= max
@@ -193,29 +192,35 @@ module Babosa
       @wrapped_string = @@utf8_proxy.tidy_bytes(@wrapped_string)
     end
 
-    %w[approximate_ascii clean downcase word_chars normalize normalize_utf8
-      tidy_bytes to_ascii truncate truncate_bytes upcase with_dashes].each do |method|
-      class_eval(<<-EOM)
+    %w[transliterate clean downcase word_chars normalize normalize_utf8
+      tidy_bytes to_ascii truncate truncate_bytes upcase with_separators].each do |method|
+      class_eval(<<-EOM, __FILE__, __LINE__ +1)
         def #{method}(*args)
           send_to_new_instance(:#{method}!, *args)
         end
       EOM
     end
 
-    def to_slug
+    def to_identifier
       self
     end
+
+    alias approximate_ascii transliterate
+    alias approximate_ascii! transliterate!
+    alias with_dashes with_separators
+    alias with_dashes! with_separators!
+    alias to_slug to_identifier
 
     private
 
     # Look up the character's approximation in the configured maps.
-    def approx_char(char, overrides = {})
-      overrides[char] or Characters.approximations[:latin][char] or char
+    def approx_char(char, transliterations = {})
+      transliterations[char] or Characters.approximations[:latin][char] or char
     end
 
     # Used as the basis of the bangless methods.
     def send_to_new_instance(*args)
-      string = SlugString.new self
+      string = Identifier.new self
       string.send(*args)
       string
     end

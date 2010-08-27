@@ -5,9 +5,10 @@ module Babosa
 end
 
 class String
-  def to_slug
-    Babosa::SlugString.new self
+  def to_identifier
+    Babosa::Identifier.new self
   end
+  alias to_slug to_identifier
 
   # Compatibility with 1.8.6
   if !public_method_defined? :bytesize
@@ -19,4 +20,4 @@ end
 
 require "babosa/characters"
 require "babosa/utf8/proxy"
-require "babosa/slug_string"
+require "babosa/identifier"
