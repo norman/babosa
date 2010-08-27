@@ -160,6 +160,10 @@ class  BabosaTest < Test::Unit::TestCase
     assert_equal "katakana-is-uber-cool", ss.normalize!(:to_ascii => true)
   end
 
+  test "normalize should use transliterations" do
+    assert_equal "juergen", "Jürgen".to_slug.normalize(:transliterations => :german).to_s
+  end
+
   test "should get a string suitable for use as a ruby method" do
     ss = "カタカナ: katakana is über cool".to_identifier
     assert_equal "katakana_is_uber_cool", ss.to_ruby_method!
