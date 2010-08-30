@@ -89,7 +89,11 @@ module Babosa
     # @param *args <Symbol>
     # @return String
     def transliterate!(transliterations = {})
-      transliterations = Characters.approximations[transliterations] if transliterations.kind_of? Symbol
+      if transliterations.kind_of? Symbol
+        transliterations = Characters.approximations[transliterations]
+      else
+        transliterations ||= {}
+      end
       @wrapped_string = unpack("U*").map { |char| approx_char(char, transliterations) }.flatten.pack("U*")
     end
 
