@@ -105,7 +105,11 @@ class  BabosaTest < Test::Unit::TestCase
   end
 
   test "should do special approximations for German" do
-    assert_equal "Juergen", "Jürgen".to_slug.approximate_ascii!(:german)
+    {
+      "Jürgen" => "Juergen",
+      "böse"   => "boese",
+      "Männer" => "Maenner"
+    }.each {|given, expected| assert_equal expected, given.to_slug.approximate_ascii!(:german)}
   end
 
   test "should do special approximations for Spanish" do
@@ -113,7 +117,21 @@ class  BabosaTest < Test::Unit::TestCase
   end
 
   test "should do special approximations for Serbian" do
-    assert_equal "Indjija", "Inđija".to_slug.approximate_ascii!(:serbian)
+    {
+      "Ðorđe"  => "Djordje",
+      "Inđija" => "Indjija",
+      "Četiri" => "Chetiri",
+      "četiri" => "chetiri",
+      "Škola"  => "Shkola",
+      "škola"  => "shkola"
+    }.each {|given, expected| assert_equal expected, given.to_slug.approximate_ascii!(:serbian)}
+  end
+
+  test "should do special approximations for Danish" do
+    {
+      "Ærøskøbing" => "Aeroeskoebing",
+      "Årslev"       => "Aarslev"
+    }.each {|given, expected| assert_equal expected, given.to_slug.approximate_ascii!(:danish)}
   end
 
   test "should work with non roman chars" do
