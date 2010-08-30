@@ -183,7 +183,9 @@ class  BabosaTest < Test::Unit::TestCase
   end
 
   test "should get a string suitable for use as a ruby method" do
-    ss = "カタカナ: katakana is über cool".to_identifier
-    assert_equal "katakana_is_uber_cool", ss.to_ruby_method!
+    assert_equal "hello_world?", "¿¿¿hello... world???".to_slug.to_ruby_method!
+    assert_equal "katakana_is_uber_cool", "カタカナ: katakana is über cool".to_slug.to_ruby_method!
+    assert_equal "katakana_is_uber_cool!", "カタカナ: katakana is über cool!".to_slug.to_ruby_method!
+    assert_equal "katakana_is_uber_cool", "カタカナ: katakana is über cool".to_slug.to_ruby_method!(false)
   end
 end
