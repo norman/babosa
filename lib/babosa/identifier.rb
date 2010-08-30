@@ -243,4 +243,7 @@ module Babosa
       id
     end
   end
+
+  # Support older versions of FriendlyId.
+  SlugString = Identifier
 end
