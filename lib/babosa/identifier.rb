@@ -66,8 +66,8 @@ module Babosa
     #   string.transliterate                 # => "日本"
     #
     # You can pass any key(s) from +Characters.approximations+ as arguments. This allows
-    # for contextual approximations. By default; +:spanish+ and +:german+ are
-    # provided:
+    # for contextual approximations. Danish, German, Serbian and Spanish are currently
+    # supported.
     #
     #   string = Identifier.new "Jürgen Müller"
     #   string.transliterate                 # => "Jurgen Muller"
@@ -244,6 +244,6 @@ module Babosa
     end
   end
 
-  # Support older versions of FriendlyId.
+  # Identifier is aliased as SlugString to support older versions of FriendlyId.
   SlugString = Identifier
 end
