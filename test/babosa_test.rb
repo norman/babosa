@@ -1,7 +1,5 @@
 # encoding: utf-8
 $KCODE = 'UTF8' if RUBY_VERSION < '1.9'
-$LOAD_PATH << File.expand_path("../../lib", __FILE__)
-$LOAD_PATH.uniq!
 
 require "rubygems"
 require "bundler/setup"

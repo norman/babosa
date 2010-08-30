@@ -1,6 +1,8 @@
 # encoding: utf-8
 require "benchmark"
-require File.expand_path("../init", __FILE__)
+require "rubygems"
+require "bundler/setup"
+require "babosa"
 
 def sample
   "Ja, żołnierz Wojska Polskiego, przysięgam służyć wiernie Rzeczypospolitej Polskiej".to_slug
