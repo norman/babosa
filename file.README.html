@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta name="Content-Type" content="text/html; charset=utf-8" />
-<title>Documentation by YARD 0.5.8</title>
+<title>Documentation by YARD 0.6.0</title>
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
@@ -41,119 +41,191 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><div id='filecontents'><h1 id='babosa'>Babosa</h1>
+    <div id="content"><div id='filecontents'><h1>Babosa</h1>
 
-<p>Babosa is a library for creating slugs. It is an extraction and improvement of the string code from <a href='http://github.com/norman/friendly_id'>FriendlyId</a>, intended to help developers create similar libraries and plugins.</p>
+<p>Babosa is a library for creating human-friendly identifiers. Its primary
+intended purpose is for creating URL slugs, but can also be useful for
+normalizing and sanitizing data.</p>
 
-<h2 id='features__usage'>Features / Usage</h2>
+<p>It is an extraction and improvement of the string code from
+<a href="http://github.com/norman/friendly_id">FriendlyId</a>. I have released this as a
+separate library to help developers who want to create libraries similar to
+FriendlyId.</p>
 
-<h3 id='ascii_transliteration'>ASCII transliteration</h3>
+<h2>Features / Usage</h2>
 
-<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;Golcuk, Turkey&quot;</span></pre>
+<h3>ASCII transliteration</h3>
 
-<h3 id='perlocale_transliteration'>Per-locale transliteration</h3>
+<pre class="code"><span class='string val'>&quot;Gölcük, Turkey&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;Golcuk, Turkey&quot;</span>
+</pre>
 
-<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span>           <span class='comment'>#=&gt; &quot;Jurgen Muller&quot;
-</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id approximate_ascii'>approximate_ascii</span><span class='lparen'>(</span><span class='symbol'>:german</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>  <span class='comment'>#=&gt; &quot;Juergen Mueller&quot;</span></pre>
+<h3>Per-locale transliteration</h3>
 
-<p>Currently, only German, Spanish and Serbian are supported. I&#8217;ll gladly accept contributions and support more languages.</p>
+<pre class="code"><span class='string val'>&quot;Jürgen Müller&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>           <span class='comment val'>#=&gt; &quot;Jurgen Muller&quot;</span>
+<span class='string val'>&quot;Jürgen Müller&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='approximate_ascii identifier id'>approximate_ascii</span><span class='lparen token'>(</span><span class='symbol val'>:german</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span>  <span class='comment val'>#=&gt; &quot;Juergen Mueller&quot;</span>
+</pre>
 
-<h3 id='nonascii_removal'>Non-ASCII removal</h3>
+<p>Supported language currently include Danish, German, Serbian and Spanish. I'll
+gladly accept contributions and support more languages.</p>
 
-<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id to_ascii'>to_ascii</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;Glck, Turkey&quot;</span></pre>
+<h3>Non-ASCII removal</h3>
 
-<h3 id='truncate_by_characters'>Truncate by characters</h3>
+<pre class="code"><span class='string val'>&quot;Gölcük, Turkey&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='to_ascii identifier id'>to_ascii</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;Glck, Turkey&quot;</span>
+</pre>
 
-<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üüü</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate'>truncate</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;üü&quot;</span></pre>
+<h3>Truncate by characters</h3>
 
-<h3 id='truncate_by_bytes'>Truncate by bytes</h3>
+<pre class="code"><span class='string val'>&quot;üüü&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='truncate identifier id'>truncate</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;üü&quot;</span>
+</pre>
 
-<p>This can be useful to ensure the generated slug will fit in a database column whose length is limited by bytes rather than UTF-8 characters.</p>
+<h3>Truncate by bytes</h3>
 
-<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>üüü</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id truncate_bytes'>truncate_bytes</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;ü&quot;</span></pre>
+<p>This can be useful to ensure the generated slug will fit in a database column
+whose length is limited by bytes rather than UTF-8 characters.</p>
 
-<h3 id='remove_punctuation_chars'>Remove punctuation chars</h3>
+<pre class="code"><span class='string val'>&quot;üüü&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='truncate_bytes identifier id'>truncate_bytes</span><span class='lparen token'>(</span><span class='integer val'>2</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;ü&quot;</span>
+</pre>
 
-<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>this is, um, **really** cool, huh?</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id word_chars'>word_chars</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;this is um really cool huh&quot;</span></pre>
+<h3>Remove punctuation chars</h3>
 
-<h3 id='allinone'>All-in-one</h3>
+<pre class="code"><span class='string val'>&quot;this is, um, **really** cool, huh?&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='word_chars identifier id'>word_chars</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;this is um really cool huh&quot;</span>
+</pre>
 
-<pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gölcük, Turkey</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id to_slug'>to_slug</span><span class='period'>.</span><span class='id normalize'>normalize</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='comment'>#=&gt; &quot;golcuk-turkey&quot;</span></pre>
+<h3>All-in-one</h3>
 
-<h3 id='utf8_support'>UTF-8 support</h3>
+<pre class="code"><span class='string val'>&quot;Gölcük, Turkey&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='normalize identifier id'>normalize</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='comment val'>#=&gt; &quot;golcuk-turkey&quot;</span>
+</pre>
 
-<p>Babosa has no hard dependencies, but if you have either the Unicode or ActiveSupport gems installed and required prior to requiring &#8220;babosa&#8221;, these will be used to perform upcasing and downcasing on UTF-8 strings. On JRuby 1.5 and above, Java&#8217;s native Unicode support will be used.</p>
+<h3>Other stuff</h3>
 
-<p>If none of these libraries are available, Babosa falls back to a simple module which supports only Unicode strings only with Latin characters. I recommend using the Unicode gem where possible since it&#8217;s a C extension and is very fast.</p>
+<p>Babosa can also generate strings for Ruby method names. (Yes, Ruby 1.9 can use UTF-8 chars
+in method names, but you may not want to):</p>
 
-<h3 id='rails_3'>Rails 3</h3>
+<pre class="code"><span class='string val'>&quot;this is a method&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='to_ruby_method! fid id'>to_ruby_method!</span> <span class='comment val'>#=&gt; this_is_a_method</span>
+<span class='string val'>&quot;über cool stuff!&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='to_ruby_method! fid id'>to_ruby_method!</span> <span class='comment val'>#=&gt; uber_cool_stuff!</span>
 
-<p>Most of Babosa&#8217;s functionality is already present in Active Support/Rails 3. Babosa exists primarily to support non-Rails applications, and Rails apps prior to 3.0. Most of the code here was originally written for FriendlyId. Several things, like tidy_bytes and ASCII transliteration, were later added to Rails and I18N.</p>
+<span class='comment val'># You can also disallow trailing punctuation chars</span>
+<span class='string val'>&quot;über cool stuff!&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='to_ruby_method identifier id'>to_ruby_method</span><span class='lparen token'>(</span><span class='false false kw'>false</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; uber_cool_stuff</span>
+</pre>
 
-<p>Babosa differs from ActiveSupport primarily in that it supports non-Latin strings by default. If you are considering using Babosa with Rails 3, you should first take a look at Active Support&#8217;s <a href='http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565'>transliterate</a> and <a href='http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566'>parameterize</a> because it&#8217;s very likely they already do what you need.</p>
+<p>You can add not only transliterations, but expansions for some characters if you want:</p>
 
-<h3 id='more_info'>More info</h3>
+<pre class="code"><span class='Babosa constant id'>Babosa</span><span class='colon2 op'>::</span><span class='Characters constant id'>Characters</span><span class='dot token'>.</span><span class='add_approximations identifier id'>add_approximations</span><span class='lparen token'>(</span><span class='symbol val'>:user</span><span class='comma token'>,</span> <span class='lbrace token'>{</span>
+  <span class='string val'>&quot;0&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;oh&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;1&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;one&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;2&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;two&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;3&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;three&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;.&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot; dot &quot;</span>
+<span class='rbrace token'>}</span><span class='rparen token'>)</span>
+<span class='string val'>&quot;Web 2.0&quot;</span><span class='dot token'>.</span><span class='to_slug identifier id'>to_slug</span><span class='dot token'>.</span><span class='normalize! fid id'>normalize!</span><span class='lparen token'>(</span><span class='symbol val'>:transliterations</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:user</span><span class='rparen token'>)</span> <span class='comment val'>#=&gt; &quot;web-two-dot-oh&quot;</span>
+</pre>
 
-<p>Please see the <a href='http://norman.github.com/babosa'>API docs</a> and source code for more info.</p>
+<h3>UTF-8 support</h3>
 
-<h2 id='getting_it'>Getting it</h2>
+<p>Babosa has no hard dependencies, but if you have either the Unicode or
+ActiveSupport gems installed and required prior to requiring "babosa", these
+will be used to perform upcasing and downcasing on UTF-8 strings. On JRuby 1.5
+and above, Java's native Unicode support will be used instead. Unless you're on
+JRuby, which already has excellent support for Unicode via Java's Standard
+Library, I recommend using the Unicode gem because it's the fastest Ruby
+Unicode library available.</p>
+
+<p>If none of these libraries are available, Babosa falls back to a simple module
+which only supports Latin characters.</p>
+
+<p>This default module is fast and can do very naive Unicode composition to ensure
+that, for example, "é" will always be composed to a single codepoint rather
+than an "e" and a "´" - making it safe to use as a hash key. But seriously -
+save yourself the headache and install a real Unicode library.</p>
+
+<h3>Rails 3</h3>
+
+<p>Most of Babosa's functionality is already present in Active Support/Rails 3.
+Babosa exists primarily to support non-Rails applications, and Rails apps prior
+to 3.0. Most of the code here was originally written for FriendlyId. Several
+things, like <code>tidy_bytes</code> and ASCII transliteration, were later added to Rails
+and I18N.</p>
+
+<p>Babosa differs from ActiveSupport primarily in that it supports non-Latin
+strings by default, and has per-locale ASCII transliterations already baked-in. If
+you are considering using Babosa with Rails 3, you should first take a look at
+Active Support's
+<a href="http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565">transliterate</a>
+and
+<a href="http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566">parameterize</a>
+because it may already do what you need.</p>
+
+<h3>More info</h3>
+
+<p>Please see the <a href="http://norman.github.com/babosa">API docs</a> and source code for more info.</p>
+
+<h2>Getting it</h2>
 
 <p>Babosa can be installed via Rubygems:</p>
 
-<pre class="code"><span class='id gem'>gem</span> <span class='id install'>install</span> <span class='id babosa'>babosa</span></pre>
+<pre class="code"><span class='gem identifier id'>gem</span> <span class='install identifier id'>install</span> <span class='babosa identifier id'>babosa</span>
+</pre>
 
-<p>You can get the source code from its <a href='http://github.com/norman/babosa'>Github repository</a>.</p>
+<p>You can get the source code from its <a href="http://github.com/norman/babosa">Github repository</a>.</p>
 
-<p>Babosa is tested to be compatible with Ruby 1.8.6-1.9.2, JRuby 1.4-1.5, Rubinius 1.0, and is probably compatible with other Rubies as well.</p>
+<p>Babosa is tested to be compatible with Ruby 1.8.6-1.9.2, JRuby 1.4-1.5, and
+Rubinius 1.0.x. It's probably compatible with other Rubies as well.</p>
 
-<h2 id='reporting_bugs'>Reporting bugs</h2>
+<h2>Reporting bugs</h2>
 
-<p>Please use Babosa&#8217;s <a href='http://github.com/norman/babosa/issues'>Github issue tracker</a>.</p>
+<p>Please use Babosa's <a href="http://github.com/norman/babosa/issues">Github issue tracker</a>.</p>
 
-<h2 id='misc'>Misc</h2>
+<h2>Misc</h2>
 
-<p>&#8220;Babosa&#8221; means slug in Spanish.</p>
+<p>"Babosa" means slug in Spanish.</p>
 
-<h2 id='author'>Author</h2>
+<h2>Author</h2>
 
-<p><a href='http://njclarke.com'>Norman Clarke</a></p>
+<p><a href="http://njclarke.com">Norman Clarke</a></p>
 
-<h2 id='contributors'>Contributors</h2>
-
-<ul>
-<li><a href='http://github.com/milandobrota'>Milan Dobrota</a> - Serbian support</li>
-</ul>
-
-<h2 id='changelog'>Changelog</h2>
+<h2>Contributors</h2>
 
 <ul>
-<li>
-<li>
-<li>1 - Added support for Serbian.</li>
-</li>
-</li>
-
-<li>
-<li>
-<li>0 - Initial extraction from FriendlyId.</li>
-</li>
-</li>
+<li><a href="http://github.com/molte">Molte Emil Strange Andersen</a> - Danish support</li>
+<li><a href="http://github.com/milandobrota">Milan Dobrota</a> - Serbian support</li>
 </ul>
 
-<h2 id='copyright'>Copyright</h2>
+
+<h2>Changelog</h2>
+
+<ul>
+<li>0.2.0 - Added support for Danish. Added method to generate Ruby identifiers. Improved performance.</li>
+<li>0.1.1 - Added support for Serbian.</li>
+<li>0.1.0 - Initial extraction from FriendlyId.</li>
+</ul>
+
+
+<h2>Copyright</h2>
 
 <p>Copyright (c) 2010 Norman Clarke</p>
 
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &#8220;Software&#8221;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:</p>
 
-<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
 
-<p>THE SOFTWARE IS PROVIDED &#8220;AS IS&#8221;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p></div></div>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p></div></div>
     
     <div id="footer">
-  Generated on Mon Aug  9 15:56:40 2010 by 
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.9.2).
+  Generated on Mon Aug 30 14:45:14 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.0 (ruby-1.8.7).
 </div>
 
   </body>

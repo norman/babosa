@@ -59,8 +59,8 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/babosa/characters.rb<span class="defines">,<br />
-  lib/babosa.rb,<br /> lib/babosa/version.rb,<br /> lib/babosa/utf8/proxy.rb,<br /> lib/babosa/slug_string.rb,<br /> lib/babosa/utf8/mappings.rb,<br /> lib/babosa/utf8/dumb_proxy.rb,<br /> lib/babosa/utf8/java_proxy.rb,<br /> lib/babosa/utf8/unicode_proxy.rb,<br /> lib/babosa/utf8/active_support_proxy.rb</span>
+    <dd class="r1 last">lib/babosa/identifier.rb<span class="defines">,<br />
+  lib/babosa.rb,<br /> lib/babosa/version.rb,<br /> lib/babosa/utf8/proxy.rb,<br /> lib/babosa/characters.rb,<br /> lib/babosa/utf8/mappings.rb,<br /> lib/babosa/utf8/dumb_proxy.rb,<br /> lib/babosa/utf8/java_proxy.rb,<br /> lib/babosa/utf8/unicode_proxy.rb,<br /> lib/babosa/utf8/active_support_proxy.rb</span>
 </dd>
   
 </dl>
@@ -81,14 +81,39 @@ encoding: utf-8
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <a href="Babosa/Characters.html" title="Babosa::Characters (module)">Characters</a>, <a href="Babosa/UTF8.html" title="Babosa::UTF8 (module)">UTF8</a>, <a href="Babosa/Version.html" title="Babosa::Version (module)">Version</a>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Babosa/Characters.html" title="Babosa::Characters (module)">Characters</a></span>, <span class='object_link'><a href="Babosa/UTF8.html" title="Babosa::UTF8 (module)">UTF8</a></span>, <span class='object_link'><a href="Babosa/Version.html" title="Babosa::Version (module)">Version</a></span>
     
    
     
-      <strong class="classes">Classes:</strong> <a href="Babosa/SlugString.html" title="Babosa::SlugString (class)">SlugString</a>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Babosa/Identifier.html" title="Babosa::Identifier (class)">Identifier</a></span>
     
   
 </p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="SlugString-constant" class="">SlugString =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+Identifier is aliased as SlugString to support older versions of
+FriendlyId.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+        </dt>
+        <dd><pre class="code"><span class='Identifier constant id'>Identifier</span>
+</pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -171,9 +196,10 @@ encoding: utf-8
     <td>
       <pre class="code"><span class="info file"># File 'lib/babosa.rb', line 2</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id jruby15?'>jruby15?</span>
-  <span class='const'>JRUBY_VERSION</span> <span class='op'>&gt;=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1.5</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>rescue</span> <span class='kw'>false</span>
-<span class='kw'>end</span></pre>
+<span class='def def kw'>def</span> <span class='self self kw'>self</span><span class='dot token'>.</span><span class='jruby15? fid id'>jruby15?</span>
+  <span class='JRUBY_VERSION constant id'>JRUBY_VERSION</span> <span class='geq op'>&gt;=</span> <span class='string val'>&quot;1.5&quot;</span> <span class='rescue rescue kw'>rescue</span> <span class='false false kw'>false</span>
+<span class='end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -184,9 +210,9 @@ encoding: utf-8
 </div>
     
     <div id="footer">
-  Generated on Mon Aug  9 15:56:40 2010 by 
-  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool">yard</a>
-  0.5.8 (ruby-1.9.2).
+  Generated on Mon Aug 30 14:45:14 2010 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.0 (ruby-1.8.7).
 </div>
 
   </body>
