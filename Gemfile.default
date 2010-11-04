@@ -1,6 +1,2 @@
 source :rubygems
-gem "rake"
-gem "rbench"
-gem "yard", :path => "/Users/norman/work/yard"
-gem "maruku"
 gemspec
