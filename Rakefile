@@ -1,3 +1,4 @@
+require "rubygems"
 require "rake/testtask"
 require "rake/clean"
 require "rake/gempackagetask"

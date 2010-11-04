@@ -6,7 +6,7 @@ module Babosa
     module JavaProxy
       extend UTF8Proxy
       extend self
-      import java.text.Normalizer
+      java_import java.text.Normalizer
 
       def downcase(string)
         string.to_java.to_lower_case.to_s

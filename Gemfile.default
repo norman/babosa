@@ -1,3 +1,2 @@
 source :rubygems
-gem "rbench"
 gemspec

@@ -137,8 +137,21 @@ module Babosa
     end
 
     # Normalize a string so that it can safely be used as a Ruby method name.
-    def to_ruby_method!
-      normalize!(:to_ascii => true, :separator => "_")
+    def to_ruby_method!(allow_bangs = true)
+      leader, trailer = @wrapped_string.strip.scan(/\A(.+)(.)\z/).flatten
+      if allow_bangs
+        trailer.downcase.gsub!(/[^a-z0-9!=\\\\?]/, '')
+      else
+        trailer.downcase.gsub!(/[^a-z0-9]/, '')
+      end
+      id = leader.to_identifier
+      id.transliterate!
+      id.to_ascii!
+      id.clean!
+      id.word_chars!
+      id.clean!
+      @wrapped_string = id.to_s + trailer
+      with_separators!("_")
     end
 
     # Delete any non-ascii characters.
