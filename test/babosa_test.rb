@@ -158,6 +158,10 @@ class  BabosaTest < Test::Unit::TestCase
     assert_equal "üa", "üa".to_slug.truncate!(100)
   end
 
+  test "should not leave trailing '-' when normalized and truncated" do
+    assert_equal "no", "no trailing dash".to_slug.normalize!(:max_length => 3)
+  end
+
   test "should transliterate uncomposed utf8" do
     string = [117, 776].pack("U*") # "ü" as ASCII "u" plus COMBINING DIAERESIS
     assert_equal "u", string.to_slug.approximate_ascii!

@@ -165,7 +165,7 @@ module Babosa
     #   "üéøá".to_identifier.truncate(3) #=> "üéø"
     # @return String
     def truncate!(max)
-      @wrapped_string = unpack("U*")[0...max].pack("U*")
+      @wrapped_string = unpack("U*")[0...max].pack("U*").sub(/(\s)+$/u, '')
     end
 
     # Truncate the string to +max+ bytes. This can be useful for ensuring that
@@ -187,7 +187,7 @@ module Babosa
           new << char
         end
       end
-      @wrapped_string = new.join
+      @wrapped_string = new.join.sub(/(\s)+$/u, '')
     end
 
     # Replaces whitespace with dashes ("-").
