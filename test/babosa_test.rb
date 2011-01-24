@@ -190,4 +190,9 @@ class  BabosaTest < Test::Unit::TestCase
     assert_equal "katakana_is_uber_cool!", "カタカナ: katakana is über cool!".to_slug.to_ruby_method!
     assert_equal "katakana_is_uber_cool", "カタカナ: katakana is über cool".to_slug.to_ruby_method!(false)
   end
+
+  test "should approximate 'smart' quotes" do
+    assert_equal "john's", "john’s".to_slug.approximate_ascii.to_s
+    assert_equal "johns", "john’s".to_slug.normalize.to_s
+  end
 end
