@@ -142,6 +142,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Changelog
 
+* 0.2.1 - Implement #empty? for compatiblity with Active Support's #blank?.
 * 0.2.0 - Added support for Danish. Added method to generate Ruby identifiers. Improved performance.
 * 0.1.1 - Added support for Serbian.
 * 0.1.0 - Initial extraction from FriendlyId.

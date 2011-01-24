@@ -56,6 +56,12 @@ module Babosa
       normalize_utf8!
     end
 
+    def empty?
+      # included to make this class :respond_to? :empty for compatibility with Active Support's
+      # #blank?
+      @wrapped_string.empty?
+    end
+
     # Approximate an ASCII string. This works only for Western strings using
     # characters that are Roman-alphabet characters + diacritics. Non-letter
     # characters are left unmodified.

@@ -49,6 +49,10 @@ end
 
 class  BabosaTest < Test::Unit::TestCase
 
+  test "should respond_to? :empty?" do
+    assert "".to_slug.respond_to? :empty?
+  end
+
   test "word_chars! should leave only letters and spaces" do
     string = "a*$%^$@!@b$%^&*()*!c"
     assert_match /[a-z ]*/i, string.to_slug.word_chars!
