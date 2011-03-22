@@ -18,6 +18,6 @@ class String
   end
 end
 
-require "babosa/characters"
+require "babosa/transliterator/base"
 require "babosa/utf8/proxy"
 require "babosa/identifier"

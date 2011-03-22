@@ -94,11 +94,11 @@ module Babosa
     #   string.transliterate!                 # => "Feliz anio!"
     # @param *args <Symbol>
     # @return String
-    def transliterate!(transliterations = {})
+    def transliterate!(transliterations = nil)
       if transliterations.kind_of? Symbol
-        transliterations = Characters.approximations[transliterations]
+        transliterations = Transliterator.get(transliterations)
       else
-        transliterations ||= {}
+        transliterations ||= Transliterator::Latin.instance
       end
       @wrapped_string = unpack("U*").map { |char| approx_char(char, transliterations) }.flatten.pack("U*")
     end
@@ -114,7 +114,7 @@ module Babosa
     # anything other than letters, numbers, spaces, newlines and linefeeds.
     # @return String
     def word_chars!
-      @wrapped_string = (unpack("U*") - Characters.strippable).pack("U*")
+      @wrapped_string = (unpack("U*") - Babosa::STRIPPABLE).pack("U*")
     end
 
     # Normalize the string for use as a URL slug. Note that in this context,
@@ -254,8 +254,8 @@ module Babosa
     private
 
     # Look up the character's approximation in the configured maps.
-    def approx_char(char, transliterations = {})
-      transliterations[char] or Characters.approximations[:latin][char] or char
+    def approx_char(char, transliterations)
+      transliterations[char] or char
     end
 
     # Used as the basis of the bangless methods.
