@@ -78,6 +78,26 @@ for example here's the transliterator for German:
       end
     end
 
+And a spec (you can use this as a template):
+
+    # encoding: utf-8
+    require File.expand_path("../../spec_helper", __FILE__)
+
+    describe Babosa::Transliterator::German do
+
+      let(:t) { described_class.instance }
+      it_behaves_like "a latin transliterator"
+
+      it "should transliterate Eszett" do
+        t.transliterate("ß").should eql("ss")
+      end
+
+      it "should transliterate vowels with umlauts" do
+        t.transliterate("üöä").should eql("ueoeae")
+      end
+
+    end
+
 
 ### UTF-8 support
 
@@ -90,26 +110,25 @@ Library, I recommend using the Unicode gem because it's the fastest Ruby Unicode
 library available.
 
 If none of these libraries are available, Babosa falls back to a simple module
-which only supports Latin characters.
+which **only** supports Latin characters.
 
 This default module is fast and can do very naive Unicode composition to ensure
 that, for example, "é" will always be composed to a single codepoint rather than
 an "e" and a "´" - making it safe to use as a hash key. But seriously - save
 yourself the headache and install a real Unicode library.
 
+If you are using Babosa with a language that uses the Cyrillic alphabet, Babosa
+requires either Unicode, Active Support or Java.
+
 
 ### Rails 3
 
-Most of Babosa's functionality is already present in Active Support/Rails 3.
-Babosa exists primarily to support non-Rails applications, and Rails apps prior
-to 3.0. Most of the code here was originally written for FriendlyId. Several
-things, like `tidy_bytes` and ASCII transliteration, were later added to Rails
-and I18N.
+Some of Babosa's functionality is already present in Active Support/Rails 3.
 
 Babosa differs from ActiveSupport primarily in that it supports non-Latin
-strings by default, and has per-locale ASCII transliterations already baked-in. If
-you are considering using Babosa with Rails 3, you should first take a look at
-Active Support's
+strings by default, and has per-locale ASCII transliterations already baked-in.
+If you are considering using Babosa with Rails 3, you should first take a look
+at Active Support's
 [transliterate](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565)
 and
 [parameterize](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566)
@@ -145,8 +164,10 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Contributors
 
-* [Molte Emil Strange Andersen](http://github.com/molte) - Danish support
-* [Milan Dobrota](http://github.com/milandobrota) - Serbian support
+* [Alexey Shkolnikov](https://github.com/grlm) - Russian support
+* [Martin Petrov](https://github.com/martin-petrov) - Bulgarian support
+* [Molte Emil Strange Andersen](https://github.com/molte) - Danish support
+* [Milan Dobrota](https://github.com/milandobrota) - Serbian support
 
 
 ## Changelog
