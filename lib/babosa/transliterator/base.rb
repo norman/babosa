@@ -4,16 +4,6 @@ require 'singleton'
 
 module Babosa
 
-  STRIPPABLE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19,
-    20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39,
-    40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94,
-    95, 96, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136,
-    137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
-    152, 153, 154, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165, 166, 167,
-    168, 169, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 182, 183, 184,
-    185, 187, 188, 189, 190, 191, 215, 247]
-
-
   module Transliterator
 
     autoload :Latin,   "babosa/transliterator/latin"
@@ -23,8 +13,7 @@ module Babosa
     autoload :Serbian, "babosa/transliterator/serbian"
 
     def self.get(symbol)
-      klass = symbol.to_s.split("_").map {|a| a.gsub(/\b('?[a-z])/) { $1.upcase }}.join
-      const_get(klass).instance
+      const_get(symbol.to_s.classify)
     end
 
     class Base
@@ -34,20 +23,36 @@ module Babosa
       APPROXIMATIONS = {
         "×" => "x",
         "÷" => "/",
-        "‘" => "'",
-        "‛" => "'",
-        "―" => "-",
         "‐" => "-",
         "‑" => "-",
         "‒" => "-",
         "–" => "-",
         "—" => "-",
+        "―" => "-",
+        "―" => "-",
+        "‘" => "'",
+        "‛" => "'",
         "“" => '"',
         "”" => '"',
         "„" => '"',
         "‟" => '"',
-        '’' => "'"
-      }
+        '’' => "'",
+        # various kinds of space characters
+        "\xc2\xa0"     => " ",
+        "\xe2\x80\x80" => " ",
+        "\xe2\x80\x81" => " ",
+        "\xe2\x80\x82" => " ",
+        "\xe2\x80\x83" => " ",
+        "\xe2\x80\x84" => " ",
+        "\xe2\x80\x85" => " ",
+        "\xe2\x80\x86" => " ",
+        "\xe2\x80\x87" => " ",
+        "\xe2\x80\x88" => " ",
+        "\xe2\x80\x89" => " ",
+        "\xe2\x80\x8a" => " ",
+        "\xe2\x81\x9f" => " ",
+        "\xe3\x80\x80" => " ",
+      }.freeze
 
       attr_reader :approximations
 
@@ -63,12 +68,17 @@ module Babosa
           memo[index] = value.length == 1 ? value[0] : value
           memo
         end
+        @approximations.freeze
       end
 
-      # Accepts a single UTF-8 codepoint and returns the ASCII character code used
-      # as the transliteration value.
+      # Accepts a single UTF-8 codepoint and returns the ASCII character code
+      # used as the transliteration value.
       def [](codepoint)
         @approximations[codepoint]
+      end
+
+      def transliterate(string)
+        string.unpack("U*").map {|char| self[char] || char}.flatten.pack("U*")
       end
     end
   end

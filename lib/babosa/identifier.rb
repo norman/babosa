@@ -1,6 +1,16 @@
 # encoding: utf-8
 module Babosa
 
+  # Codepoints for characters that will be deleted by +#word_chars!+.
+  STRIPPABLE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39,
+    40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94,
+    95, 96, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136,
+    137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
+    152, 153, 154, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165, 166, 167,
+    168, 169, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 182, 183, 184,
+    185, 187, 188, 189, 190, 191, 215, 247, 8203, 8204, 8205, 8239, 65279]
+
   # This class provides some string-manipulation methods specific to slugs.
   #
   # Note that this class includes many "bang methods" such as {#clean!} and
@@ -91,16 +101,12 @@ module Babosa
     # to remove non-ASCII characters such as "¡" and "¿", use {#to_ascii!}:
     #
     #   string.transliterate!(:spanish)       # => "¡Feliz anio!"
-    #   string.transliterate!                 # => "Feliz anio!"
+    #   string.transliterate!                 # => "¡Feliz anio!"
     # @param *args <Symbol>
     # @return String
-    def transliterate!(transliterations = nil)
-      if transliterations.kind_of? Symbol
-        transliterations = Transliterator.get(transliterations)
-      else
-        transliterations ||= Transliterator::Latin.instance
-      end
-      @wrapped_string = unpack("U*").map { |char| approx_char(char, transliterations) }.flatten.pack("U*")
+    def transliterate!(kind = nil)
+      transliterator = Transliterator.get(kind || :latin).instance
+      @wrapped_string = transliterator.transliterate(@wrapped_string)
     end
 
     # Converts dashes to spaces, removes leading and trailing spaces, and
@@ -229,7 +235,7 @@ module Babosa
 
     %w[transliterate clean downcase word_chars normalize normalize_utf8
       tidy_bytes to_ascii truncate truncate_bytes upcase with_separators].each do |method|
-      class_eval(<<-EOM, __FILE__, __LINE__ +1)
+      class_eval(<<-EOM, __FILE__, __LINE__ + 1)
         def #{method}(*args)
           send_to_new_instance(:#{method}!, *args)
         end
@@ -252,11 +258,6 @@ module Babosa
     alias to_slug to_identifier
 
     private
-
-    # Look up the character's approximation in the configured maps.
-    def approx_char(char, transliterations)
-      transliterations[char] or char
-    end
 
     # Used as the basis of the bangless methods.
     def send_to_new_instance(*args)

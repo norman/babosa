@@ -16,6 +16,16 @@ class String
       unpack("C*").length
     end
   end
+
+  # Define unless Active Support has already added this method.
+  if !public_method_defined? :classify
+    # Convert from underscores to class name. E.g.:
+    #     hello_world => HelloWorld
+    def classify
+      split("_").map {|a| a.gsub(/\b('?[a-z])/) { $1.upcase }}.join
+    end
+  end
+
 end
 
 require "babosa/transliterator/base"

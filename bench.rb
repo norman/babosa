@@ -21,15 +21,9 @@ Benchmark.bmbm do |x|
     end
   end
 
-  x.report 'Approximate ASCII' do
+  x.report 'Transliterate' do
     N.times do
-      sample.approximate_ascii
-    end
-  end
-
-  x.report 'Approximate with override' do
-    N.times do
-      sample.approximate_ascii("ć" => "C")
+      sample.transliterate
     end
   end
 
