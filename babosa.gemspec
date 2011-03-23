@@ -16,4 +16,8 @@ spec = Gem::Specification.new do |s|
   s.test_files       = Dir.glob "test/**/*_test.rb"
   s.files            = Dir["lib/**/*.rb", "lib/**/*.rake", "*.md", "MIT-LICENSE",
     "Rakefile", "init.rb", "generators/**/*.*", "test/**/*.*"]
+
+  s.add_development_dependency "minitest"
+  s.add_development_dependency "activesupport"
+
 end

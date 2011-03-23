@@ -3,11 +3,10 @@ require "rake/testtask"
 require "rake/clean"
 require "rake/gempackagetask"
 
-task :default => :test
+task :default => :spec
+task :test    => :spec
 
 CLEAN << "pkg" << "doc" << "coverage" << ".yardoc"
-Rake::GemPackageTask.new(eval(File.read("babosa.gemspec"))) { |pkg| }
-Rake::TestTask.new(:test) { |t| t.pattern = "test/**/*_test.rb" }
 
 begin
   require "yard"
@@ -18,11 +17,18 @@ rescue LoadError
 end
 
 begin
-  require "rcov/rcovtask"
-  Rcov::RcovTask.new do |r|
-    r.test_files = FileList["test/**/*_test.rb"]
-    r.verbose = true
-    r.rcov_opts << "--exclude gems/*"
+  desc "Run SimpleCov"
+  task :coverage do
+    ENV["coverage"] = "true"
+    Rake::Task["spec"].execute
   end
 rescue LoadError
 end
+
+gemspec = File.expand_path("../babosa.gemspec", __FILE__)
+if File.exist? gemspec
+  Rake::GemPackageTask.new(eval(File.read(gemspec))) { |pkg| }
+end
+
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)

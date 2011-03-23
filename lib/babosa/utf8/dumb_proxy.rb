@@ -1,4 +1,5 @@
 require File.expand_path("../mappings", __FILE__)
+
 module Babosa
   module UTF8
 

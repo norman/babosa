@@ -66,6 +66,14 @@ module Babosa
       normalize_utf8!
     end
 
+    def ==(value)
+      @wrapped_string.to_s == value.to_s
+    end
+
+    def eql?(value)
+      @wrapped_string == value
+    end
+
     def empty?
       # included to make this class :respond_to? :empty for compatibility with Active Support's
       # #blank?
@@ -234,7 +242,8 @@ module Babosa
     end
 
     %w[transliterate clean downcase word_chars normalize normalize_utf8
-      tidy_bytes to_ascii truncate truncate_bytes upcase with_separators].each do |method|
+      tidy_bytes to_ascii to_ruby_method truncate truncate_bytes upcase 
+      with_separators].each do |method|
       class_eval(<<-EOM, __FILE__, __LINE__ + 1)
         def #{method}(*args)
           send_to_new_instance(:#{method}!, *args)
