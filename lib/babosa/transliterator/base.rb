@@ -6,11 +6,15 @@ module Babosa
 
   module Transliterator
 
-    autoload :Latin,   "babosa/transliterator/latin"
-    autoload :Spanish, "babosa/transliterator/spanish"
-    autoload :German,  "babosa/transliterator/german"
-    autoload :Danish,  "babosa/transliterator/danish"
-    autoload :Serbian, "babosa/transliterator/serbian"
+    autoload :Latin,     "babosa/transliterator/latin"
+    autoload :Spanish,   "babosa/transliterator/spanish"
+    autoload :German,    "babosa/transliterator/german"
+    autoload :Danish,    "babosa/transliterator/danish"
+    autoload :Serbian,   "babosa/transliterator/serbian"
+    autoload :Cyrillic,  "babosa/transliterator/cyrillic"
+    autoload :Russian,   "babosa/transliterator/russian"
+    autoload :Ukranian,  "babosa/transliterator/ukranian"
+    autoload :Bulgarian, "babosa/transliterator/bulgarian"
 
     def self.get(symbol)
       const_get(symbol.to_s.classify)

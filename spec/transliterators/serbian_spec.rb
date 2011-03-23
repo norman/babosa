@@ -5,6 +5,7 @@ describe Babosa::Transliterator::Serbian do
 
   let(:t) { described_class.instance }
   it_behaves_like "a latin transliterator"
+  it_behaves_like "a cyrillic transliterator"
 
   it "should transliterate Latin characters" do
     examples = {
@@ -13,11 +14,12 @@ describe Babosa::Transliterator::Serbian do
       "Četiri" => "Chetiri",
       "četiri" => "chetiri",
       "Škola"  => "Shkola",
-      "škola"  => "shkola"
+      "škola"  => "shkola",
+      "Ђорђе"  => "Djordje",
+      "Инђија" => "Indjija",
+      "Школа"  => "Shkola",
     }
     examples.each {|k, v| t.transliterate(k).should eql(v)}
   end
-
-  it "should transliterate Cyrillic characters"
 
 end
