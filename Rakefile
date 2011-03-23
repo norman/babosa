@@ -19,7 +19,7 @@ end
 begin
   desc "Run SimpleCov"
   task :coverage do
-    ENV["coverage"] = "true"
+    ENV["COV"] = "true"
     Rake::Task["spec"].execute
   end
 rescue LoadError

@@ -13,12 +13,12 @@ FriendlyId.
 
 ### ASCII transliteration
 
-    "Gölcük, Turkey".to_slug.approximate_ascii.to_s #=> "Golcuk, Turkey"
+    "Gölcük, Turkey".to_slug.transliterate.to_s #=> "Golcuk, Turkey"
 
 ### Per-locale transliteration
 
-    "Jürgen Müller".to_slug.approximate_ascii.to_s           #=> "Jurgen Muller"
-    "Jürgen Müller".to_slug.approximate_ascii(:german).to_s  #=> "Juergen Mueller"
+    "Jürgen Müller".to_slug.transliterate.to_s           #=> "Jurgen Muller"
+    "Jürgen Müller".to_slug.transliterate(:german).to_s  #=> "Juergen Mueller"
 
 Supported language currently include Danish, German, Serbian and Spanish. I'll
 gladly accept contributions and support more languages.
@@ -59,16 +59,25 @@ in method names, but you may not want to):
     "über cool stuff!".to_slug.to_ruby_method(false) #=> uber_cool_stuff
 
 
-You can add not only transliterations, but expansions for some characters if you want:
+You can easily add custom transliterators for your language with very little code,
+for example here's the transliterator for German:
 
-    Babosa::Characters.add_approximations(:user, {
-      "0" => "oh",
-      "1" => "one",
-      "2" => "two",
-      "3" => "three",
-      "." => " dot "
-    })
-    "Web 2.0".to_slug.normalize!(:transliterations => :user) #=> "web-two-dot-oh"
+    # encoding: utf-8
+    module Babosa
+      module Transliterator
+        class German < Latin
+          APPROXIMATIONS = {
+            "ä" => "ae",
+            "ö" => "oe",
+            "ü" => "ue",
+            "Ä" => "Ae",
+            "Ö" => "Oe",
+            "Ü" => "Ue"
+          }
+        end
+      end
+    end
+
 
 ### UTF-8 support
 
@@ -77,16 +86,16 @@ ActiveSupport gems installed and required prior to requiring "babosa", these
 will be used to perform upcasing and downcasing on UTF-8 strings. On JRuby 1.5
 and above, Java's native Unicode support will be used instead. Unless you're on
 JRuby, which already has excellent support for Unicode via Java's Standard
-Library, I recommend using the Unicode gem because it's the fastest Ruby
-Unicode library available.
+Library, I recommend using the Unicode gem because it's the fastest Ruby Unicode
+library available.
 
 If none of these libraries are available, Babosa falls back to a simple module
 which only supports Latin characters.
 
 This default module is fast and can do very naive Unicode composition to ensure
-that, for example, "é" will always be composed to a single codepoint rather
-than an "e" and a "´" - making it safe to use as a hash key. But seriously -
-save yourself the headache and install a real Unicode library.
+that, for example, "é" will always be composed to a single codepoint rather than
+an "e" and a "´" - making it safe to use as a hash key. But seriously - save
+yourself the headache and install a real Unicode library.
 
 
 ### Rails 3
@@ -142,6 +151,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Changelog
 
+* 0.3.0 - Cyrillic support. Improve support for various Unicode spaces and dashes.
 * 0.2.2 - Fix for "smart" quote handling.
 * 0.2.1 - Implement #empty? for compatiblity with Active Support's #blank?.
 * 0.2.0 - Added support for Danish. Added method to generate Ruby identifiers. Improved performance.

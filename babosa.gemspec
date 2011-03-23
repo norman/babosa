@@ -1,4 +1,5 @@
 require File.expand_path("../lib/babosa/version", __FILE__)
+
 spec = Gem::Specification.new do |s|
   s.name              = "babosa"
   s.rubyforge_project = "[none]"
@@ -17,7 +18,8 @@ spec = Gem::Specification.new do |s|
   s.files            = Dir["lib/**/*.rb", "lib/**/*.rake", "*.md", "MIT-LICENSE",
     "Rakefile", "init.rb", "generators/**/*.*", "test/**/*.*"]
 
-  s.add_development_dependency "minitest"
-  s.add_development_dependency "activesupport"
+  s.add_development_dependency "activesupport", ">= 2.3.0"
+  s.add_development_dependency "rspec", "~> 2.5.0"
+  s.add_development_dependency "simplecov"
 
 end

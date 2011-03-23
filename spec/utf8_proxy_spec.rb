@@ -1,16 +1,20 @@
 # encoding: utf-8
 require File.expand_path("../spec_helper", __FILE__)
 
-PROXIES = [
-  Babosa::UTF8::DumbProxy,
-  Babosa::UTF8::ActiveSupportProxy
-]
+PROXIES = [Babosa::UTF8::DumbProxy]
 
-if Babosa.jruby15?
-  PROXIES << Babosa::UTF8::JavaProxy
-else
+PROXIES << Babosa::UTF8::JavaProxy if Babosa.jruby15?
+
+begin
   require "unicode"
   PROXIES << Babosa::UTF8::UnicodeProxy
+rescue LoadError
+end
+
+begin
+  require "activesupport"
+  PROXIES << Babosa::UTF8::ActiveSupportProxy
+rescue LoadError
 end
 
 PROXIES.each do |proxy|

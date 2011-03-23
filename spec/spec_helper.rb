@@ -1,7 +1,7 @@
 $LOAD_PATH << File.expand_path("../lib", __FILE__)
 $LOAD_PATH.uniq!
 
-if ENV["coverage"]
+if ENV["COV"]
   require "simplecov"
   SimpleCov.start
 end
