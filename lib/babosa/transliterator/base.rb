@@ -15,7 +15,7 @@ module Babosa
     autoload :Russian,    "babosa/transliterator/russian"
     autoload :Serbian,    "babosa/transliterator/serbian"
     autoload :Spanish,    "babosa/transliterator/spanish"
-    autoload :Ukranian,   "babosa/transliterator/ukranian"
+    autoload :Ukrainian,   "babosa/transliterator/ukrainian"
 
     def self.get(symbol)
       const_get(symbol.to_s.classify)
