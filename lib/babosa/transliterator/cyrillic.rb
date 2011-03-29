@@ -6,9 +6,6 @@ module Babosa
     # http://en.wikipedia.org/wiki/ISO_9#GOST_7.79
     class Cyrillic < Base
       APPROXIMATIONS = {
-        "S" => "Z",
-        "j" => "j",
-        "s" => "z",
         "Ё" => "Yo",
         "Ѓ" => "G",
         "Є" => "Ye",

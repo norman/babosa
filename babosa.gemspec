@@ -16,7 +16,7 @@ spec = Gem::Specification.new do |s|
   s.has_rdoc         = false
   s.test_files       = Dir.glob "test/**/*_test.rb"
   s.files            = Dir["lib/**/*.rb", "lib/**/*.rake", "*.md", "MIT-LICENSE",
-    "Rakefile", "init.rb", "generators/**/*.*", "test/**/*.*"]
+    "Rakefile", "init.rb", "generators/**/*.*", "spec/**/*.*", ".gemtest"]
 
   s.add_development_dependency "activesupport", ">= 2.3.0"
   s.add_development_dependency "rspec", "~> 2.5.0"
