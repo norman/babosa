@@ -20,8 +20,9 @@ FriendlyId.
     "Jürgen Müller".to_slug.transliterate.to_s           #=> "Jurgen Muller"
     "Jürgen Müller".to_slug.transliterate(:german).to_s  #=> "Juergen Mueller"
 
-Supported language currently include Danish, German, Serbian and Spanish. I'll
-gladly accept contributions and support more languages.
+Many European languages using both Roman and Cyrillic alphabets are supported.
+I'll gladly accept contributions from fluent speakers to support more
+languages.
 
 ### Non-ASCII removal
 
@@ -164,15 +165,18 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Contributors
 
+* [Kim Joar Bekkelund](https://github.com/kjbekkelund) - Norwegian support
 * [Alexey Shkolnikov](https://github.com/grlm) - Russian support
 * [Martin Petrov](https://github.com/martin-petrov) - Bulgarian support
 * [Molte Emil Strange Andersen](https://github.com/molte) - Danish support
 * [Milan Dobrota](https://github.com/milandobrota) - Serbian support
-* [Kim Joar Bekkelund](https://github.com/kjbekkelund) - Norwegian support
 
 
 ## Changelog
 
+* 0.3.3 - Add Norwegian support.
+* 0.3.2 - Improve Macedonian support.
+* 0.3.1 - Small fixes to Cyrillic.
 * 0.3.0 - Cyrillic support. Improve support for various Unicode spaces and dashes.
 * 0.2.2 - Fix for "smart" quote handling.
 * 0.2.1 - Implement #empty? for compatiblity with Active Support's #blank?.
@@ -182,7 +186,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Copyright
 
-Copyright (c) 2010 Norman Clarke
+Copyright (c) 2010-2011 Norman Clarke
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

@@ -84,14 +84,14 @@ module Babosa
     # characters that are Roman-alphabet characters + diacritics. Non-letter
     # characters are left unmodified.
     #
-    #   string = Identifier.new "Łódź, Poland"
+    #   string = Identifier.new "Łódź
     #   string.transliterate                 # => "Lodz, Poland"
     #   string = Identifier.new "日本"
     #   string.transliterate                 # => "日本"
     #
     # You can pass any key(s) from +Characters.approximations+ as arguments. This allows
-    # for contextual approximations. Danish, German, Norwegian, Serbian and Spanish are
-    # currently supported.
+    # for contextual approximations. Various languages are supported, you can see which ones
+    # by looking at the source of {Babosa::Transliterator::Base}.
     #
     #   string = Identifier.new "Jürgen Müller"
     #   string.transliterate                 # => "Jurgen Muller"
@@ -242,7 +242,7 @@ module Babosa
     end
 
     %w[transliterate clean downcase word_chars normalize normalize_utf8
-      tidy_bytes to_ascii to_ruby_method truncate truncate_bytes upcase 
+      tidy_bytes to_ascii to_ruby_method truncate truncate_bytes upcase
       with_separators].each do |method|
       class_eval(<<-EOM, __FILE__, __LINE__ + 1)
         def #{method}(*args)
