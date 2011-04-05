@@ -90,8 +90,8 @@ module Babosa
     #   string.transliterate                 # => "日本"
     #
     # You can pass any key(s) from +Characters.approximations+ as arguments. This allows
-    # for contextual approximations. Danish, German, Serbian and Spanish are currently
-    # supported.
+    # for contextual approximations. Danish, German, Norwegian, Serbian and Spanish are
+    # currently supported.
     #
     #   string = Identifier.new "Jürgen Müller"
     #   string.transliterate                 # => "Jurgen Muller"

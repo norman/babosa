@@ -168,6 +168,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 * [Martin Petrov](https://github.com/martin-petrov) - Bulgarian support
 * [Molte Emil Strange Andersen](https://github.com/molte) - Danish support
 * [Milan Dobrota](https://github.com/milandobrota) - Serbian support
+* [Kim Joar Bekkelund](https://github.com/kjbekkelund) - Norwegian support
 
 
 ## Changelog

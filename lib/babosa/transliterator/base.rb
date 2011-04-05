@@ -12,10 +12,11 @@ module Babosa
     autoload :German,     "babosa/transliterator/german"
     autoload :Latin,      "babosa/transliterator/latin"
     autoload :Macedonian, "babosa/transliterator/macedonian"
+    autoload :Norwegian,  "babosa/transliterator/norwegian"
     autoload :Russian,    "babosa/transliterator/russian"
     autoload :Serbian,    "babosa/transliterator/serbian"
     autoload :Spanish,    "babosa/transliterator/spanish"
-    autoload :Ukrainian,   "babosa/transliterator/ukrainian"
+    autoload :Ukrainian,  "babosa/transliterator/ukrainian"
 
     def self.get(symbol)
       const_get(symbol.to_s.classify)
