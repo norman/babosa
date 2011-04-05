@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: Babosa::Transliterator::Cyrillic</title>
 <link rel="stylesheet" href="../../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -95,7 +95,7 @@ href="http://en.wikipedia.org/wiki/ISO_9#GOST_7.79">en.wikipedia.org/wiki/ISO_9#
   
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="Bulgarian.html" title="Babosa::Transliterator::Bulgarian (class)">Bulgarian</a></span>, <span class='object_link'><a href="Russian.html" title="Babosa::Transliterator::Russian (class)">Russian</a></span>, <span class='object_link'><a href="Ukranian.html" title="Babosa::Transliterator::Ukranian (class)">Ukranian</a></span></p>
+  <p class="children"><span class='object_link'><a href="Bulgarian.html" title="Babosa::Transliterator::Bulgarian (class)">Bulgarian</a></span>, <span class='object_link'><a href="Macedonian.html" title="Babosa::Transliterator::Macedonian (class)">Macedonian</a></span>, <span class='object_link'><a href="Russian.html" title="Babosa::Transliterator::Russian (class)">Russian</a></span>, <span class='object_link'><a href="Ukrainian.html" title="Babosa::Transliterator::Ukrainian (class)">Ukrainian</a></span></p>
 </div>
 
   <h2>Constant Summary</h2>
@@ -106,9 +106,6 @@ href="http://en.wikipedia.org/wiki/ISO_9#GOST_7.79">en.wikipedia.org/wiki/ISO_9#
           
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>S</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Z</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>j</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>j</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>s</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>z</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ё</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Yo</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ѓ</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>G</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Є</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ye</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -284,12 +281,12 @@ href="http://en.wikipedia.org/wiki/ISO_9#GOST_7.79">en.wikipedia.org/wiki/ISO_9#
       <pre class="lines">
 
 
-106
-107
-108</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/cyrillic.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/cyrillic.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id transliterate'>transliterate</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='period'>.</span><span class='id gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(c)z([ieyj])</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='backref'>$1</span><span class='rbrace'>}</span><span class='embexpr_beg'>#{</span><span class='backref'>$2</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
@@ -304,9 +301,9 @@ href="http://en.wikipedia.org/wiki/ISO_9#GOST_7.79">en.wikipedia.org/wiki/ISO_9#
 </div>
     
     <div id="footer">
-  Generated on Wed Mar 23 15:55:03 2011 by 
+  Generated on Tue Apr  5 10:29:49 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.4 (ruby-1.9.2).
+  0.6.5 (ruby-1.9.2).
 </div>
 
   </body>

@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta name="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Class: Babosa::Identifier</title>
 <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
@@ -662,7 +662,7 @@ Perform UTF-8 sensitive upcasing.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#with_separators%21-instance_method" title="#with_separators! (instance method)">- (Object) <strong>with_separators!</strong>(char = &quot;-&quot;)) </a>
+      <a href="#with_separators%21-instance_method" title="#with_separators! (instance method)">- (Object) <strong>with_separators!</strong>(char = &quot;-&quot;) </a>
     
 
     
@@ -1654,15 +1654,16 @@ characters that are Roman-alphabet characters + diacritics. Non-letter
 characters are left unmodified.
 </p>
 <pre class="code">
-  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>Identifier</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Łódź, Poland</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id string'>string</span><span class='period'>.</span><span class='id transliterate'>transliterate</span>                 <span class='comment'># =&gt; &quot;Lodz, Poland&quot;
-</span>  <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>Identifier</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>日本</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id string'>string</span><span class='period'>.</span><span class='id transliterate'>transliterate</span>                 <span class='comment'># =&gt; &quot;日本&quot;
-</span></pre>
+  string = Identifier.new &quot;Łódź
+  string.transliterate                 # =&gt; &quot;Lodz, Poland&quot;
+  string = Identifier.new &quot;日本&quot;
+  string.transliterate                 # =&gt; &quot;日本&quot;
+</pre>
 <p>
 You can pass any key(s) from <tt>Characters.approximations</tt> as
-arguments. This allows for contextual approximations. Danish, German,
-Serbian and Spanish are currently supported.
+arguments. This allows for contextual approximations. Various languages are
+supported, you can see which ones by looking at the source of
+<span class='object_link'><a href="Transliterator/Base.html" title="Babosa::Transliterator::Base (class)">Transliterator::Base</a></span>.
 </p>
 <pre class="code">
   <span class='id string'>string</span> <span class='op'>=</span> <span class='const'>Identifier</span><span class='period'>.</span><span class='id new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Jürgen Müller</span><span class='tstring_end'>&quot;</span></span>
@@ -1968,7 +1969,7 @@ String
       <div class="method_details ">
   <p class="signature " id="with_separators!-instance_method">
   
-    - (<tt>Object</tt>) <strong>with_separators!</strong>(char = &quot;-&quot;)) 
+    - (<tt>Object</tt>) <strong>with_separators!</strong>(char = &quot;-&quot;) 
   
 
   
@@ -2091,9 +2092,9 @@ String
 </div>
     
     <div id="footer">
-  Generated on Wed Mar 23 15:55:03 2011 by 
+  Generated on Tue Apr  5 10:29:49 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.6.4 (ruby-1.9.2).
+  0.6.5 (ruby-1.9.2).
 </div>
 
   </body>
