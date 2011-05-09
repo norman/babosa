@@ -164,7 +164,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 [Norman Clarke](http://njclarke.com)
 
 ## Contributors
-
+* [Tiberiu C. Turbureanu](https://gitorious.org/~tct) - Romanian support
 * [Kim Joar Bekkelund](https://github.com/kjbekkelund) - Norwegian support
 * [Alexey Shkolnikov](https://github.com/grlm) - Russian support
 * [Martin Petrov](https://github.com/martin-petrov) - Bulgarian support
