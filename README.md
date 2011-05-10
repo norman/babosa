@@ -164,6 +164,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 [Norman Clarke](http://njclarke.com)
 
 ## Contributors
+
 * [Tiberiu C. Turbureanu](https://gitorious.org/~tct) - Romanian support
 * [Kim Joar Bekkelund](https://github.com/kjbekkelund) - Norwegian support
 * [Alexey Shkolnikov](https://github.com/grlm) - Russian support
@@ -174,6 +175,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Changelog
 
+* 0.3.4 - Add Romanian support.
 * 0.3.3 - Add Norwegian support.
 * 0.3.2 - Improve Macedonian support.
 * 0.3.1 - Small fixes to Cyrillic.
