@@ -278,7 +278,6 @@ A new instance of Base
       <pre class="lines">
 
 
-65
 66
 67
 68
@@ -291,10 +290,11 @@ A new instance of Base
 75
 76
 77
-78</pre>
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span>
   <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span> <span class='op'>&lt;</span> <span class='const'>Base</span>
@@ -347,12 +347,12 @@ Returns the value of attribute approximations
       <pre class="lines">
 
 
-63
 64
-65</pre>
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id approximations'>approximations</span>
   <span class='ivar'>@approximations</span>
@@ -394,12 +394,12 @@ as the transliteration value.
       <pre class="lines">
 
 
-82
 83
-84</pre>
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id codepoint'>codepoint</span><span class='rparen'>)</span>
   <span class='ivar'>@approximations</span><span class='lbracket'>[</span><span class='id codepoint'>codepoint</span><span class='rbracket'>]</span>
@@ -422,12 +422,12 @@ as the transliteration value.
       <pre class="lines">
 
 
-86
 87
-88</pre>
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id transliterate'>transliterate</span><span class='lparen'>(</span><span class='id string'>string</span><span class='rparen'>)</span>
   <span class='id string'>string</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id char'>char</span><span class='op'>|</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='id char'>char</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id char'>char</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id flatten'>flatten</span><span class='period'>.</span><span class='id pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>U*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -442,7 +442,7 @@ as the transliteration value.
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  5 10:29:49 2011 by 
+  Generated on Tue May 10 09:10:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>

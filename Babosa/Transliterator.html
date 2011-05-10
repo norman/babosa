@@ -60,7 +60,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/babosa/transliterator/base.rb<span class="defines">,<br />
-  lib/babosa/transliterator/latin.rb,<br /> lib/babosa/transliterator/german.rb,<br /> lib/babosa/transliterator/danish.rb,<br /> lib/babosa/transliterator/spanish.rb,<br /> lib/babosa/transliterator/russian.rb,<br /> lib/babosa/transliterator/serbian.rb,<br /> lib/babosa/transliterator/cyrillic.rb,<br /> lib/babosa/transliterator/ukrainian.rb,<br /> lib/babosa/transliterator/bulgarian.rb,<br /> lib/babosa/transliterator/norwegian.rb,<br /> lib/babosa/transliterator/macedonian.rb</span>
+  lib/babosa/transliterator/latin.rb,<br /> lib/babosa/transliterator/german.rb,<br /> lib/babosa/transliterator/danish.rb,<br /> lib/babosa/transliterator/spanish.rb,<br /> lib/babosa/transliterator/russian.rb,<br /> lib/babosa/transliterator/serbian.rb,<br /> lib/babosa/transliterator/romanian.rb,<br /> lib/babosa/transliterator/cyrillic.rb,<br /> lib/babosa/transliterator/ukrainian.rb,<br /> lib/babosa/transliterator/norwegian.rb,<br /> lib/babosa/transliterator/bulgarian.rb,<br /> lib/babosa/transliterator/macedonian.rb</span>
 </dd>
   
 </dl>
@@ -72,7 +72,7 @@
     
    
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Transliterator/Base.html" title="Babosa::Transliterator::Base (class)">Base</a></span>, <span class='object_link'><a href="Transliterator/Bulgarian.html" title="Babosa::Transliterator::Bulgarian (class)">Bulgarian</a></span>, <span class='object_link'><a href="Transliterator/Cyrillic.html" title="Babosa::Transliterator::Cyrillic (class)">Cyrillic</a></span>, <span class='object_link'><a href="Transliterator/Danish.html" title="Babosa::Transliterator::Danish (class)">Danish</a></span>, <span class='object_link'><a href="Transliterator/German.html" title="Babosa::Transliterator::German (class)">German</a></span>, <span class='object_link'><a href="Transliterator/Latin.html" title="Babosa::Transliterator::Latin (class)">Latin</a></span>, <span class='object_link'><a href="Transliterator/Macedonian.html" title="Babosa::Transliterator::Macedonian (class)">Macedonian</a></span>, <span class='object_link'><a href="Transliterator/Norwegian.html" title="Babosa::Transliterator::Norwegian (class)">Norwegian</a></span>, <span class='object_link'><a href="Transliterator/Russian.html" title="Babosa::Transliterator::Russian (class)">Russian</a></span>, <span class='object_link'><a href="Transliterator/Serbian.html" title="Babosa::Transliterator::Serbian (class)">Serbian</a></span>, <span class='object_link'><a href="Transliterator/Spanish.html" title="Babosa::Transliterator::Spanish (class)">Spanish</a></span>, <span class='object_link'><a href="Transliterator/Ukrainian.html" title="Babosa::Transliterator::Ukrainian (class)">Ukrainian</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Transliterator/Base.html" title="Babosa::Transliterator::Base (class)">Base</a></span>, <span class='object_link'><a href="Transliterator/Bulgarian.html" title="Babosa::Transliterator::Bulgarian (class)">Bulgarian</a></span>, <span class='object_link'><a href="Transliterator/Cyrillic.html" title="Babosa::Transliterator::Cyrillic (class)">Cyrillic</a></span>, <span class='object_link'><a href="Transliterator/Danish.html" title="Babosa::Transliterator::Danish (class)">Danish</a></span>, <span class='object_link'><a href="Transliterator/German.html" title="Babosa::Transliterator::German (class)">German</a></span>, <span class='object_link'><a href="Transliterator/Latin.html" title="Babosa::Transliterator::Latin (class)">Latin</a></span>, <span class='object_link'><a href="Transliterator/Macedonian.html" title="Babosa::Transliterator::Macedonian (class)">Macedonian</a></span>, <span class='object_link'><a href="Transliterator/Norwegian.html" title="Babosa::Transliterator::Norwegian (class)">Norwegian</a></span>, <span class='object_link'><a href="Transliterator/Romanian.html" title="Babosa::Transliterator::Romanian (class)">Romanian</a></span>, <span class='object_link'><a href="Transliterator/Russian.html" title="Babosa::Transliterator::Russian (class)">Russian</a></span>, <span class='object_link'><a href="Transliterator/Serbian.html" title="Babosa::Transliterator::Serbian (class)">Serbian</a></span>, <span class='object_link'><a href="Transliterator/Spanish.html" title="Babosa::Transliterator::Spanish (class)">Spanish</a></span>, <span class='object_link'><a href="Transliterator/Ukrainian.html" title="Babosa::Transliterator::Ukrainian (class)">Ukrainian</a></span>
     
   
 </p>
@@ -130,12 +130,12 @@
       <pre class="lines">
 
 
-21
 22
-23</pre>
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/babosa/transliterator/base.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id get'>get</span><span class='lparen'>(</span><span class='id symbol'>symbol</span><span class='rparen'>)</span>
   <span class='id const_get'>const_get</span><span class='lparen'>(</span><span class='id symbol'>symbol</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='period'>.</span><span class='id classify'>classify</span><span class='rparen'>)</span>
@@ -150,7 +150,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Apr  5 10:29:49 2011 by 
+  Generated on Tue May 10 09:10:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.5 (ruby-1.9.2).
 </div>
