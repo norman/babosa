@@ -112,9 +112,13 @@ module Babosa
     #   string.transliterate!                 # => "¡Feliz anio!"
     # @param *args <Symbol>
     # @return String
-    def transliterate!(kind = nil)
-      transliterator = Transliterator.get(kind || :latin).instance
-      @wrapped_string = transliterator.transliterate(@wrapped_string)
+    def transliterate!(*kinds)
+      kinds = [:latin] if kinds.empty?
+      kinds.each do |kind|
+        transliterator = Transliterator.get(kind).instance
+        @wrapped_string = transliterator.transliterate(@wrapped_string)
+      end
+      @wrapped_string
     end
 
     # Converts dashes to spaces, removes leading and trailing spaces, and
