@@ -81,6 +81,10 @@ describe Babosa::Identifier do
       "a-b-c-d".to_slug.normalize.should eql("a-b-c-d")
     end
 
+    it "should not convert underscores" do
+      "hello_world".to_slug.normalize.should eql("hello_world")
+    end
+
     it "should work with non roman chars" do
       "検 索".to_slug.normalize.should eql("検-索")
     end
