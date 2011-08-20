@@ -34,6 +34,11 @@ describe Babosa::Identifier do
       string = [117, 776].pack("U*") # "ü" as ASCII "u" plus COMBINING DIAERESIS
       string.to_slug.approximate_ascii.should eql("u")
     end
+
+    it "should transliterate using multiple transliterators" do
+      string = "свободное režģis"
+      string.to_slug.approximate_ascii(:latin, :russian).should eql("svobodnoe rezgis")
+    end
   end
 
   describe "#downcase" do
