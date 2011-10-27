@@ -31,3 +31,12 @@ shared_examples_for "a cyrillic transliterator" do
     t.transliterate(string).should match(/[\x0-\x7f]/)
   end
 end
+
+shared_examples_for "a greek transliterator" do
+  let(:t) { described_class.instance }
+
+  it "should transliterate greek characters" do
+    string = "Γερμανία"
+    t.transliterate(string).should match(/[\x0-\x7f]/)
+  end
+end
