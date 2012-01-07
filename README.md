@@ -175,6 +175,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Changelog
 
+* 0.3.6 - Allow multiple transliterators. Add Greek support.
 * 0.3.5 - Don't strip underscores from identifiers.
 * 0.3.4 - Add Romanian support.
 * 0.3.3 - Add Norwegian support.
