@@ -1,7 +1,7 @@
 require "rubygems"
 require "rake/testtask"
 require "rake/clean"
-require "rake/gempackagetask"
+require "rubygems/package_task"
 
 task :default => :spec
 task :test    => :spec
@@ -27,7 +27,7 @@ end
 
 gemspec = File.expand_path("../babosa.gemspec", __FILE__)
 if File.exist? gemspec
-  Rake::GemPackageTask.new(eval(File.read(gemspec))) { |pkg| }
+  Gem::PackageTask.new(eval(File.read(gemspec))) { |pkg| }
 end
 
 require 'rspec/core/rake_task'
