@@ -2,3 +2,4 @@ Gemfile
 Gemfile.lock
 coverage
 pkg
+.rbx
