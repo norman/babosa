@@ -113,6 +113,7 @@ module Babosa
     # @param *args <Symbol>
     # @return String
     def transliterate!(*kinds)
+      kinds.compact!
       kinds = [:latin] if kinds.empty?
       kinds.each do |kind|
         transliterator = Transliterator.get(kind).instance
