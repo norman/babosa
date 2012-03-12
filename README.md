@@ -31,6 +31,7 @@ Currently supported languages include:
 * Russian
 * Serbian
 * Spanish
+* Swedish
 * Ukrainian
 
 
@@ -63,6 +64,8 @@ whose length is limited by bytes rather than UTF-8 characters.
 
 #### Using Babosa With FriendlyId 4
 
+    require "babosa"
+
     class Person < ActiveRecord::Base
       friendly_id :name, use: :slugged
 
@@ -75,7 +78,7 @@ whose length is limited by bytes rather than UTF-8 characters.
 
 Babosa goes out of its way to handle [nasty Unicode issues you might never think
 you would have](https://github.com/norman/enc/blob/master/equivalence.rb) by
-checking, sanitizing and normalizing your data automatically.
+checking, sanitizing and normalizing your string input.
 
 It will automatically use whatever Unicode library you have loaded before
 Babosa, or fall back to a simple built-in library. Supported
@@ -238,6 +241,13 @@ tracker](http://github.com/norman/babosa/issues).
 
 ## Contributors
 
+Many thanks to the following people for their help:
+
+* [Philip Arndt](https://github.com/parndt) - Bugfixes
+* [Jonas Forsberg](https://github.com/himynameisjonas) - Swedish support
+* [Jaroslav Kalistsuk](https://github.com/jarosan) - Greek support
+* [Steven Heidel](https://github.com/stevenheidel) - Bugfixes
+* [Edgars Beigarts](https://github.com/ebeigarts) - Support for multiple transliterators
 * [Tiberiu C. Turbureanu](https://gitorious.org/~tct) - Romanian support
 * [Kim Joar Bekkelund](https://github.com/kjbekkelund) - Norwegian support
 * [Alexey Shkolnikov](https://github.com/grlm) - Russian support
@@ -248,6 +258,7 @@ tracker](http://github.com/norman/babosa/issues).
 
 ## Changelog
 
+* 0.3.7 - Fix compatibility with Ruby 1.8.7. Add Swedish support.
 * 0.3.6 - Allow multiple transliterators. Add Greek support.
 * 0.3.5 - Don't strip underscores from identifiers.
 * 0.3.4 - Add Romanian support.
