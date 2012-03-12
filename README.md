@@ -1,8 +1,7 @@
 # Babosa
 
-Babosa is a library for creating human-friendly identifiers. Its primary
-intended purpose is for creating URL slugs, but can also be useful for
-normalizing and sanitizing data.
+Babosa is a library for creating human-friendly identifiers, aka "slugs". It can
+also be useful for normalizing and sanitizing data.
 
 It is an extraction and improvement of the string code from
 [FriendlyId](http://github.com/norman/friendly_id). I have released this as a
@@ -11,20 +10,33 @@ FriendlyId.
 
 ## Features / Usage
 
-### ASCII transliteration
+### Transliterate UTF-8 characters to ASCII
 
     "Gölcük, Turkey".to_slug.transliterate.to_s #=> "Golcuk, Turkey"
 
-### Per-locale transliteration
+### Locale sensitive transliteration, with support for many languages
 
     "Jürgen Müller".to_slug.transliterate.to_s           #=> "Jurgen Muller"
     "Jürgen Müller".to_slug.transliterate(:german).to_s  #=> "Juergen Mueller"
 
-Many European languages using both Roman and Cyrillic alphabets are supported.
-I'll gladly accept contributions from fluent speakers to support more
-languages.
+Currently supported languages include:
 
-### Non-ASCII removal
+* Bulgarian
+* Danish
+* German
+* Greek
+* Macedonian
+* Norwegian
+* Romanian
+* Russian
+* Serbian
+* Spanish
+* Ukrainian
+
+
+I'll gladly accept contributions from fluent speakers to support more languages.
+
+### Strip non-ASCII characters
 
     "Gölcük, Turkey".to_slug.to_ascii.to_s #=> "Glck, Turkey"
 
@@ -49,8 +61,44 @@ whose length is limited by bytes rather than UTF-8 characters.
 
 ### Other stuff
 
-Babosa can also generate strings for Ruby method names. (Yes, Ruby 1.9 can use UTF-8 chars
-in method names, but you may not want to):
+#### Using Babosa With FriendlyId 4
+
+    class Person < ActiveRecord::Base
+      friendly_id :name, use: :slugged
+
+      def normalize_friendly_id(input)
+        input.to_s.to_slug.normalize(transliterations: :russian).to_s
+      end
+    end
+
+#### Pedantic UTF-8 support
+
+Babosa goes out of its way to handle [nasty Unicode issues you might never think
+you would have](https://github.com/norman/enc/blob/master/equivalence.rb) by
+checking, sanitizing and normalizing your data automatically.
+
+It will automatically use whatever Unicode library you have loaded before
+Babosa, or fall back to a simple built-in library. Supported
+Unicode libraries include:
+
+* Java (only JRuby of course)
+* Active Support
+* [Unicode](https://github.com/blackwinter/unicode)
+* Built-in
+
+This built-in module is much faster than Active Support but much slower than
+Java or Unicode. It can only do **very** naive Unicode composition to ensure
+that, for example, "é" will always be composed to a single codepoint rather than
+an "e" and a "´" - making it safe to use as a hash key.
+
+But seriously - save yourself the headache and install a real Unicode library.
+If you are using Babosa with a language that uses the Cyrillic alphabet, Babosa
+requires either Unicode, Active Support or Java.
+
+#### Ruby Method Names
+
+Babosa can also generate strings for Ruby method names. (Yes, Ruby 1.9 can use
+UTF-8 chars in method names, but you may not want to):
 
 
     "this is a method".to_slug.to_ruby_method! #=> this_is_a_method
@@ -59,9 +107,10 @@ in method names, but you may not want to):
     # You can also disallow trailing punctuation chars
     "über cool stuff!".to_slug.to_ruby_method(false) #=> uber_cool_stuff
 
+#### Easy to Extend
 
-You can easily add custom transliterators for your language with very little code,
-for example here's the transliterator for German:
+You can add custom transliterators for your language with very little code. For
+example here's the transliterator for German:
 
     # encoding: utf-8
     module Babosa
@@ -100,44 +149,67 @@ And a spec (you can use this as a template):
     end
 
 
-### UTF-8 support
-
-Babosa has no hard dependencies, but if you have either the Unicode or
-ActiveSupport gems installed and required prior to requiring "babosa", these
-will be used to perform upcasing and downcasing on UTF-8 strings. On JRuby 1.5
-and above, Java's native Unicode support will be used instead. Unless you're on
-JRuby, which already has excellent support for Unicode via Java's Standard
-Library, I recommend using the Unicode gem because it's the fastest Ruby Unicode
-library available.
-
-If none of these libraries are available, Babosa falls back to a simple module
-which **only** supports Latin characters.
-
-This default module is fast and can do very naive Unicode composition to ensure
-that, for example, "é" will always be composed to a single codepoint rather than
-an "e" and a "´" - making it safe to use as a hash key. But seriously - save
-yourself the headache and install a real Unicode library.
-
-If you are using Babosa with a language that uses the Cyrillic alphabet, Babosa
-requires either Unicode, Active Support or Java.
-
-
 ### Rails 3
 
-Some of Babosa's functionality is already present in Active Support/Rails 3.
+Some of Babosa's functionality was added to Active Support 3.
 
-Babosa differs from ActiveSupport primarily in that it supports non-Latin
+Babosa now differs from ActiveSupport primarily in that it supports non-Latin
 strings by default, and has per-locale ASCII transliterations already baked-in.
-If you are considering using Babosa with Rails 3, you should first take a look
-at Active Support's
+If you are considering using Babosa with Rails 3, you may want to first take a
+look at Active Support's
 [transliterate](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565)
 and
 [parameterize](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566)
-because it may already do what you need.
+to see if they suit your needs.
+
+### Babosa vs. Stringex
+
+Babosa provides much of the functionality provided by the
+[Stringex](https://github.com/rsl/stringex) gem, but in the subjective opinion
+of the author, is for most use cases a much better choice.
+
+#### Fewer Features
+
+Stringex offers functionality for storing slugs in an Active Record model, like
+a simple version of [FriendlyId](http://github.com/norman/friendly_id), in
+addition to string processing. Babosa only does string processing.
+
+#### Less Aggressive Unicode Transliteration
+
+Stringex uses an agressive Unicode to ASCII mapping which outputs gibberish for
+almost anything but Western European langages. Babosa supports only languages
+for which fluent speakers have provided transliterations, to ensure that the
+output makes sense to users.
+
+#### Better Locale Support
+
+Recent versions of Stringex support locale-specific transliterations, but
+include no built-in support for any languages. Babosa works out of the box for
+most European languages and is easy to extend if your language is not supported.
+
+#### Unicode Support
+
+Stringex does no Unicode normalization or validation before transliterating
+strings, so if you pass in strings with encoding errors or with different
+Unicode normalizations, you'll get unpredictable results.
+
+#### No Locale Assumptions
+
+Babosa avoids making assumptions about locales like Stringex does, so it doesn't
+offer transliterations like this out of the box:
+
+    "$12 worth of Ruby power".to_url => "12-dollars-worth-of-ruby-power"
+
+This is because the symbol "$" is used by many Latin American countries for the
+peso. Stringex does this in many places, for example, transliterating all Han
+characters into Pinyin, effectively treating Japanese text as if it were
+Chinese.
+
 
 ### More info
 
-Please see the [API docs](http://norman.github.com/babosa) and source code for more info.
+Please see the [API docs](http://norman.github.com/babosa) and source code for
+more info.
 
 ## Getting it
 
@@ -147,12 +219,13 @@ Babosa can be installed via Rubygems:
 
 You can get the source code from its [Github repository](http://github.com/norman/babosa).
 
-Babosa is tested to be compatible with Ruby 1.8.6-1.9.2, JRuby 1.4-1.5, and
-Rubinius 1.0.x. It's probably compatible with other Rubies as well.
+Babosa is tested to be compatible with Ruby 1.8.6-1.9.2, JRuby 1.4+, and
+Rubinius 1.0+ It's probably compatible with other Rubies as well.
 
 ## Reporting bugs
 
-Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issues).
+Please use Babosa's [Github issue
+tracker](http://github.com/norman/babosa/issues).
 
 
 ## Misc
@@ -190,7 +263,7 @@ Please use Babosa's [Github issue tracker](http://github.com/norman/babosa/issue
 
 ## Copyright
 
-Copyright (c) 2010-2011 Norman Clarke
+Copyright (c) 2010-2012 Norman Clarke
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
