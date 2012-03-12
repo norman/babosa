@@ -148,8 +148,12 @@ module Babosa
       else
         options = default_normalize_options.merge(options || {})
       end
-      if options[:transliterate]
-        transliterate!(*options[:transliterations])
+      if translit_option = options[:transliterate]
+        if translit_option != true
+          transliterate!(*translit_option)
+        else
+          transliterate!(*options[:transliterations])
+        end
       end
       to_ascii! if options[:to_ascii]
       clean!

@@ -54,6 +54,11 @@ describe Babosa::Identifier do
   end
 
   describe "#normalize" do
+
+    it "should allow passing locale as key for :transliterate" do
+      "ö".to_slug.clean.normalize(:transliterate => :german).should eql("oe")
+    end
+
     it "should replace whitespace with dashes" do
       "a b".to_slug.clean.normalize.should eql("a-b")
     end
