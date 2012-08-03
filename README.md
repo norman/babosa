@@ -243,6 +243,7 @@ tracker](http://github.com/norman/babosa/issues).
 
 Many thanks to the following people for their help:
 
+* [Peco Danajlovski](https://github.com/Vortex) - Macedonian support
 * [Philip Arndt](https://github.com/parndt) - Bugfixes
 * [Jonas Forsberg](https://github.com/himynameisjonas) - Swedish support
 * [Jaroslav Kalistsuk](https://github.com/jarosan) - Greek support
@@ -258,6 +259,7 @@ Many thanks to the following people for their help:
 
 ## Changelog
 
+* 0.3.8 - Correct and improve Macedonian support.
 * 0.3.7 - Fix compatibility with Ruby 1.8.7. Add Swedish support.
 * 0.3.6 - Allow multiple transliterators. Add Greek support.
 * 0.3.5 - Don't strip underscores from identifiers.
