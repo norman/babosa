@@ -9,7 +9,7 @@ describe Babosa::Transliterator::Greek do
   it "should transliterate various characters" do
     examples = {
       "Γερμανία"  => "Germania",
-      "Αυστρία"   => "Aistria",
+      "Αυστρία"   => "Aystria",
       "Ιταλία"    => "Italia"
     }
     examples.each {|k, v| t.transliterate(k).should eql(v)}
