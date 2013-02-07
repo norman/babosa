@@ -243,6 +243,7 @@ tracker](http://github.com/norman/babosa/issues).
 
 Many thanks to the following people for their help:
 
+* [Vassilis Rodokanakis](https://github.com/vrodokanakis) - Greek support
 * [Peco Danajlovski](https://github.com/Vortex) - Macedonian support
 * [Philip Arndt](https://github.com/parndt) - Bugfixes
 * [Jonas Forsberg](https://github.com/himynameisjonas) - Swedish support
@@ -259,6 +260,7 @@ Many thanks to the following people for their help:
 
 ## Changelog
 
+* 0.3.9 - Added missing greek vowels with diaeresis
 * 0.3.8 - Correct and improve Macedonian support.
 * 0.3.7 - Fix compatibility with Ruby 1.8.7. Add Swedish support.
 * 0.3.6 - Allow multiple transliterators. Add Greek support.
