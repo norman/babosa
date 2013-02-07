@@ -260,7 +260,7 @@ Many thanks to the following people for their help:
 
 ## Changelog
 
-* 0.3.9 - Added missing greek vowels with diaeresis
+* 0.3.9 - Added missing Greek vowels with diaeresis
 * 0.3.8 - Correct and improve Macedonian support.
 * 0.3.7 - Fix compatibility with Ruby 1.8.7. Add Swedish support.
 * 0.3.6 - Allow multiple transliterators. Add Greek support.
