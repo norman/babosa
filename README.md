@@ -221,7 +221,7 @@ Babosa can be installed via Rubygems:
 
 You can get the source code from its [Github repository](http://github.com/norman/babosa).
 
-Babosa is tested to be compatible with Ruby 1.8.6-2.0.0, JRuby 1.4+, and
+Babosa is tested to be compatible with Ruby 1.8.7-2.0.0, JRuby 1.4+, and
 Rubinius 1.0+ It's probably compatible with other Rubies as well.
 
 ## Reporting bugs
