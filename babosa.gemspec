@@ -19,7 +19,8 @@ spec = Gem::Specification.new do |s|
     "Rakefile", "init.rb", "generators/**/*.*", "spec/**/*.*", ".gemtest"]
 
   s.add_development_dependency "activesupport", ">= 2.3.0"
-  s.add_development_dependency "rspec", "~> 2.5.0"
+  s.add_development_dependency "rspec", "~> 2.11.0"
   s.add_development_dependency "simplecov"
+  s.add_development_dependency "rake"
 
 end
