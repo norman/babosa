@@ -171,7 +171,7 @@ to see if they suit your needs.
 
 Babosa provides much of the functionality provided by the
 [Stringex](https://github.com/rsl/stringex) gem, but in the subjective opinion
-of the author, is for most use cases a much better choice.
+of the author, is for most use cases a better choice.
 
 #### Fewer Features
 
@@ -182,15 +182,9 @@ addition to string processing. Babosa only does string processing.
 #### Less Aggressive Unicode Transliteration
 
 Stringex uses an agressive Unicode to ASCII mapping which outputs gibberish for
-almost anything but Western European langages. Babosa supports only languages
-for which fluent speakers have provided transliterations, to ensure that the
-output makes sense to users.
-
-#### Better Locale Support
-
-Recent versions of Stringex support locale-specific transliterations, but
-include no built-in support for any languages. Babosa works out of the box for
-most European languages and is easy to extend if your language is not supported.
+almost anything but Western European langages and Mandarin Chinese. Babosa
+supports only languages for which fluent speakers have provided
+transliterations, to ensure that the output makes sense to users.
 
 #### Unicode Support
 
