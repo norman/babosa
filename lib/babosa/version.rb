@@ -1,5 +1,5 @@
 module Babosa
   module Version
-    STRING = "0.3.9"
+    STRING = "0.3.10"
   end
 end

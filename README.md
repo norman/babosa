@@ -34,7 +34,6 @@ Currently supported languages include:
 * Swedish
 * Ukrainian
 
-
 I'll gladly accept contributions from fluent speakers to support more languages.
 
 ### Strip non-ASCII characters
@@ -84,7 +83,7 @@ It will automatically use whatever Unicode library you have loaded before
 Babosa, or fall back to a simple built-in library. Supported
 Unicode libraries include:
 
-* Java (only JRuby of course)
+* Java (only on JRuby of course)
 * Active Support
 * [Unicode](https://github.com/blackwinter/unicode)
 * Built-in
@@ -152,17 +151,17 @@ And a spec (you can use this as a template):
     end
 
 
-### Rails 3
+### Rails 3.x and higher
 
-Some of Babosa's functionality was added to Active Support 3.
+Some of Babosa's functionality was added to Active Support 3.0.0.
 
 Babosa now differs from ActiveSupport primarily in that it supports non-Latin
 strings by default, and has per-locale ASCII transliterations already baked-in.
-If you are considering using Babosa with Rails 3, you may want to first take a
+If you are considering using Babosa with Rails, you may want to first take a
 look at Active Support's
-[transliterate](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000565)
+[transliterate](http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-transliterate)
 and
-[parameterize](http://edgeapi.rubyonrails.org/classes/ActiveSupport/Inflector.html#M000566)
+[parameterize](http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-parameterize)
 to see if they suit your needs.
 
 ### Babosa vs. Stringex
@@ -203,15 +202,15 @@ offer transliterations like this out of the box:
 
     "$12 worth of Ruby power".to_url => "12-dollars-worth-of-ruby-power"
 
-This is because the symbol "$" is used by many Latin American countries for the
+This is because the symbol "$" is used in many Latin American countries for the
 peso. Stringex does this in many places, for example, transliterating all Han
 characters into Pinyin, effectively treating Japanese text as if it were
-Chinese.
+Mandarin Chinese.
 
 
 ### More info
 
-Please see the [API docs](http://norman.github.com/babosa) and source code for
+Please see the [API docs](http://rubydoc.info/github/norman/babosa/master/frames) and source code for
 more info.
 
 ## Getting it
@@ -222,7 +221,7 @@ Babosa can be installed via Rubygems:
 
 You can get the source code from its [Github repository](http://github.com/norman/babosa).
 
-Babosa is tested to be compatible with Ruby 1.8.6-1.9.2, JRuby 1.4+, and
+Babosa is tested to be compatible with Ruby 1.8.6-2.0.0, JRuby 1.4+, and
 Rubinius 1.0+ It's probably compatible with other Rubies as well.
 
 ## Reporting bugs
@@ -243,12 +242,13 @@ tracker](http://github.com/norman/babosa/issues).
 
 Many thanks to the following people for their help:
 
+* [Martins Zakis](https://github.com/martins) - Bug fixes
 * [Vassilis Rodokanakis](https://github.com/vrodokanakis) - Greek support
 * [Peco Danajlovski](https://github.com/Vortex) - Macedonian support
-* [Philip Arndt](https://github.com/parndt) - Bugfixes
+* [Philip Arndt](https://github.com/parndt) - Bug fixes
 * [Jonas Forsberg](https://github.com/himynameisjonas) - Swedish support
 * [Jaroslav Kalistsuk](https://github.com/jarosan) - Greek support
-* [Steven Heidel](https://github.com/stevenheidel) - Bugfixes
+* [Steven Heidel](https://github.com/stevenheidel) - Bug fixes
 * [Edgars Beigarts](https://github.com/ebeigarts) - Support for multiple transliterators
 * [Tiberiu C. Turbureanu](https://gitorious.org/~tct) - Romanian support
 * [Kim Joar Bekkelund](https://github.com/kjbekkelund) - Norwegian support
@@ -260,7 +260,8 @@ Many thanks to the following people for their help:
 
 ## Changelog
 
-* 0.3.9 - Added missing Greek vowels with diaeresis
+* 0.3.10 - Fixed Macedonian "S/S". Don't `include JRuby` unnecessarily.
+* 0.3.9 - Added missing Greek vowels with diaeresis.
 * 0.3.8 - Correct and improve Macedonian support.
 * 0.3.7 - Fix compatibility with Ruby 1.8.7. Add Swedish support.
 * 0.3.6 - Allow multiple transliterators. Add Greek support.
@@ -278,7 +279,7 @@ Many thanks to the following people for their help:
 
 ## Copyright
 
-Copyright (c) 2010-2012 Norman Clarke
+Copyright (c) 2010-2013 Norman Clarke
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
