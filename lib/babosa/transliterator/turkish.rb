@@ -3,7 +3,18 @@ module Babosa
   module Transliterator
     class Turkish < Latin
       APPROXIMATIONS = {
-      	"ı" => "ı"
+      	"Ç" => "Ç",
+      	"Ğ" => "Ğ",
+      	"İ" => "İ",
+      	"Ö" => "Ö",
+      	"Ş" => "Ş",
+      	"Ü" => "Ü",
+   			"ç" => "ç",
+   			"ğ" => "ğ",
+      	"ı" => "ı",
+      	"ö" => "ö",
+      	"ş" => "ş",
+      	"ü" => "ü"
       }
     end
   end

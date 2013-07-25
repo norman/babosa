@@ -8,7 +8,9 @@ describe Babosa::Transliterator::Turkish do
 
   it "should transliterate various characters" do
 		examples = {
-			
+			"hafıza"     => "hafıza",
+			"ÇAĞ" => "ÇAĞ",
+			"şarkı" => "şarkı"
 		}
     examples.each {|k, v| t.transliterate(k).should eql(v)}
   end
