@@ -21,6 +21,7 @@ module Babosa
     autoload :Ukrainian,  "babosa/transliterator/ukrainian"
     autoload :Greek,      "babosa/transliterator/greek"
     autoload :Vietnamese, "babosa/transliterator/vietnamese"
+    autoload :Turkish,    "babosa/transliterator/turkish"
 
     def self.get(symbol)
       const_get(symbol.to_s.classify)
