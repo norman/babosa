@@ -13,6 +13,7 @@ module Babosa
     autoload :Latin,      "babosa/transliterator/latin"
     autoload :Macedonian, "babosa/transliterator/macedonian"
     autoload :Norwegian,  "babosa/transliterator/norwegian"
+    autoload :Polish,     "babosa/transliterator/polish"
     autoload :Romanian,   "babosa/transliterator/romanian"
     autoload :Russian,    "babosa/transliterator/russian"
     autoload :Serbian,    "babosa/transliterator/serbian"
