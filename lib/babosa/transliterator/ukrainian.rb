@@ -5,6 +5,8 @@ module Babosa
       APPROXIMATIONS = {
         "И" => "Y",
         "и" => "y",
+        "І" => "I",
+        "і" => "i"
       }
     end
   end
