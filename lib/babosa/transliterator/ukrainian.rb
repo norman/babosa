@@ -3,9 +3,32 @@ module Babosa
   module Transliterator
     class Ukrainian < Cyrillic
       APPROXIMATIONS = {
-        "И" => "Y",
-        "и" => "y",
+        "Г" => "H",
+        "г" => "h",
+        "Ґ" => "G",
+        "ґ" => "g",
+        "є" => "ie",
+       	"И" => "Y",
+       	"и" => "y",
+       	"І" => "I",
+       	"і" => "i",
+       	"ї" => "i",
+       	"Й" => "Y",
+       	"й" => "i",
+       	"Х" => "Kh",
+       	"х" => "kh",
+       	"Ц" => "Ts",
+       	"ц" => 'ts',
+       	"Щ" => "Shch",
+       	"щ" => "shch",
+       	"ю" => "iu",
+       	"я" => "ia",
+        "'" => ""
       }
+      def transliterate(string)
+        p string
+        super.gsub(/(c)z([ieyj])/) { "#{$1}#{$2}" }
+      end
     end
   end
 end
