@@ -6,8 +6,4 @@ describe Babosa::Transliterator::Latin do
   let(:t) { described_class.instance }
   it_behaves_like "a latin transliterator"
 
-  it "should transliterate polish characters" do
-    t.transliterate("ĄąĆćĘęŁłŃńÓóŚśŹźŻż").should eql("AaCcEeLlNnOoSsZzZz")
-  end
-
 end
