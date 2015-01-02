@@ -21,21 +21,29 @@ module Babosa
         string.unpack("U*").map {|char| Mappings::UPCASE[char] or char}.flatten.pack("U*")
       end
 
-      # This does a very naive Unicode normalization, which should work for
-      # this library's purposes (i.e., Roman-based codepoints, up to U+017E).
-      # Do not use reuse this as a general solution!  Use a real library like
-      # Unicode or ActiveSupport instead.
-      def normalize_utf8(string)
-        codepoints = string.unpack("U*")
-        new = []
-        until codepoints.empty? do
-          if Mappings::COMPOSITION[codepoints[0..1]]
-            new << Mappings::COMPOSITION[codepoints.slice!(0,2)]
-          else
-            new << codepoints.shift
-          end
+
+      if String.public_instance_methods.include?(:unicode_normalize)
+        def normalize_utf8(string)
+          string.unicode_normalize
         end
-        new.compact.flatten.pack("U*")
+      else
+        # On Ruby 2.2, this uses the native Unicode normalize method. On all
+        # other Rubies, it does a very naive Unicode normalization, which should
+        # work for this library's purposes (i.e., Roman-based codepoints, up to
+        # U+017E).  Do not use reuse this as a general solution!  Use a real
+        # library like Unicode or ActiveSupport instead.
+        def normalize_utf8(string)
+          codepoints = string.unpack("U*")
+          new = []
+          until codepoints.empty? do
+            if Mappings::COMPOSITION[codepoints[0..1]]
+              new << Mappings::COMPOSITION[codepoints.slice!(0,2)]
+            else
+              new << codepoints.shift
+            end
+          end
+          new.compact.flatten.pack("U*")
+        end
       end
     end
   end
