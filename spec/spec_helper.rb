@@ -1,18 +1,10 @@
-# encoding: utf-8
-$LOAD_PATH << File.expand_path("../lib", __FILE__)
-$LOAD_PATH.uniq!
-
-if ENV["COV"]
-  require "simplecov"
+if ENV['COV']
+  require 'simplecov'
   SimpleCov.start
 end
 
-# encoding: utf-8
-$KCODE = 'UTF8' if RUBY_VERSION < '1.9'
-
-require "rubygems"
-require "babosa"
-require "active_support"
+require 'bundler/setup'
+require 'babosa'
 
 shared_examples_for "a latin transliterator" do
   let(:t) { described_class.instance }
