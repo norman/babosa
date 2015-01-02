@@ -110,6 +110,7 @@ module Babosa
     #
     #   string.transliterate!(:spanish)       # => "¡Feliz anio!"
     #   string.transliterate!                 # => "¡Feliz anio!"
+    #
     # @param *args <Symbol>
     # @return String
     def transliterate!(*kinds)
@@ -142,13 +143,8 @@ module Babosa
     # @param Options
     # @return String
     def normalize!(options = nil)
-      # Handle deprecated usage
-      if options == true
-        warn "#normalize! now takes a hash of options rather than a boolean"
-        options = default_normalize_options.merge(:to_ascii => true)
-      else
-        options = default_normalize_options.merge(options || {})
-      end
+      options = default_normalize_options.merge(options || {})
+
       if translit_option = options[:transliterate]
         if translit_option != true
           transliterate!(*translit_option)
