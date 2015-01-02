@@ -99,6 +99,7 @@ module Babosa
         @approximations[codepoint]
       end
 
+      # Transliterates a string.
       def transliterate(string)
         string.unpack("U*").map {|char| self[char] || char}.flatten.pack("U*")
       end

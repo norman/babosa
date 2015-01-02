@@ -44,13 +44,13 @@ module Babosa
     end
 
     # Return the proxy used for UTF-8 support.
-    # @see Babosa::UTF8::UTF8Proxy
+    # @see Babosa::UTF8::Proxy
     def self.utf8_proxy
       @@utf8_proxy
     end
 
     # Set a proxy object used for UTF-8 support.
-    # @see Babosa::UTF8::UTF8Proxy
+    # @see Babosa::UTF8::Proxy
     def self.utf8_proxy=(obj)
       @@utf8_proxy = obj
     end
