@@ -18,7 +18,7 @@ describe Babosa::Identifier do
   describe "#word_chars" do
     it "word_chars! should leave only letters and spaces" do
       string = "a*$%^$@!@b$%^&*()*!c"
-      expect(string.to_slug.word_chars).to match(/[a-z ]*/i)
+      expect(string.to_slug.word_chars!).to match(/[a-z ]*/i)
     end
   end
 
@@ -26,7 +26,7 @@ describe Babosa::Identifier do
     it "should transliterate to ascii" do
       (0xC0..0x17E).to_a.each do |codepoint|
         ss = [codepoint].pack("U*").to_slug
-        expect(ss.approximate_ascii).to match(/[\x0-\x7f]/)
+        expect(ss.approximate_ascii!).to match(/[\x0-\x7f]/)
       end
     end
 
