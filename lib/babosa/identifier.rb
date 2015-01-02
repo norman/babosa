@@ -281,7 +281,4 @@ module Babosa
       id
     end
   end
-
-  # Identifier is aliased as SlugString to support older versions of FriendlyId.
-  SlugString = Identifier
 end
