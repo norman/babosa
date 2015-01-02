@@ -23,11 +23,11 @@ module Babosa
     autoload :Vietnamese, "babosa/transliterator/vietnamese"
 
     def self.get(symbol)
-      const_get(symbol.to_s.classify)
+      class_name = symbol.to_s.split("_").map {|a| a.gsub(/\b('?[a-z])/) { $1.upcase }}.join
+      const_get(class_name)
     end
 
     class Base
-
       include Singleton
 
       APPROXIMATIONS = {
