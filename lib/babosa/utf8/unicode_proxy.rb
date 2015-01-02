@@ -5,7 +5,7 @@ module Babosa
     # A UTF-8 proxy using the Unicode gem.
     # @see http://github.com/blackwinter/unicode
     module UnicodeProxy
-      extend UTF8Proxy
+      extend Proxy
       extend self
       def downcase(string)
         Unicode.downcase(string)

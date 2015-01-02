@@ -8,7 +8,7 @@ module Babosa
 
     # A UTF-8 proxy for Babosa can be any object which responds to the methods in this module.
     # The following proxies are provided by Babosa: {ActiveSupportProxy}, {DumbProxy}, {JavaProxy}, and {UnicodeProxy}.
-    module UTF8Proxy
+    module Proxy
       CP1252  = {
         128 => [226, 130, 172],
         129 => nil,

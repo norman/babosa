@@ -10,7 +10,7 @@ module Babosa
     # or ActiveSupport should be used instead because they support the full
     # UTF-8 character range.
     module DumbProxy
-      extend UTF8Proxy
+      extend Proxy
       extend self
 
       def downcase(string)

@@ -4,7 +4,7 @@ module Babosa
   module UTF8
     # A UTF-8 proxy using Active Support's multibyte support.
     module ActiveSupportProxy
-      extend UTF8Proxy
+      extend Proxy
       extend self
       def downcase(string)
         ActiveSupport::Multibyte::Unicode.downcase(string)
