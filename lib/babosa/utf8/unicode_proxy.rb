@@ -1,3 +1,5 @@
+require 'unicode'
+
 module Babosa
   module UTF8
     # A UTF-8 proxy using the Unicode gem.
