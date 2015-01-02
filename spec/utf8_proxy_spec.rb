@@ -30,5 +30,11 @@ PROXIES.each do |proxy|
       end
     end
 
+    describe 'tidy_bytes' do
+      it 'should fix invalid UTF-8 strings' do
+        proxy.tidy_bytes("\x93abc").should eq('“abc')
+      end
+    end
+
   end
 end
