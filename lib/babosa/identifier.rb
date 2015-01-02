@@ -169,7 +169,7 @@ module Babosa
     def to_ruby_method!(allow_bangs = true)
       leader, trailer = @wrapped_string.strip.scan(/\A(.+)(.)\z/).flatten
       if allow_bangs
-        trailer.downcase.gsub!(/[^a-z0-9!=\\\\?]/, '')
+        trailer.downcase.gsub!(/[^a-z0-9!=\\?]/, '')
       else
         trailer.downcase.gsub!(/[^a-z0-9]/, '')
       end

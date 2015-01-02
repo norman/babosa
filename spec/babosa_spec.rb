@@ -24,7 +24,7 @@ describe Babosa::Identifier do
 
   describe "#transliterate" do
     it "should transliterate to ascii" do
-      slug = (0xC0..0x17E).to_a.each do |codepoint|
+      (0xC0..0x17E).to_a.each do |codepoint|
         ss = [codepoint].pack("U*").to_slug
         ss.approximate_ascii.should match(/[\x0-\x7f]/)
       end

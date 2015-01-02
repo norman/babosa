@@ -27,7 +27,6 @@ PROXIES.each do |proxy|
         uncomposed_bytes  = [65, 204, 138, 69, 204, 129, 73, 204, 130, 195, 152, 85, 204, 136]
         composed_bytes    = [195, 133, 195, 137, 195, 142, 195, 152, 195, 156]
         uncomposed_string = uncomposed_bytes.pack("C*").unpack("U*").pack("U*")
-        composed_string   = composed_bytes.pack("C*").unpack("U*").pack("U*")
         proxy.normalize_utf8(uncomposed_string).unpack("C*").should eql(composed_bytes)
       end
     end

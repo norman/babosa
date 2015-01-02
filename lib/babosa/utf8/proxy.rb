@@ -73,7 +73,6 @@ module Babosa
 
         bytes.each_index do |i|
           byte          = bytes[i]
-          is_ascii      = byte < 128
           is_cont       = byte > 127 && byte < 192
           is_lead       = byte > 191 && byte < 245
           is_unused     = byte > 240

@@ -10,13 +10,6 @@ class String
   end
   alias to_slug to_identifier
 
-  # Compatibility with 1.8.6
-  if !public_method_defined? :bytesize
-    def bytesize
-      unpack("C*").length
-    end
-  end
-
   # Define unless Active Support has already added this method.
   if !public_method_defined? :classify
     # Convert from underscores to class name. E.g.:
