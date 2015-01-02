@@ -14,13 +14,12 @@ module Babosa
       extend self
 
       def downcase(string)
-        string.unpack("U*").map {|char| Mappings::DOWNCASE[char] or char}.flatten.pack("U*")
+        string.downcase.unpack("U*").map {|char| Mappings::DOWNCASE[char] or char}.flatten.pack("U*")
       end
 
       def upcase(string)
-        string.unpack("U*").map {|char| Mappings::UPCASE[char] or char}.flatten.pack("U*")
+        string.upcase.unpack("U*").map {|char| Mappings::UPCASE[char] or char}.flatten.pack("U*")
       end
-
 
       if String.public_instance_methods.include?(:unicode_normalize)
         def normalize_utf8(string)
