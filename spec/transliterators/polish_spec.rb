@@ -7,7 +7,7 @@ describe Babosa::Transliterator::Romanian do
   it_behaves_like "a latin transliterator"
 
   it "should transliterate various characters" do
-    t.transliterate("ĄąĆćĘęŁłŃńÓóŚśŹźŻż").should eql("AaCcEeLlNnOoSsZzZz")
+    expect(t.transliterate("ĄąĆćĘęŁłŃńÓóŚśŹźŻż")).to eql("AaCcEeLlNnOoSsZzZz")
   end
 
 end

@@ -12,6 +12,6 @@ describe Babosa::Transliterator::Greek do
       "Αυστρία"   => "Aystria",
       "Ιταλία"    => "Italia"
     }
-    examples.each {|k, v| t.transliterate(k).should eql(v)}
+    examples.each {|k, v| expect(t.transliterate(k)).to eql(v)}
   end
 end

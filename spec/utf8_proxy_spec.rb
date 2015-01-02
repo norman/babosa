@@ -14,25 +14,25 @@ PROXIES.each do |proxy|
         uncomposed_bytes  = [65, 204, 138, 69, 204, 129, 73, 204, 130, 195, 152, 85, 204, 136]
         composed_bytes    = [195, 133, 195, 137, 195, 142, 195, 152, 195, 156]
         uncomposed_string = uncomposed_bytes.pack("C*").unpack("U*").pack("U*")
-        proxy.normalize_utf8(uncomposed_string).unpack("C*").should eql(composed_bytes)
+        expect(proxy.normalize_utf8(uncomposed_string).unpack("C*")).to eql(composed_bytes)
       end
     end
 
     describe "#upcase" do
       it "should upcase the string" do
-        proxy.upcase("åéîøü").should eql("ÅÉÎØÜ")
+        expect(proxy.upcase("åéîøü")).to eql("ÅÉÎØÜ")
       end
     end
 
     describe "#downcase" do
       it "should downcase the string" do
-        proxy.downcase("ÅÉÎØÜ").should eql("åéîøü")
+        expect(proxy.downcase("ÅÉÎØÜ")).to eql("åéîøü")
       end
     end
 
     describe 'tidy_bytes' do
       it 'should fix invalid UTF-8 strings' do
-        proxy.tidy_bytes("\x93abc").should eq('“abc')
+        expect(proxy.tidy_bytes("\x93abc")).to eq('“abc')
       end
     end
 

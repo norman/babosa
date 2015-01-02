@@ -13,7 +13,7 @@ shared_examples_for "a latin transliterator" do
 
   it "should transliterate latin characters" do
     string = (0xC0..0x17E).to_a.pack("U*")
-    t.transliterate(string).should match(/[\x0-\x7f]/)
+    expect(t.transliterate(string)).to match(/[\x0-\x7f]/)
   end
 end
 
@@ -22,7 +22,7 @@ shared_examples_for "a cyrillic transliterator" do
 
   it "should transliterate cyrillic characters" do
     string = "Славься, Отечество наше свободное"
-    t.transliterate(string).should match(/[\x0-\x7f]/)
+    expect(t.transliterate(string)).to match(/[\x0-\x7f]/)
   end
 end
 
@@ -31,6 +31,6 @@ shared_examples_for "a greek transliterator" do
 
   it "should transliterate greek characters" do
     string = "Γερμανία"
-    t.transliterate(string).should match(/[\x0-\x7f]/)
+    expect(t.transliterate(string)).to match(/[\x0-\x7f]/)
   end
 end

@@ -7,7 +7,7 @@ describe Babosa::Transliterator::Spanish do
   it_behaves_like "a latin transliterator"
 
   it "should transliterate ñ" do
-    t.transliterate("ñ").should eql("ni")
+    expect(t.transliterate("ñ")).to eql("ni")
   end
 
 end

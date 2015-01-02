@@ -82,7 +82,7 @@ describe Babosa::Transliterator::Ukrainian do
       "Знам'янка" => "Znamianka",
       "Феодосія" => "Feodosiia"
     }
-    examples.each { |k, v| t.transliterate(k).should eql(v) }
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end
 
 end

@@ -7,11 +7,11 @@ describe Babosa::Transliterator::German do
   it_behaves_like "a latin transliterator"
 
   it "should transliterate Eszett" do
-    t.transliterate("ß").should eql("ss")
+    expect(t.transliterate("ß")).to eql("ss")
   end
 
   it "should transliterate vowels with umlauts" do
-    t.transliterate("üöä").should eql("ueoeae")
+    expect(t.transliterate("üöä")).to eql("ueoeae")
   end
 
 end
