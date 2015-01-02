@@ -62,49 +62,59 @@ module Babosa
         raise NotImplementedError
       end
 
-      # Attempt to replace invalid UTF-8 bytes with valid ones. This method
-      # naively assumes if you have invalid UTF8 bytes, they are either Windows
-      # CP-1252 or ISO8859-1. In practice this isn't a bad assumption, but may not
-      # always work.
-      def tidy_bytes(string)
-        bytes = string.unpack("C*")
-        conts_expected = 0
-        last_lead = 0
+      if String.public_instance_methods.include?(:scrub)
+        # Attempt to replace invalid UTF-8 bytes with valid ones. This method
+        # naively assumes if you have invalid UTF8 bytes, they are either Windows
+        # CP-1252 or ISO8859-1. In practice this isn't a bad assumption, but may not
+        # always work.
+        def tidy_bytes(string)
+          string.scrub do |bytes|
+            bytes.each_byte.map do |byte|
+              tidy_byte(byte)
+            end.flatten.compact.pack('C*').unpack('U*').pack('U*')
+          end
+        end
+      else
+        def tidy_bytes(string)
+          bytes = string.unpack("C*")
+          conts_expected = 0
+          last_lead = 0
 
-        bytes.each_index do |i|
-          byte          = bytes[i]
-          is_cont       = byte > 127 && byte < 192
-          is_lead       = byte > 191 && byte < 245
-          is_unused     = byte > 240
-          is_restricted = byte > 244
+          bytes.each_index do |i|
+            byte          = bytes[i]
+            is_cont       = byte > 127 && byte < 192
+            is_lead       = byte > 191 && byte < 245
+            is_unused     = byte > 240
+            is_restricted = byte > 244
 
-          # Impossible or highly unlikely byte? Clean it.
-          if is_unused || is_restricted
-            bytes[i] = tidy_byte(byte)
-          elsif is_cont
-            # Not expecting contination byte? Clean up. Otherwise, now expect one less.
-            conts_expected == 0 ? bytes[i] = tidy_byte(byte) : conts_expected -= 1
-          else
-            if conts_expected > 0
-              # Expected continuation, but got ASCII or leading? Clean backwards up to
-              # the leading byte.
-              (1..(i - last_lead)).each {|j| bytes[i - j] = tidy_byte(bytes[i - j])}
-              conts_expected = 0
-            end
-            if is_lead
-              # Final byte is leading? Clean it.
-              if i == bytes.length - 1
-                bytes[i] = tidy_byte(bytes.last)
-              else
-                # Valid leading byte? Expect continuations determined by position of
-                # first zero bit, with max of 3.
-                conts_expected = byte < 224 ? 1 : byte < 240 ? 2 : 3
-                last_lead = i
+            # Impossible or highly unlikely byte? Clean it.
+            if is_unused || is_restricted
+              bytes[i] = tidy_byte(byte)
+            elsif is_cont
+              # Not expecting contination byte? Clean up. Otherwise, now expect one less.
+              conts_expected == 0 ? bytes[i] = tidy_byte(byte) : conts_expected -= 1
+            else
+              if conts_expected > 0
+                # Expected continuation, but got ASCII or leading? Clean backwards up to
+                # the leading byte.
+                (1..(i - last_lead)).each {|j| bytes[i - j] = tidy_byte(bytes[i - j])}
+                conts_expected = 0
+              end
+              if is_lead
+                # Final byte is leading? Clean it.
+                if i == bytes.length - 1
+                  bytes[i] = tidy_byte(bytes.last)
+                else
+                  # Valid leading byte? Expect continuations determined by position of
+                  # first zero bit, with max of 3.
+                  conts_expected = byte < 224 ? 1 : byte < 240 ? 2 : 3
+                  last_lead = i
+                end
               end
             end
           end
+          bytes.empty? ? "" : bytes.flatten.compact.pack("C*").unpack("U*").pack("U*")
         end
-        bytes.empty? ? "" : bytes.flatten.compact.pack("C*").unpack("U*").pack("U*")
       end
 
       private
