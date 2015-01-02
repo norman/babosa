@@ -13,6 +13,7 @@
 * Invoke Ruby-native upcase/downcase in UTF8::DumbProxy.
 * Proxy `tidy_bytes` method to Active Support when possible.
 * Remove SlugString constant.
+
 ## 0.3.11
 
 *  Add support for Vietnamese.
