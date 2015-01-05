@@ -30,6 +30,8 @@ module Babosa
   # @see http://www.utf8-chartable.de/unicode-utf8-table.pl?utf8=dec Unicode character table
   class Identifier
 
+    Error = Class.new(StandardError)
+
     attr_reader :wrapped_string
     alias to_s wrapped_string
 
@@ -164,10 +166,14 @@ module Babosa
     # Normalize a string so that it can safely be used as a Ruby method name.
     def to_ruby_method!(allow_bangs = true)
       leader, trailer = @wrapped_string.strip.scan(/\A(.+)(.)\z/).flatten
+      leader          = leader.to_s
+      trailer         = trailer.to_s
       if allow_bangs
-        trailer.downcase.gsub!(/[^a-z0-9!=\\?]/, '')
+        trailer.downcase!
+        trailer.gsub!(/[^a-z0-9!=\\?]/, '')
       else
-        trailer.downcase.gsub!(/[^a-z0-9]/, '')
+        trailer.downcase!
+        trailer.gsub!(/[^a-z0-9]/, '')
       end
       id = leader.to_identifier
       id.transliterate!
@@ -176,6 +182,9 @@ module Babosa
       id.word_chars!
       id.clean!
       @wrapped_string = id.to_s + trailer
+      if @wrapped_string == ""
+        raise Error, "Input generates impossible Ruby method name"
+      end
       with_separators!("_")
     end
 

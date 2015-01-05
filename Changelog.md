@@ -4,6 +4,8 @@
 
 * Fix error with tidy_bytes on Rubinius.
 * Simplify Active Support UTF8 proxy.
+* Fix `allow_bangs` argument to to_ruby_method being silently ignored.
+* Raise error when generating an impossible Ruby method name.
 
 ## 1.0.0
 

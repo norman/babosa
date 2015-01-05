@@ -141,5 +141,14 @@ describe Babosa::Identifier do
       expect("カタカナ: katakana is über cool!".to_slug.to_ruby_method).to eql("katakana_is_uber_cool!")
       expect("カタカナ: katakana is über cool".to_slug.to_ruby_method(false)).to eql("katakana_is_uber_cool")
     end
+
+    it "should optionally remove trailing punctuation" do
+      expect("¿¿¿hello... world???".to_slug.to_ruby_method(false)).to eql("hello_world")
+    end
+
+    it "should raise an error when it would generate an impossible method name" do
+      # "1".to_identifier.to_ruby_method
+      expect {"1".to_identifier.to_ruby_method}.to raise_error(Babosa::Identifier::Error)
+    end
   end
 end
