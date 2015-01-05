@@ -21,7 +21,7 @@ module Babosa
         string.upcase.unpack("U*").map {|char| Mappings::UPCASE[char] or char}.flatten.pack("U*")
       end
 
-      if String.public_instance_methods.include?(:unicode_normalize)
+      if ''.respond_to?(:unicode_normalize)
         def normalize_utf8(string)
           string.unicode_normalize
         end
