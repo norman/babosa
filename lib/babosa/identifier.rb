@@ -102,10 +102,10 @@ module Babosa
     #   string.transliterate                 # => "¡Feliz ano!"
     #   string.transliterate :spanish        # => "¡Feliz anio!"
     #
-    # You can modify the built-in approximations, or add your own:
+    # The approximations are an array, which you can modify if you choose:
     #
     #   # Make Spanish use "nh" rather than "nn"
-    #   Babosa::Characters.add_approximations(:spanish, "ñ" => "nh")
+    #   Babosa::Transliterator::Spanish::APPROXIMATIONS["ñ"] = "nh"
     #
     # Notice that this method does not simply convert to ASCII; if you want
     # to remove non-ASCII characters such as "¡" and "¿", use {#to_ascii!}:
