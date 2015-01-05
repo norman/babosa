@@ -62,16 +62,14 @@ module Babosa
         raise NotImplementedError
       end
 
-      if String.public_instance_methods.include?(:scrub)
+      if ''.respond_to?(:scrub) && !defined?(Rubinius)
         # Attempt to replace invalid UTF-8 bytes with valid ones. This method
         # naively assumes if you have invalid UTF8 bytes, they are either Windows
         # CP-1252 or ISO8859-1. In practice this isn't a bad assumption, but may not
         # always work.
         def tidy_bytes(string)
-          string.scrub do |bytes|
-            bytes.each_byte.map do |byte|
-              tidy_byte(byte)
-            end.flatten.compact.pack('C*').unpack('U*').pack('U*')
+          string.scrub do |bad|
+            tidy_byte(*bad.bytes).flatten.compact.pack('C*').unpack('U*').pack('U*')
           end
         end
       else
