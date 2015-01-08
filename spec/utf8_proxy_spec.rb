@@ -8,6 +8,16 @@ PROXIES.each do |proxy|
 
   describe proxy do
 
+    around do |example|
+      begin
+        old_proxy = Babosa::Identifier.utf8_proxy
+        Babosa::Identifier.utf8_proxy = proxy
+        example.run
+      ensure
+        Babosa::Identifier.utf8_proxy = old_proxy
+      end
+    end
+
     describe "#normalize_utf8" do
       it "should normalize to canonical composed" do
         # ÅÉÎØÜ
@@ -21,12 +31,14 @@ PROXIES.each do |proxy|
     describe "#upcase" do
       it "should upcase the string" do
         expect(proxy.upcase("åéîøü")).to eql("ÅÉÎØÜ")
+        expect("åéîøü".to_identifier.upcase).to eql("ÅÉÎØÜ")
       end
     end
 
     describe "#downcase" do
       it "should downcase the string" do
         expect(proxy.downcase("ÅÉÎØÜ")).to eql("åéîøü")
+        expect("ÅÉÎØÜ".to_identifier.downcase).to eql("åéîøü")
       end
     end
 

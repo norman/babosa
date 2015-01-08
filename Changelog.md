@@ -1,5 +1,9 @@
 # Babosa Changelog
 
+## 1.0.2
+
+* Fix regression in ActiveSupport UTF8 proxy.
+
 ## 1.0.1
 
 * Fix error with tidy_bytes on Rubinius.
