@@ -37,7 +37,7 @@ module Babosa
 
     @@utf8_proxy = if Babosa.jruby15?
       UTF8::JavaProxy
-    elsif defined? Unicode
+    elsif defined? Unicode::VERSION
       UTF8::UnicodeProxy
     elsif defined? ActiveSupport
       UTF8::ActiveSupportProxy
