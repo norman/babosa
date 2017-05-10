@@ -21,6 +21,7 @@ module Babosa
     autoload :Ukrainian,  "babosa/transliterator/ukrainian"
     autoload :Greek,      "babosa/transliterator/greek"
     autoload :Vietnamese, "babosa/transliterator/vietnamese"
+    autoload :Turkish,    "babosa/transliterator/turkish"
 
     def self.get(symbol)
       class_name = symbol.to_s.split("_").map {|a| a.gsub(/\b('?[a-z])/) { $1.upcase }}.join
@@ -86,7 +87,11 @@ module Babosa
         end
         self.class.const_get(:APPROXIMATIONS).inject(@approximations) do |memo, object|
           index       = object[0].unpack("U").shift
-          value       = object[1].unpack("C*")
+          if self.class.to_s == "Babosa::Transliterator::Turkish"
+            value       = object[1].unpack("U")
+          else
+            value       = object[1].unpack("C*")
+          end
           memo[index] = value.length == 1 ? value[0] : value
           memo
         end
