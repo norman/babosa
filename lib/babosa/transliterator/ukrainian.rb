@@ -3,8 +3,8 @@ module Babosa
   module Transliterator
     class Ukrainian < Cyrillic
       APPROXIMATIONS = {
-        "Г" => "H",
-        "г" => "h",
+        "Г" => "G",
+        "г" => "g",
         "Ґ" => "G",
         "ґ" => "g",
         "є" => "ie",
@@ -14,7 +14,7 @@ module Babosa
         "і" => "i",
         "ї" => "i",
         "Й" => "Y",
-        "й" => "i",
+        "й" => "y",
         "Х" => "Kh",
         "х" => "kh",
         "Ц" => "Ts",
