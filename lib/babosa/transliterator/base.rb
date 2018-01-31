@@ -10,6 +10,7 @@ module Babosa
     autoload :Cyrillic,   "babosa/transliterator/cyrillic"
     autoload :Danish,     "babosa/transliterator/danish"
     autoload :German,     "babosa/transliterator/german"
+    autoload :Hindi,      "babosa/transliterator/hindi"
     autoload :Latin,      "babosa/transliterator/latin"
     autoload :Macedonian, "babosa/transliterator/macedonian"
     autoload :Norwegian,  "babosa/transliterator/norwegian"
@@ -21,7 +22,6 @@ module Babosa
     autoload :Ukrainian,  "babosa/transliterator/ukrainian"
     autoload :Greek,      "babosa/transliterator/greek"
     autoload :Vietnamese, "babosa/transliterator/vietnamese"
-    autoload :Hindi,      "babosa/transliterator/hindi"
 
     def self.get(symbol)
       class_name = symbol.to_s.split("_").map {|a| a.gsub(/\b('?[a-z])/) { $1.upcase }}.join
