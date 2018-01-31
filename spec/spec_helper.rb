@@ -38,7 +38,7 @@ end
 shared_examples_for "a hindi transliterator" do
   let(:t) { described_class.instance }
 
-  it "should transliterate greek characters" do
+  it "should transliterate hindi characters" do
     string = "आदित्य तापड़िया"
     expect(t.transliterate(string)).to match(/[\x0-\x7f]/)
   end
