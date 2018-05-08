@@ -10,6 +10,7 @@ module Babosa
     autoload :Cyrillic,   "babosa/transliterator/cyrillic"
     autoload :Danish,     "babosa/transliterator/danish"
     autoload :German,     "babosa/transliterator/german"
+    autoload :Hindi,      "babosa/transliterator/hindi"
     autoload :Latin,      "babosa/transliterator/latin"
     autoload :Macedonian, "babosa/transliterator/macedonian"
     autoload :Norwegian,  "babosa/transliterator/norwegian"
