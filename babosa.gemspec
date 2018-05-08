@@ -20,7 +20,7 @@ spec = Gem::Specification.new do |s|
     'Rakefile', 'init.rb', 'generators/**/*.*', 'spec/**/*.*', '.gemtest']
 
   s.add_development_dependency 'activesupport', '>= 3.2.0'
-  s.add_development_dependency 'rspec', '~> 3.1.0'
+  s.add_development_dependency 'rspec', '~> 3.7.0'
   s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'unicode'
