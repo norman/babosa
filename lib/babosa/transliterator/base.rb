@@ -22,6 +22,7 @@ module Babosa
     autoload :Ukrainian,  "babosa/transliterator/ukrainian"
     autoload :Greek,      "babosa/transliterator/greek"
     autoload :Vietnamese, "babosa/transliterator/vietnamese"
+    autoload :Turkish,    "babosa/transliterator/turkish"
 
     def self.get(symbol)
       class_name = symbol.to_s.split("_").map {|a| a.gsub(/\b('?[a-z])/) { $1.upcase }}.join
