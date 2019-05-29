@@ -1,9 +1,5 @@
 # Babosa Changelog
 
-## 1.0.3
-
-* Fix deprecation warnings for ActiveSupport 6.
-
 ## 1.0.2
 
 * Fix regression in ActiveSupport UTF8 proxy.
