@@ -20,7 +20,7 @@ module Babosa
         def upcase(string)
           ActiveSupport::Multibyte::Chars.new(string).upcase.to_s
         end
-      elsif ActiveSupport::VERSION::MAJOR == 6
+      elsif ActiveSupport::VERSION::MAJOR >= 6
         def self.normalize_utf8(string)
           string.unicode_normalize(:nfc).to_s
         end
