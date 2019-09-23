@@ -1,17 +1,10 @@
 language: ruby
 sudo: false
 rvm:
+  - 2.6.0
   - 2.5.0
   - 2.4.0
-  - 2.3.0
-  - 2.2.0
-  - 2.1.0
-  - 2.0.0
   - jruby
-  - rbx-2
 branches:
   only:
     - master
-matrix:
-  allow_failures:
-    - rvm: rbx-2
