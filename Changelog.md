@@ -1,5 +1,9 @@
 # Babosa Changelog
 
+## 1.0.3
+
+* Fix Active Support 6 deprecations (https://github.com/norman/babosa/pull/50)
+
 ## 1.0.2
 
 * Fix regression in ActiveSupport UTF8 proxy.

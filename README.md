@@ -239,6 +239,7 @@ tracker](http://github.com/norman/babosa/issues).
 
 Many thanks to the following people for their help:
 
+* [Dmitry A. Ilyashevich](https://github.com/dmitry-ilyashevich) - Deprecation fixes
 * [anhkind](https://github.com/anhkind) - Vietnamese support
 * [Martins Zakis](https://github.com/martins) - Bug fixes
 * [Vassilis Rodokanakis](https://github.com/vrodokanakis) - Greek support
@@ -254,7 +255,6 @@ Many thanks to the following people for their help:
 * [Martin Petrov](https://github.com/martin-petrov) - Bulgarian support
 * [Molte Emil Strange Andersen](https://github.com/molte) - Danish support
 * [Milan Dobrota](https://github.com/milandobrota) - Serbian support
-
 
 ## Copyright
 
