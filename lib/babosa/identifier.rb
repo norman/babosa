@@ -166,8 +166,8 @@ module Babosa
     # Normalize a string so that it can safely be used as a Ruby method name.
     def to_ruby_method!(allow_bangs = true)
       leader, trailer = @wrapped_string.strip.scan(/\A(.+)(.)\z/).flatten
-      leader          = leader.to_s
-      trailer         = trailer.to_s
+      leader          = leader.to_s.dup
+      trailer         = trailer.to_s.dup
       if allow_bangs
         trailer.downcase!
         trailer.gsub!(/[^a-z0-9!=\\?]/, '')
