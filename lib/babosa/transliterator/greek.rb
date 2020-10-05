@@ -70,7 +70,7 @@ module Babosa
         "Ώ" => "O",
         "ω" => "o",
         "ώ" => "o"
-      }
+      }.freeze
     end
   end
 end

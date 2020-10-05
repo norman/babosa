@@ -20,7 +20,7 @@ module Babosa
         "ь" => "i",
         "ю" => "iu",
         "я" => "ia"
-      }
+      }.freeze
     end
   end
 end

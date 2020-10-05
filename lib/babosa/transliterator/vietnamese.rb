@@ -136,7 +136,7 @@ module Babosa
         "Ỹ" => "Y",
         "đ" => "d",
         "Đ" => "D"
-      }
+      }.freeze
     end
   end
 end

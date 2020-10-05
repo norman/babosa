@@ -15,7 +15,7 @@ module Babosa
         "ц" => "ts",
         "щ" => "sch",
         "ю" => "u"
-      }
+      }.freeze
     end
   end
 end

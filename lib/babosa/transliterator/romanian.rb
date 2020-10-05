@@ -6,7 +6,7 @@ module Babosa
         "ț" => "t",
         "Ș" => "S",
         "Ț" => "T"
-      }
+      }.freeze
     end
   end
 end

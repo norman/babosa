@@ -56,70 +56,6 @@ Layout/HashAlignment:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: separator
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: normal, indented_internal_methods
-Layout/IndentationConsistency:
-  Exclude:
-    - 'spec/transliterators/vietnamese_spec.rb'
-
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: IndentationWidth, EnforcedStyle.
-# SupportedStyles: spaces, tabs
-Layout/IndentationStyle:
-  Exclude:
-    - 'spec/transliterators/vietnamese_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'spec/transliterators/vietnamese_spec.rb'
-
-# Offense count: 19
-# Cop supports --auto-correct.
-Layout/LeadingEmptyLines:
-  Enabled: false
-
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
-# SupportedStylesForExponentOperator: space, no_space
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'lib/babosa/identifier.rb'
-    - 'spec/transliterators/hindi_spec.rb'
-    - 'spec/transliterators/swedish_spec.rb'
-    - 'spec/transliterators/vietnamese_spec.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Layout/SpaceBeforeComma:
-  Exclude:
-    - 'lib/babosa/transliterator/latin.rb'
-
-# Offense count: 13
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
-# SupportedStyles: space, no_space
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideBlockBraces:
-  Exclude:
-    - 'lib/babosa/transliterator/base.rb'
-    - 'spec/transliterators/bulgarian_spec.rb'
-    - 'spec/transliterators/danish_spec.rb'
-    - 'spec/transliterators/greek_spec.rb'
-    - 'spec/transliterators/hindi_spec.rb'
-    - 'spec/transliterators/norwegian_spec.rb'
-    - 'spec/transliterators/romanian_spec.rb'
-    - 'spec/transliterators/serbian_spec.rb'
-    - 'spec/transliterators/swedish_spec.rb'
-    - 'spec/transliterators/turkish_spec.rb'
-    - 'spec/transliterators/vietnamese_spec.rb'
-
 # Offense count: 4
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForEmptyBraces.
@@ -128,29 +64,11 @@ Layout/SpaceInsideBlockBraces:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
 
-# Offense count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: final_newline, final_blank_line
-Layout/TrailingEmptyLines:
-  Enabled: false
-
-# Offense count: 1
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'lib/babosa/identifier.rb'
-
 # Offense count: 2
 # Configuration parameters: AllowComments.
 Lint/SuppressedException:
   Exclude:
     - 'Rakefile'
-
-# Offense count: 1
-Lint/UselessAssignment:
-  Exclude:
-    - 'babosa.gemspec'
 
 # Offense count: 3
 # Configuration parameters: IgnoredMethods.
@@ -173,68 +91,16 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 21
 
-# Offense count: 2
-Naming/BinaryOperatorParameterName:
-  Exclude:
-    - 'lib/babosa/identifier.rb'
-
-# Offense count: 2
-# Configuration parameters: ForbiddenDelimiters.
-# ForbiddenDelimiters: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
-Naming/HeredocDelimiterNaming:
-  Exclude:
-    - 'babosa.gemspec'
-    - 'lib/babosa/identifier.rb'
-
-# Offense count: 1
-Security/Eval:
-  Exclude:
-    - 'Rakefile'
-
-# Offense count: 14
-# Configuration parameters: AllowedChars.
-Style/AsciiComments:
-  Exclude:
-    - 'lib/babosa/identifier.rb'
-    - 'spec/babosa_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
 # SupportedStyles: assign_to_condition, assign_inside_condition
 Style/ConditionalAssignment:
-  Exclude:
-    - 'lib/babosa/transliterator/base.rb'
-
-# Offense count: 4
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'lib/babosa.rb'
-    - 'lib/babosa/transliterator/base.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/EachWithObject:
-  Exclude:
-    - 'lib/babosa/transliterator/base.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Encoding:
-  Exclude:
-    - 'spec/spec_helper.rb'
-
-# Offense count: 21
-# Cop supports --auto-correct.
-Style/ExpandPathArguments:
   Enabled: false
 
-# Offense count: 45
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
+Style/Documentation:
+  Enabled: false
+
+Style/EachWithObject:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
@@ -243,31 +109,7 @@ Style/FrozenStringLiteralComment:
 # Configuration parameters: UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
 # SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
 Style/HashSyntax:
-  EnforcedStyle: hash_rockets
-
-# Offense count: 2
-Style/IdenticalConditionalBranches:
-  Exclude:
-    - 'lib/babosa/identifier.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'Rakefile'
-    - 'lib/babosa/identifier.rb'
-
-# Offense count: 1
-Style/MissingRespondToMissing:
-  Exclude:
-    - 'lib/babosa/identifier.rb'
-
-# Offense count: 17
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Enabled: false
+  EnforcedStyle: no_mixed_keys
 
 # Offense count: 1
 # Cop supports --auto-correct.

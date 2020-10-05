@@ -191,7 +191,7 @@ module Babosa
         "ž" => "z",
         "ź" => "z",
         "ż" => "z"
-      }
+      }.freeze
     end
   end
 end

@@ -96,7 +96,7 @@ module Babosa
         "ѵ" => "yh",
         "Ґ" => "G",
         "ґ" => "g",
-      }
+      }.freeze
 
       def transliterate(string)
         super.gsub(/(c)z([ieyj])/) { "#{$1}#{$2}" }

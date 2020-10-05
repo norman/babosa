@@ -22,7 +22,7 @@ module Babosa
         "ѕ" => "z",
         "ј" => "j",
         "х" => "h"
-      }
+      }.freeze
     end
   end
 end

@@ -8,7 +8,7 @@ module Babosa
         "Å" => "Aa",
         "Ä" => "Ae",
         "Ö" => "Oe"
-      }
+      }.freeze
     end
   end
 end

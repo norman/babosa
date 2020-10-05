@@ -6,7 +6,7 @@ module Babosa
         "å" => "aa",
         "Ø" => "Oe",
         "Å" => "Aa"
-      }
+      }.freeze
     end
   end
 end

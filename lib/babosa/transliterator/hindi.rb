@@ -130,7 +130,7 @@ module Babosa
         "ॽ" => "?",
         "ॾ" => "ddd",
         "ॿ" => "bb"
-      }
+      }.freeze
     end
   end
 end
