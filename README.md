@@ -36,6 +36,7 @@ Currently supported languages include:
 * Spanish
 * Swedish
 * Ukrainian
+* Vietnamese
 
 I'll gladly accept contributions from fluent speakers to support more languages.
 
@@ -64,7 +65,7 @@ whose length is limited by bytes rather than UTF-8 characters.
 
 ### Other stuff
 
-#### Using Babosa With FriendlyId 4
+#### Using Babosa With FriendlyId 4+
 
     require "babosa"
 
@@ -76,33 +77,15 @@ whose length is limited by bytes rather than UTF-8 characters.
       end
     end
 
-#### Pedantic UTF-8 support
+#### UTF-8 support
 
 Babosa goes out of its way to handle [nasty Unicode issues you might never think
 you would have](https://github.com/norman/enc/blob/master/equivalence.rb) by
 checking, sanitizing and normalizing your string input.
 
-It will automatically use whatever Unicode library you have loaded before
-Babosa, or fall back to a simple built-in library. Supported
-Unicode libraries include:
-
-* Java (only on JRuby of course)
-* Active Support
-* [Unicode](https://github.com/blackwinter/unicode)
-* Built-in
-
-This built-in module is much faster than Active Support but much slower than
-Java or Unicode. It can only do **very** naive Unicode composition to ensure
-that, for example, "é" will always be composed to a single codepoint rather than
-an "e" and a "´" - making it safe to use as a hash key.
-
-But seriously - save yourself the headache and install a real Unicode library.
-If you are using Babosa with a language that uses the Cyrillic alphabet, Babosa
-requires either Unicode, Active Support or Java.
-
 #### Ruby Method Names
 
-Babosa can also generate strings for Ruby method names. (Yes, Ruby 1.9 can use
+Babosa can also generate strings for Ruby method names. (Yes, Ruby 1.9+ can use
 UTF-8 chars in method names, but you may not want to):
 
 
@@ -201,7 +184,6 @@ peso. Stringex does this in many places, for example, transliterating all Han
 characters into Pinyin, effectively treating Japanese text as if it were
 Mandarin Chinese.
 
-
 ### More info
 
 Please see the [API docs](http://rubydoc.info/github/norman/babosa/master/frames) and source code for
@@ -215,9 +197,6 @@ Babosa can be installed via Rubygems:
 
 You can get the source code from its [Github repository](http://github.com/norman/babosa).
 
-Babosa is tested to be compatible with Ruby 2.x, JRuby 1.7+, and
-Rubinius 2.x It's probably compatible with other Rubies as well.
-
 ## Reporting bugs
 
 Please use Babosa's [Github issue
@@ -226,7 +205,7 @@ tracker](http://github.com/norman/babosa/issues).
 
 ## Misc
 
-"Babosa" means slug in Spanish.
+"Babosa" means "slug" in Spanish.
 
 ## Author
 
@@ -255,7 +234,7 @@ Many thanks to the following people for their help:
 
 ## Copyright
 
-Copyright (c) 2010-2013 Norman Clarke
+Copyright (c) 2010-2020 Norman Clarke
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

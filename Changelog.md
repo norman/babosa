@@ -1,5 +1,10 @@
 # Babosa Changelog
 
+## 2.0.0
+
+* Use built-in Ruby UTF-8 support in places of other gems.
+* Drop support for Ruby < 2.5.0.
+
 ## 1.0.4
 
 * Fix nil being cast to frozen string (https://github.com/norman/babosa/pull/52)
