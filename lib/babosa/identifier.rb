@@ -1,6 +1,4 @@
-# encoding: utf-8
 module Babosa
-
   # Codepoints for characters that will be deleted by +#word_chars!+.
   STRIPPABLE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19,
     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39,
@@ -29,7 +27,6 @@ module Babosa
   #
   # @see http://www.utf8-chartable.de/unicode-utf8-table.pl?utf8=dec Unicode character table
   class Identifier
-
     Error = Class.new(StandardError)
 
     attr_reader :wrapped_string

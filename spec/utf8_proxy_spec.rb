@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 require File.expand_path("../spec_helper", __FILE__)
 
 PROXIES = [Babosa::UTF8::DumbProxy, Babosa::UTF8::ActiveSupportProxy, Babosa::UTF8::UnicodeProxy]

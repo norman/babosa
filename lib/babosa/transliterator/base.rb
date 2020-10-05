@@ -1,9 +1,6 @@
-# encoding: utf-8
-
 require 'singleton'
 
 module Babosa
-
   module Transliterator
 
     autoload :Bulgarian,  "babosa/transliterator/bulgarian"

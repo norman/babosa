@@ -1,4 +1,3 @@
-# encoding: utf-8
 module Babosa
   module Transliterator
     class Norwegian < Latin
