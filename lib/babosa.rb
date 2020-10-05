@@ -12,5 +12,4 @@ class String
 end
 
 require "babosa/transliterator/base"
-require "babosa/utf8/proxy"
 require "babosa/identifier"

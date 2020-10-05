@@ -9,6 +9,42 @@ module Babosa
     168, 169, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 182, 183, 184,
     185, 187, 188, 189, 190, 191, 215, 247, 8203, 8204, 8205, 8239, 65279]
 
+  # Windows CP1252 codepoints mapped to Unicode bytes.
+  CP1252  = {
+    128 => [226, 130, 172],
+    129 => nil,
+    130 => [226, 128, 154],
+    131 => [198, 146],
+    132 => [226, 128, 158],
+    133 => [226, 128, 166],
+    134 => [226, 128, 160],
+    135 => [226, 128, 161],
+    136 => [203, 134],
+    137 => [226, 128, 176],
+    138 => [197, 160],
+    139 => [226, 128, 185],
+    140 => [197, 146],
+    141 => nil,
+    142 => [197, 189],
+    143 => nil,
+    144 => nil,
+    145 => [226, 128, 152],
+    146 => [226, 128, 153],
+    147 => [226, 128, 156],
+    148 => [226, 128, 157],
+    149 => [226, 128, 162],
+    150 => [226, 128, 147],
+    151 => [226, 128, 148],
+    152 => [203, 156],
+    153 => [226, 132, 162],
+    154 => [197, 161],
+    155 => [226, 128, 186],
+    156 => [197, 147],
+    157 => nil,
+    158 => [197, 190],
+    159 => [197, 184]
+  }
+
   # This class provides some string-manipulation methods specific to slugs.
   #
   # Note that this class includes many "bang methods" such as {#clean!} and
@@ -31,28 +67,6 @@ module Babosa
 
     attr_reader :wrapped_string
     alias to_s wrapped_string
-
-    @@utf8_proxy = if Babosa.jruby15?
-      UTF8::JavaProxy
-    elsif defined? Unicode::VERSION
-      UTF8::UnicodeProxy
-    elsif defined? ActiveSupport
-      UTF8::ActiveSupportProxy
-    else
-      UTF8::DumbProxy
-    end
-
-    # Return the proxy used for UTF-8 support.
-    # @see Babosa::UTF8::Proxy
-    def self.utf8_proxy
-      @@utf8_proxy
-    end
-
-    # Set a proxy object used for UTF-8 support.
-    # @see Babosa::UTF8::Proxy
-    def self.utf8_proxy=(obj)
-      @@utf8_proxy = obj
-    end
 
     def method_missing(symbol, *args, &block)
       @wrapped_string.__send__(symbol, *args, &block)
@@ -230,26 +244,28 @@ module Babosa
     # Perform UTF-8 sensitive upcasing.
     # @return String
     def upcase!
-      @wrapped_string = @@utf8_proxy.upcase(@wrapped_string)
+      @wrapped_string = @wrapped_string.upcase
     end
 
     # Perform UTF-8 sensitive downcasing.
     # @return String
     def downcase!
-      @wrapped_string = @@utf8_proxy.downcase(@wrapped_string)
+      @wrapped_string = @wrapped_string.downcase
     end
 
     # Perform Unicode composition on the wrapped string.
     # @return String
     def normalize_utf8!
-      @wrapped_string = @@utf8_proxy.normalize_utf8(@wrapped_string)
+      @wrapped_string = @wrapped_string.unicode_normalize(:nfc)
     end
 
     # Attempt to convert characters encoded using CP1252 and IS0-8859-1 to
     # UTF-8.
     # @return String
     def tidy_bytes!
-      @wrapped_string = @@utf8_proxy.tidy_bytes(@wrapped_string)
+      @wrapped_string = @wrapped_string.scrub do |bad|
+        tidy_byte(*bad.bytes).flatten.compact.pack('C*').unpack('U*').pack('U*')
+      end
     end
 
     %w[transliterate clean downcase word_chars normalize normalize_utf8
@@ -285,6 +301,10 @@ module Babosa
       id.instance_variable_set :@wrapped_string, to_s
       id.send(*args)
       id
+    end
+
+    def tidy_byte(byte)
+      byte < 160 ? CP1252[byte] : byte < 192 ? [194, byte] : [195, byte - 64]
     end
   end
 end
