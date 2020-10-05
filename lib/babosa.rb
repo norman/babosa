@@ -1,7 +1,4 @@
 module Babosa
-  def self.jruby15?
-    JRUBY_VERSION >= "1.5" rescue false
-  end
 end
 
 class String
