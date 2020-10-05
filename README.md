@@ -135,11 +135,9 @@ example here's the transliterator for German:
 
 And a spec (you can use this as a template):
 
-    # encoding: utf-8
-    require File.expand_path("../../spec_helper", __FILE__)
+    require "spec_helper"
 
     describe Babosa::Transliterator::German do
-
       let(:t) { described_class.instance }
       it_behaves_like "a latin transliterator"
 
@@ -150,7 +148,6 @@ And a spec (you can use this as a template):
       it "should transliterate vowels with umlauts" do
         t.transliterate("üöä").should eql("ueoeae")
       end
-
     end
 
 

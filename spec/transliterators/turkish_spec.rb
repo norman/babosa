@@ -1,5 +1,4 @@
-
-require "spec_helper"
+require "spec_helper"
 
 describe Babosa::Transliterator::Turkish do
   let(:t) { described_class.instance }
