@@ -7,10 +7,10 @@ describe Babosa::Transliterator::Swedish do
   it "should transliterate various characters" do
     examples = {
       "Räksmörgås" => "Raeksmoergaas",
-      "Öre"     => "Oere",
-      "Åre"    => "Aare",
-      "Älskar"  => "Aelskar"
+      "Öre"        => "Oere",
+      "Åre"        => "Aare",
+      "Älskar"     => "Aelskar"
     }
-    examples.each {|k, v| expect(t.transliterate(k)).to eql(v)}
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
   end
 end

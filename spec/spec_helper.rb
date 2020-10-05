@@ -1,12 +1,10 @@
-# coding: utf-8
-
-if ENV['COV']
-  require 'simplecov'
+if ENV["COV"]
+  require "simplecov"
   SimpleCov.start
 end
 
-require 'bundler/setup'
-require 'babosa'
+require "bundler/setup"
+require "babosa"
 
 shared_examples_for "a latin transliterator" do
   let(:t) { described_class.instance }

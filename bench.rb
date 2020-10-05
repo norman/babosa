@@ -8,25 +8,25 @@ def sample
 end
 N = 1000
 Benchmark.bmbm do |x|
-  x.report 'Truncate bytes' do
+  x.report "Truncate bytes" do
     N.times do
       sample.truncate_bytes(20)
     end
   end
 
-  x.report 'Truncate chars' do
+  x.report "Truncate chars" do
     N.times do
       sample.truncate(20)
     end
   end
 
-  x.report 'Transliterate' do
+  x.report "Transliterate" do
     N.times do
       sample.transliterate
     end
   end
 
-  x.report 'Strip non-ASCII' do
+  x.report "Strip non-ASCII" do
     N.times do
       sample.to_ascii
     end

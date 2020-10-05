@@ -8,4 +8,3 @@ describe Babosa::Transliterator::Romanian do
     expect(t.transliterate("ĄąĆćĘęŁłŃńÓóŚśŹźŻż")).to eql("AaCcEeLlNnOoSsZzZz")
   end
 end
-

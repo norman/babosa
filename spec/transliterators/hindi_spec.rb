@@ -6,10 +6,10 @@ describe Babosa::Transliterator::Hindi do
 
   it "should transliterate hindi characters" do
     examples = {
-      "आदित्य"  => "aadity",
-      "सबरीमाला करवाना पायसम"   => "sbriimaalaa krvaanaa paaysm",
-      "सक्रांति आँख" => "skraanti aankh"
+      "आदित्य"                => "aadity",
+      "सबरीमाला करवाना पायसम" => "sbriimaalaa krvaanaa paaysm",
+      "सक्रांति आँख"          => "skraanti aankh"
     }
-    examples.each {|k, v| expect(t.transliterate(k)).to eql(v)}
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
   end
 end

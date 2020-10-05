@@ -25,10 +25,8 @@ begin
 rescue LoadError
 end
 
-gemspec = File.expand_path("../babosa.gemspec", __FILE__)
-if File.exist? gemspec
-  Gem::PackageTask.new(eval(File.read(gemspec))) { |pkg| }
-end
+gemspec = File.expand_path("babosa.gemspec", __dir__)
+Gem::PackageTask.new(eval(File.read(gemspec))) { |pkg| } if File.exist? gemspec
 
-require 'rspec/core/rake_task'
+require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)

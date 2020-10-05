@@ -5,12 +5,12 @@ describe Babosa::Transliterator::Vietnamese do
   it_behaves_like "a latin transliterator"
 
   it "should transliterate various characters" do
-		examples = {
-			"làm"     => "lam",
-		  "đàn ông" => "dan ong",
-		  "thật"    => "that",
-		  "khổ"     => "kho"
-		}
-    examples.each {|k, v| expect(t.transliterate(k)).to eql(v)}
+    examples = {
+      "làm"     => "lam",
+      "đàn ông" => "dan ong",
+      "thật"    => "that",
+      "khổ"     => "kho"
+    }
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
   end
 end

@@ -43,7 +43,7 @@ module Babosa
     157 => nil,
     158 => [197, 190],
     159 => [197, 184]
-  }
+  }.freeze
 
   # This class provides some string-manipulation methods specific to slugs.
   #
@@ -181,10 +181,10 @@ module Babosa
       trailer         = trailer.to_s.dup
       if allow_bangs
         trailer.downcase!
-        trailer.gsub!(/[^a-z0-9!=\\?]/, '')
+        trailer.gsub!(/[^a-z0-9!=\\?]/, "")
       else
         trailer.downcase!
-        trailer.gsub!(/[^a-z0-9]/, '')
+        trailer.gsub!(/[^a-z0-9]/, "")
       end
       id = leader.to_identifier
       id.transliterate!
@@ -193,9 +193,7 @@ module Babosa
       id.word_chars!
       id.clean!
       @wrapped_string = id.to_s + trailer
-      if @wrapped_string == ""
-        raise Error, "Input generates impossible Ruby method name"
-      end
+      raise Error, "Input generates impossible Ruby method name" if @wrapped_string == ""
 
       with_separators!("_")
     end
@@ -203,7 +201,7 @@ module Babosa
     # Delete any non-ascii characters.
     # @return String
     def to_ascii!
-      @wrapped_string = @wrapped_string.gsub(/[^\x00-\x7f]/u, '')
+      @wrapped_string = @wrapped_string.gsub(/[^\x00-\x7f]/u, "")
     end
 
     # Truncate the string to +max+ characters.
@@ -231,9 +229,7 @@ module Babosa
 
         char = [char].pack("U")
         curr += char.bytesize
-        if curr <= max
-          new << char
-        end
+        new << char if curr <= max
       end
       @wrapped_string = new.join
     end
@@ -267,7 +263,7 @@ module Babosa
     # @return String
     def tidy_bytes!
       @wrapped_string = @wrapped_string.scrub do |bad|
-        tidy_byte(*bad.bytes).flatten.compact.pack('C*').unpack('U*').pack('U*')
+        tidy_byte(*bad.bytes).flatten.compact.pack("C*").unpack("U*").pack("U*")
       end
     end
 
@@ -307,7 +303,11 @@ module Babosa
     end
 
     def tidy_byte(byte)
-      byte < 160 ? CP1252[byte] : byte < 192 ? [194, byte] : [195, byte - 64]
+      if byte < 160
+        CP1252[byte]
+      else
+        byte < 192 ? [194, byte] : [195, byte - 64]
+      end
     end
   end
 end

@@ -6,10 +6,10 @@ describe Babosa::Transliterator::Greek do
 
   it "should transliterate various characters" do
     examples = {
-      "Γερμανία"  => "Germania",
-      "Αυστρία"   => "Aystria",
-      "Ιταλία"    => "Italia"
+      "Γερμανία" => "Germania",
+      "Αυστρία"  => "Aystria",
+      "Ιταλία"   => "Italia"
     }
-    examples.each {|k, v| expect(t.transliterate(k)).to eql(v)}
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
   end
 end

@@ -15,8 +15,8 @@ describe Babosa::Transliterator::Serbian do
       "škola"  => "shkola",
       "Ђорђе"  => "Djordje",
       "Инђија" => "Indjija",
-      "Школа"  => "Shkola",
+      "Школа"  => "Shkola"
     }
-    examples.each {|k, v| expect(t.transliterate(k)).to eql(v)}
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
   end
 end
