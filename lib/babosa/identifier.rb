@@ -196,6 +196,7 @@ module Babosa
       if @wrapped_string == ""
         raise Error, "Input generates impossible Ruby method name"
       end
+
       with_separators!("_")
     end
 
@@ -222,10 +223,12 @@ module Babosa
     # @return String
     def truncate_bytes!(max)
       return @wrapped_string if @wrapped_string.bytesize <= max
+
       curr = 0
       new = []
       unpack("U*").each do |char|
         break if curr > max
+
         char = [char].pack("U")
         curr += char.bytesize
         if curr <= max
