@@ -1,1 +1,60 @@
-inherit_from: .rubocop_todo.yml
+# Cop supports --auto-correct.
+# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
+# SupportedHashRocketStyles: key, separator, table
+# SupportedColonStyles: key, separator, table
+# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: separator
+
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyleForEmptyBraces.
+# SupportedStyles: space, no_space, compact
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+# Configuration parameters: IgnoredMethods.
+Metrics/AbcSize:
+  Max: 23
+
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
+# ExcludedMethods: refine
+Metrics/BlockLength:
+  Max: 121
+
+# Configuration parameters: CountComments, CountAsOne.
+Metrics/ClassLength:
+  Max: 192
+
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
+Metrics/MethodLength:
+  Max: 21
+
+# SupportedStyles: assign_to_condition, assign_inside_condition
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EachWithObject:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Configuration parameters: UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
+# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
+Style/HashSyntax:
+  EnforcedStyle: no_mixed_keys
+
+# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyle: no_comma
