@@ -6,7 +6,7 @@ spec = Gem::Specification.new do |s|
   s.author                = 'Norman Clarke'
   s.email                 = 'norman@njclarke.com'
   s.homepage              = 'http://github.com/norman/babosa'
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 2.5.0'
 
   s.summary           = 'A library for creating slugs.'
   s.description       = <<-EOM
