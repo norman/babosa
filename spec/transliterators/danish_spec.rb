@@ -2,7 +2,6 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe Babosa::Transliterator::Danish do
-
   let(:t) { described_class.instance }
   it_behaves_like "a latin transliterator"
 
@@ -13,5 +12,4 @@ describe Babosa::Transliterator::Danish do
     }
     examples.each {|k, v| expect(t.transliterate(k)).to eql(v)}
   end
-
 end

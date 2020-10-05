@@ -37,13 +37,6 @@ Layout/ArrayAlignment:
   Exclude:
     - 'lib/babosa/identifier.rb'
 
-# Offense count: 32
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Enabled: false
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

@@ -2,7 +2,6 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe Babosa::Transliterator::Greek do
-
   let(:t) { described_class.instance }
   it_behaves_like "a greek transliterator"
 

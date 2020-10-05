@@ -2,7 +2,6 @@
 require File.expand_path("../spec_helper", __FILE__)
 
 describe Babosa::Identifier do
-
   it "should respond_to :empty?" do
     expect("".to_slug).to respond_to(:empty?)
   end
@@ -54,7 +53,6 @@ describe Babosa::Identifier do
   end
 
   describe "#normalize" do
-
     it "should allow passing locale as key for :transliterate" do
       expect("ö".to_slug.clean.normalize(:transliterate => :german)).to eql("oe")
     end

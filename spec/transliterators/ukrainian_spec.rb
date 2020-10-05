@@ -2,7 +2,6 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe Babosa::Transliterator::Ukrainian do
-
   let(:t) { described_class.instance }
   it_behaves_like "a cyrillic transliterator"
 
@@ -84,5 +83,4 @@ describe Babosa::Transliterator::Ukrainian do
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end
-
 end
