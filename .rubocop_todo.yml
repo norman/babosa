@@ -111,25 +111,6 @@ Style/FrozenStringLiteralComment:
 Style/HashSyntax:
   EnforcedStyle: no_mixed_keys
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/NestedTernaryOperator:
-  Exclude:
-    - 'lib/babosa/identifier.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Strict.
-Style/NumericLiterals:
-  MinDigits: 6
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/PerlBackrefs:
-  Exclude:
-    - 'lib/babosa/transliterator/base.rb'
-    - 'lib/babosa/transliterator/cyrillic.rb'
-
 # Offense count: 1980
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.

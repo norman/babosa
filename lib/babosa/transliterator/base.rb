@@ -3,7 +3,7 @@ require 'singleton'
 module Babosa
   module Transliterator
     def self.get(symbol)
-      class_name = symbol.to_s.split("_").map { |a| a.gsub(/\b('?[a-z])/) { $1.upcase } }.join
+      class_name = symbol.to_s.split("_").map { |a| a.gsub(/\b('?[a-z])/) { Regexp.last_match(1).upcase } }.join
       const_get(class_name)
     end
 

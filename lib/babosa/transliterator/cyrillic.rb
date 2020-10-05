@@ -99,7 +99,7 @@ module Babosa
       }.freeze
 
       def transliterate(string)
-        super.gsub(/(c)z([ieyj])/) { "#{$1}#{$2}" }
+        super.gsub(/(c)z([ieyj])/) { "#{Regexp.last_match(1)}#{Regexp.last_match(2)}" }
       end
     end
   end
