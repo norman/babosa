@@ -3,24 +3,6 @@ require 'singleton'
 module Babosa
   module Transliterator
 
-    autoload :Bulgarian,  "babosa/transliterator/bulgarian"
-    autoload :Cyrillic,   "babosa/transliterator/cyrillic"
-    autoload :Danish,     "babosa/transliterator/danish"
-    autoload :German,     "babosa/transliterator/german"
-    autoload :Hindi,      "babosa/transliterator/hindi"
-    autoload :Latin,      "babosa/transliterator/latin"
-    autoload :Macedonian, "babosa/transliterator/macedonian"
-    autoload :Norwegian,  "babosa/transliterator/norwegian"
-    autoload :Romanian,   "babosa/transliterator/romanian"
-    autoload :Russian,    "babosa/transliterator/russian"
-    autoload :Serbian,    "babosa/transliterator/serbian"
-    autoload :Spanish,    "babosa/transliterator/spanish"
-    autoload :Swedish,    "babosa/transliterator/swedish"
-    autoload :Ukrainian,  "babosa/transliterator/ukrainian"
-    autoload :Greek,      "babosa/transliterator/greek"
-    autoload :Vietnamese, "babosa/transliterator/vietnamese"
-    autoload :Turkish,    "babosa/transliterator/turkish"
-
     def self.get(symbol)
       class_name = symbol.to_s.split("_").map {|a| a.gsub(/\b('?[a-z])/) { $1.upcase }}.join
       const_get(class_name)
@@ -105,3 +87,21 @@ module Babosa
     end
   end
 end
+
+require "babosa/transliterator/cyrillic"
+require "babosa/transliterator/latin"
+require "babosa/transliterator/bulgarian"
+require "babosa/transliterator/danish"
+require "babosa/transliterator/german"
+require "babosa/transliterator/hindi"
+require "babosa/transliterator/macedonian"
+require "babosa/transliterator/norwegian"
+require "babosa/transliterator/romanian"
+require "babosa/transliterator/russian"
+require "babosa/transliterator/serbian"
+require "babosa/transliterator/spanish"
+require "babosa/transliterator/swedish"
+require "babosa/transliterator/ukrainian"
+require "babosa/transliterator/greek"
+require "babosa/transliterator/vietnamese"
+require "babosa/transliterator/turkish"
