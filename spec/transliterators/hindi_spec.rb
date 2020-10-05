@@ -10,6 +10,6 @@ describe Babosa::Transliterator::Hindi do
       "सबरीमाला करवाना पायसम" => "sbriimaalaa krvaanaa paaysm",
       "सक्रांति आँख"          => "skraanti aankh"
     }
-    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end
 end
