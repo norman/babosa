@@ -1,7 +1,6 @@
 module Babosa
   module Transliterator
     class Latin < Base
-
       APPROXIMATIONS = {
         "À" => "A",
         "Á" => "A",

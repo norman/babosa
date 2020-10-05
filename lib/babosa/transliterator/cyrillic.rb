@@ -1,6 +1,5 @@
 module Babosa
   module Transliterator
-
     # Approximations are based on GOST 7.79, System B:
     # http://en.wikipedia.org/wiki/ISO_9#GOST_7.79
     class Cyrillic < Base
