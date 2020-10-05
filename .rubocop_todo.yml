@@ -116,7 +116,7 @@ Style/HashSyntax:
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
-  Enabled: false
+  EnforcedStyle: double_quotes
 
 # Offense count: 3
 # Cop supports --auto-correct.
