@@ -38,23 +38,26 @@ module Babosa
         '；' => ';',
         '：' => ':',
         '《' => '<',
-        '》' => '>',
-        # various kinds of space characters
-        "\xc2\xa0"     => " ",
-        "\xe2\x80\x80" => " ",
-        "\xe2\x80\x81" => " ",
-        "\xe2\x80\x82" => " ",
-        "\xe2\x80\x83" => " ",
-        "\xe2\x80\x84" => " ",
-        "\xe2\x80\x85" => " ",
-        "\xe2\x80\x86" => " ",
-        "\xe2\x80\x87" => " ",
-        "\xe2\x80\x88" => " ",
-        "\xe2\x80\x89" => " ",
-        "\xe2\x80\x8a" => " ",
-        "\xe2\x81\x9f" => " ",
-        "\xe3\x80\x80" => " ",
-      }.freeze
+        '》' => '>'
+      }.merge(
+        {
+          # various kinds of space characters
+          "\xc2\xa0"     => " ",
+          "\xe2\x80\x80" => " ",
+          "\xe2\x80\x81" => " ",
+          "\xe2\x80\x82" => " ",
+          "\xe2\x80\x83" => " ",
+          "\xe2\x80\x84" => " ",
+          "\xe2\x80\x85" => " ",
+          "\xe2\x80\x86" => " ",
+          "\xe2\x80\x87" => " ",
+          "\xe2\x80\x88" => " ",
+          "\xe2\x80\x89" => " ",
+          "\xe2\x80\x8a" => " ",
+          "\xe2\x81\x9f" => " ",
+          "\xe3\x80\x80" => " ",
+        }
+      ).freeze
 
       attr_reader :approximations
 
