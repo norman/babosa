@@ -11,6 +11,6 @@ describe Babosa::Transliterator::Norwegian do
       "Åre"    => "Aare",
       "Håkon"  => "Haakon"
     }
-    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end
 end

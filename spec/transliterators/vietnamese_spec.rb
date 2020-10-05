@@ -11,6 +11,6 @@ describe Babosa::Transliterator::Vietnamese do
       "thật"    => "that",
       "khổ"     => "kho"
     }
-    examples.each { |k, v| expect(t.transliterate(k)).to eql(v)}
+    examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end
 end
