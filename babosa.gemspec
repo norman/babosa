@@ -1,6 +1,6 @@
 require File.expand_path("lib/babosa/version", __dir__)
 
-spec = Gem::Specification.new do |s|
+Gem::Specification.new do |s|
   s.name                  = "babosa"
   s.version               = Babosa::Version::STRING
   s.author                = "Norman Clarke"
@@ -9,11 +9,11 @@ spec = Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.5.0"
 
   s.summary           = "A library for creating slugs."
-  s.description       = <<-EOM
+  s.description       = <<-TEXT
     A library for creating slugs. Babosa an extraction and improvement of the
     string code from FriendlyId, intended to help developers create similar
     libraries or plugins.
-  EOM
+  TEXT
   s.test_files       = Dir.glob "test/**/*_test.rb"
   s.files            = Dir["lib/**/*.rb", "lib/**/*.rake", "*.md", "MIT-LICENSE",
                            "Rakefile", "init.rb", "generators/**/*.*", "spec/**/*.*", ".gemtest"]

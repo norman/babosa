@@ -1,4 +1,6 @@
-# Cop supports --auto-correct.
+AllCops:
+  TargetRubyVersion: 2.5
+
 # Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
 # SupportedHashRocketStyles: key, separator, table
 # SupportedColonStyles: key, separator, table
@@ -58,3 +60,9 @@ Style/StringLiterals:
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInHashLiteral:
   EnforcedStyle: no_comma
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false

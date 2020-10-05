@@ -1,5 +1,6 @@
 module Babosa
   # Codepoints for characters that will be deleted by +#word_chars!+.
+  # rubocop:disable Layout/ArrayAlignment
   STRIPPABLE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19,
     20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 33, 34, 35, 36, 37, 38, 39,
     40, 41, 42, 43, 44, 45, 46, 47, 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94,
@@ -7,7 +8,8 @@ module Babosa
     137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
     152, 153, 154, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165, 166, 167,
     168, 169, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 182, 183, 184,
-    185, 187, 188, 189, 190, 191, 215, 247, 8203, 8204, 8205, 8239, 65279]
+    185, 187, 188, 189, 190, 191, 215, 247, 8203, 8204, 8205, 8239, 65279].freeze
+  # rubocop:enable Layout/ArrayAlignment
 
   # Windows CP1252 codepoints mapped to Unicode bytes.
   CP1252 = {
@@ -72,6 +74,10 @@ module Babosa
       @wrapped_string.__send__(symbol, *args, &block)
     end
 
+    def respond_to_missing?(name)
+      @wrapped_string.respond_to?(name)
+    end
+
     # @param string [#to_s] The string to use as the basis of the Identifier.
     def initialize(string)
       @wrapped_string = string.to_s
@@ -79,12 +85,12 @@ module Babosa
       normalize_utf8!
     end
 
-    def ==(value)
-      @wrapped_string.to_s == value.to_s
+    def ==(other)
+      @wrapped_string.to_s == other.to_s
     end
 
-    def eql?(value)
-      @wrapped_string == value
+    def eql?(other)
+      @wrapped_string == other
     end
 
     def empty?
@@ -158,9 +164,10 @@ module Babosa
     def normalize!(options = nil)
       options = default_normalize_options.merge(options || {})
 
-      if translit_option = options[:transliterate]
-        if translit_option != true
-          transliterate!(*translit_option)
+      if options[:transliterate]
+        option = options[:transliterate]
+        if option != true
+          transliterate!(*option)
         else
           transliterate!(*options[:transliterations])
         end
@@ -179,11 +186,10 @@ module Babosa
       leader, trailer = @wrapped_string.strip.scan(/\A(.+)(.)\z/).flatten
       leader          = leader.to_s.dup
       trailer         = trailer.to_s.dup
+      trailer.downcase!
       if allow_bangs
-        trailer.downcase!
         trailer.gsub!(/[^a-z0-9!=\\?]/, "")
       else
-        trailer.downcase!
         trailer.gsub!(/[^a-z0-9]/, "")
       end
       id = leader.to_identifier
@@ -268,13 +274,13 @@ module Babosa
     end
 
     %w[transliterate clean downcase word_chars normalize normalize_utf8
-      tidy_bytes to_ascii to_ruby_method truncate truncate_bytes upcase
-      with_separators].each do |method|
-      class_eval(<<-EOM, __FILE__, __LINE__ + 1)
+       tidy_bytes to_ascii to_ruby_method truncate truncate_bytes upcase
+       with_separators].each do |method|
+      class_eval(<<-METHOD, __FILE__, __LINE__ + 1)
         def #{method}(*args)
           send_to_new_instance(:#{method}!, *args)
         end
-      EOM
+      METHOD
     end
 
     def to_identifier

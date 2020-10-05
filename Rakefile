@@ -13,7 +13,6 @@ begin
   YARD::Rake::YardocTask.new do |t|
     t.options = ["--output-dir=doc"]
   end
-rescue LoadError
 end
 
 begin
@@ -22,11 +21,7 @@ begin
     ENV["COV"] = "true"
     Rake::Task["spec"].execute
   end
-rescue LoadError
 end
-
-gemspec = File.expand_path("babosa.gemspec", __dir__)
-Gem::PackageTask.new(eval(File.read(gemspec))) { |pkg| } if File.exist? gemspec
 
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
