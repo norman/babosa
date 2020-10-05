@@ -12,4 +12,3 @@ module Babosa
     end
   end
 end
-
