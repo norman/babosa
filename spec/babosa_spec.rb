@@ -10,7 +10,7 @@ describe Babosa::Identifier do
   %w[approximate_ascii clean downcase word_chars normalize to_ascii upcase with_dashes].each do |method|
     describe "##{method}" do
       it "should work with invalid UTF-8 strings" do
-        expect {"\x93abc".to_slug.send method}.not_to raise_exception
+        expect { "\x93abc".to_slug.send method }.not_to raise_exception
       end
     end
   end
@@ -148,7 +148,7 @@ describe Babosa::Identifier do
 
     it "should raise an error when it would generate an impossible method name" do
       # "1".to_identifier.to_ruby_method
-      expect {"1".to_identifier.to_ruby_method}.to raise_error(Babosa::Identifier::Error)
+      expect { "1".to_identifier.to_ruby_method }.to raise_error(Babosa::Identifier::Error)
     end
 
     it "should raise Babosa::Error error when the string is nil" do
