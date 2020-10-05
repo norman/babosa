@@ -95,7 +95,7 @@ module Babosa
         "Ѵ" => "Yh",
         "ѵ" => "yh",
         "Ґ" => "G",
-        "ґ" => "g",
+        "ґ" => "g"
       }.freeze
 
       def transliterate(string)

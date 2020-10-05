@@ -55,7 +55,7 @@ module Babosa
           "\xe2\x80\x89" => " ",
           "\xe2\x80\x8a" => " ",
           "\xe2\x81\x9f" => " ",
-          "\xe3\x80\x80" => " ",
+          "\xe3\x80\x80" => " "
         }
       ).freeze
 

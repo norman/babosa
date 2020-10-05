@@ -123,7 +123,4 @@ Style/StringLiterals:
 # Configuration parameters: EnforcedStyleForMultiline.
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
 Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'lib/babosa/transliterator/base.rb'
-    - 'lib/babosa/transliterator/cyrillic.rb'
-    - 'spec/transliterators/serbian_spec.rb'
+  EnforcedStyle: no_comma
