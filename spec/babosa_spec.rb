@@ -150,5 +150,9 @@ describe Babosa::Identifier do
       # "1".to_identifier.to_ruby_method
       expect {"1".to_identifier.to_ruby_method}.to raise_error(Babosa::Identifier::Error)
     end
+
+    it "should raise Babosa::Error error when the string is nil" do
+      expect { "".to_slug.to_ruby_method }.to raise_error(Babosa::Identifier::Error)
+    end
   end
 end

@@ -1,5 +1,9 @@
 # Babosa Changelog
 
+## 1.0.4
+
+* Fix nil being cast to frozen string (https://github.com/norman/babosa/pull/52)
+
 ## 1.0.3
 
 * Fix Active Support 6 deprecations (https://github.com/norman/babosa/pull/50)
