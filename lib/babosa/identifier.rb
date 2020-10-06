@@ -269,7 +269,7 @@ module Babosa
     # @return String
     def tidy_bytes!
       @wrapped_string = @wrapped_string.scrub do |bad|
-        tidy_byte(*bad.bytes).flatten.compact.pack("C*").codepoints.pack("U*")
+        tidy_byte(*bad.bytes).flatten.compact.pack("C*").force_encoding("UTF-8")
       end
     end
 
