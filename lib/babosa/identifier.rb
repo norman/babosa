@@ -153,7 +153,7 @@ module Babosa
     # anything other than letters, numbers, spaces, newlines and linefeeds.
     # @return String
     def word_chars!
-      @wrapped_string = (unpack("U*") - Babosa::STRIPPABLE).pack("U*")
+      @wrapped_string = (codepoints - Babosa::STRIPPABLE).pack("U*")
     end
 
     # Normalize the string for use as a URL slug. Note that in this context,
@@ -215,7 +215,7 @@ module Babosa
     #   "üéøá".to_identifier.truncate(3) #=> "üéø"
     # @return String
     def truncate!(max)
-      @wrapped_string = unpack("U*")[0...max].pack("U*")
+      @wrapped_string = codepoints[0...max].pack("U*")
     end
 
     # Truncate the string to +max+ bytes. This can be useful for ensuring that
@@ -230,7 +230,7 @@ module Babosa
 
       curr = 0
       new = []
-      unpack("U*").each do |char|
+      codepoints.each do |char|
         break if curr > max
 
         char = [char].pack("U")
@@ -269,7 +269,7 @@ module Babosa
     # @return String
     def tidy_bytes!
       @wrapped_string = @wrapped_string.scrub do |bad|
-        tidy_byte(*bad.bytes).flatten.compact.pack("C*").unpack("U*").pack("U*")
+        tidy_byte(*bad.bytes).flatten.compact.pack("C*").codepoints.pack("U*")
       end
     end
 

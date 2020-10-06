@@ -68,7 +68,7 @@ module Babosa
           @approximations = {}
         end
         self.class.const_get(:APPROXIMATIONS).inject(@approximations) do |memo, object|
-          index       = object[0].unpack("U").shift
+          index       = object[0].codepoints.shift
           value       = object[1].unpack("C*")
           memo[index] = value.length == 1 ? value[0] : value
           memo
@@ -84,7 +84,7 @@ module Babosa
 
       # Transliterates a string.
       def transliterate(string)
-        string.unpack("U*").map { |char| self[char] || char }.flatten.pack("U*")
+        string.codepoints.map { |char| self[char] || char }.flatten.pack("U*")
       end
     end
   end
