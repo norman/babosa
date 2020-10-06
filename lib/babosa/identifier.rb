@@ -230,7 +230,7 @@ module Babosa
 
       curr = 0
       new = []
-      codepoints.each do |char|
+      each_codepoint do |char|
         break if curr > max
 
         char = [char].pack("U")
