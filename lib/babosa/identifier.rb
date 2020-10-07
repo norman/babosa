@@ -231,18 +231,6 @@ module Babosa
       @wrapped_string = @wrapped_string.gsub(/\s/u, char)
     end
 
-    # Perform UTF-8 sensitive upcasing.
-    # @return String
-    def upcase!
-      @wrapped_string = @wrapped_string.upcase
-    end
-
-    # Perform UTF-8 sensitive downcasing.
-    # @return String
-    def downcase!
-      @wrapped_string = @wrapped_string.downcase
-    end
-
     # Perform Unicode composition on the wrapped string.
     # @return String
     def normalize_utf8!
