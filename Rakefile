@@ -14,6 +14,8 @@ begin
   YARD::Rake::YardocTask.new do |t|
     t.options = ["--output-dir=doc"]
   end
+rescue LoadError
+  puts "Yard not present"
 end
 
 begin
@@ -22,6 +24,8 @@ begin
     ENV["COV"] = "true"
     Rake::Task["spec"].execute
   end
+rescue LoadError
+  puts "SimpleCov not present"
 end
 
 require "rspec/core/rake_task"
