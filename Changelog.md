@@ -2,8 +2,10 @@
 
 ## 2.0.0
 
+* Refactor internals for simplicity
 * Use built-in Ruby UTF-8 support in places of other gems.
 * Drop support for Ruby < 2.5.0.
+* `Babosa::Identifier#word_chars` no longer removes dashes
 
 ## 1.0.4
 

@@ -134,14 +134,14 @@ module Babosa
     end
 
     # Remove any non-word characters. For this library's purposes, this means
-    # anything other than letters, numbers, spaces, underscores, newlines and
-    # linefeeds.
+    # anything other than letters, numbers, spaces, underscores, dashes,
+    # newlines, and linefeeds.
     # @return String
     def word_chars!
       # `\P{L}` = Any non-Unicode letter
       # `&&` = add the following character class
       # `[^ _\n\r]` = Anything other than space, underscore, newline or linefeed
-      gsub!(/[\P{L}&&[^ _\n\r]]/, "")
+      gsub!(/[\P{L}&&[^ _\-\n\r]]/, "")
       @wrapped_string
     end
 
@@ -162,7 +162,6 @@ module Babosa
         end
       end
       to_ascii! if options[:to_ascii]
-      clean!
       word_chars!
       clean!
       downcase!
@@ -175,7 +174,6 @@ module Babosa
       last_char = self[-1]
       transliterate!
       to_ascii!
-      clean!
       word_chars!
       clean!
       @wrapped_string += last_char if allow_bangs && ["!", "?"].include?(last_char)
