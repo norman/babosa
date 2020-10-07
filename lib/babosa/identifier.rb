@@ -194,7 +194,7 @@ module Babosa
     #   "üéøá".to_identifier.truncate(3) #=> "üéø"
     # @return String
     def truncate!(max)
-      @wrapped_string = codepoints[0...max].pack("U*")
+      @wrapped_string = chars[0...max].join
     end
 
     # Truncate the string to +max+ bytes. This can be useful for ensuring that
