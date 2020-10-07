@@ -49,7 +49,7 @@ module Babosa
     # characters that are Roman-alphabet characters + diacritics. Non-letter
     # characters are left unmodified.
     #
-    #   string = Identifier.new "Łódź
+    #   string = Identifier.new "Łódź, Poland"
     #   string.transliterate                 # => "Lodz, Poland"
     #   string = Identifier.new "日本"
     #   string.transliterate                 # => "日本"
@@ -74,7 +74,7 @@ module Babosa
     # to remove non-ASCII characters such as "¡" and "¿", use {#to_ascii!}:
     #
     #   string.transliterate!(:spanish)       # => "¡Feliz anio!"
-    #   string.transliterate!                 # => "¡Feliz anio!"
+    #   string.to_ascii!                      # => "Feliz anio!"
     #
     # @param *args <Symbol>
     # @return String
