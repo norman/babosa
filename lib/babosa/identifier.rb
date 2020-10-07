@@ -146,7 +146,7 @@ module Babosa
     # replaces multiple whitespace characters with a single space.
     # @return String
     def clean!
-      @wrapped_string = @wrapped_string.gsub("-", " ").squeeze(" ").strip
+      @wrapped_string = @wrapped_string.gsub(/[- ]+/, " ").strip
     end
 
     # Remove any non-word characters. For this library's purposes, this means
