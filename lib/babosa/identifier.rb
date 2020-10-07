@@ -121,7 +121,7 @@ module Babosa
         transliterator = Transliterator.get(kind).instance
         @wrapped_string = transliterator.transliterate(@wrapped_string)
       end
-      @wrapped_string
+      to_s
     end
 
     # Converts dashes to spaces, removes leading and trailing spaces, and
@@ -130,7 +130,7 @@ module Babosa
     def clean!
       gsub!(/[- ]+/, " ")
       strip!
-      @wrapped_string
+      to_s
     end
 
     # Remove any non-word characters. For this library's purposes, this means
@@ -142,7 +142,7 @@ module Babosa
       # `&&` = add the following character class
       # `[^ _\n\r]` = Anything other than space, underscore, newline or linefeed
       gsub!(/[\P{L}&&[^ _\-\n\r]]/, "")
-      @wrapped_string
+      to_s
     end
 
     # Normalize the string for use as a URL slug. Note that in this context,
@@ -186,7 +186,7 @@ module Babosa
     # @return String
     def to_ascii!
       gsub!(/[^\x00-\x7f]/u, "")
-      @wrapped_string
+      to_s
     end
 
     # Truncate the string to +max+ characters.
@@ -205,7 +205,7 @@ module Babosa
     #   "üéøá".to_identifier.truncate_bytes(3) #=> "ü"
     # @return String
     def truncate_bytes!(max)
-      return @wrapped_string if bytesize <= max
+      return to_s if bytesize <= max
 
       curr = 0
       new = []
@@ -222,14 +222,14 @@ module Babosa
     # @return String
     def with_separators!(char = "-")
       gsub!(/\s/u, char)
-      @wrapped_string
+      to_s
     end
 
     # Perform Unicode composition on the wrapped string.
     # @return String
     def normalize_utf8!
       unicode_normalize!(:nfc)
-      @wrapped_string
+      to_s
     end
 
     # Attempt to convert characters encoded using CP1252 and IS0-8859-1 to
@@ -239,7 +239,7 @@ module Babosa
       scrub! do |bad|
         tidy_byte(*bad.bytes).flatten.compact.pack("C*").force_encoding("UTF-8")
       end
-      @wrapped_string
+      to_s
     end
 
     %w[transliterate clean downcase word_chars normalize normalize_utf8
