@@ -74,8 +74,8 @@ module Babosa
       @wrapped_string.__send__(symbol, *args, &block)
     end
 
-    def respond_to_missing?(name)
-      @wrapped_string.respond_to?(name)
+    def respond_to_missing?(name, include_all)
+      @wrapped_string.respond_to?(name, include_all)
     end
 
     # @param string [#to_s] The string to use as the basis of the Identifier.
