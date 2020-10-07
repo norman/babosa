@@ -74,11 +74,11 @@ module Babosa
     end
 
     def ==(other)
-      @wrapped_string.to_s == other.to_s
+      to_s == other.to_s
     end
 
     def eql?(other)
-      @wrapped_string == other
+      self == other
     end
 
     # Approximate an ASCII string. This works only for Western strings using
@@ -128,8 +128,8 @@ module Babosa
     # replaces multiple whitespace characters with a single space.
     # @return String
     def clean!
-      @wrapped_string = @wrapped_string.gsub(/[- ]+/, " ")
-      @wrapped_string.strip!
+      @wrapped_string = gsub(/[- ]+/, " ")
+      strip!
       @wrapped_string
     end
 
@@ -141,7 +141,7 @@ module Babosa
       # `\P{L}` = Any non-Unicode letter
       # `&&` = add the following character class
       # `[^ _\n\r]` = Anything other than space, underscore, newline or linefeed
-      @wrapped_string = @wrapped_string.gsub(/[\P{L}&&[^ _\n\r]]/, "")
+      @wrapped_string = gsub(/[\P{L}&&[^ _\n\r]]/, "")
     end
 
     # Normalize the string for use as a URL slug. Note that in this context,
@@ -186,7 +186,7 @@ module Babosa
     # Delete any non-ascii characters.
     # @return String
     def to_ascii!
-      @wrapped_string = @wrapped_string.gsub(/[^\x00-\x7f]/u, "")
+      @wrapped_string = gsub(/[^\x00-\x7f]/u, "")
     end
 
     # Truncate the string to +max+ characters.
@@ -205,7 +205,7 @@ module Babosa
     #   "üéøá".to_identifier.truncate_bytes(3) #=> "ü"
     # @return String
     def truncate_bytes!(max)
-      return @wrapped_string if @wrapped_string.bytesize <= max
+      return @wrapped_string if bytesize <= max
 
       curr = 0
       new = []
@@ -222,20 +222,20 @@ module Babosa
     # Replaces whitespace with dashes ("-").
     # @return String
     def with_separators!(char = "-")
-      @wrapped_string = @wrapped_string.gsub(/\s/u, char)
+      @wrapped_string = gsub(/\s/u, char)
     end
 
     # Perform Unicode composition on the wrapped string.
     # @return String
     def normalize_utf8!
-      @wrapped_string = @wrapped_string.unicode_normalize(:nfc)
+      @wrapped_string = unicode_normalize(:nfc)
     end
 
     # Attempt to convert characters encoded using CP1252 and IS0-8859-1 to
     # UTF-8.
     # @return String
     def tidy_bytes!
-      @wrapped_string = @wrapped_string.scrub do |bad|
+      @wrapped_string = scrub do |bad|
         tidy_byte(*bad.bytes).flatten.compact.pack("C*").force_encoding("UTF-8")
       end
     end
