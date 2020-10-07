@@ -209,10 +209,9 @@ module Babosa
 
       curr = 0
       new = []
-      each_codepoint do |char|
+      each_char do |char|
         break if curr > max
 
-        char = [char].pack("U")
         curr += char.bytesize
         new << char if curr <= max
       end
