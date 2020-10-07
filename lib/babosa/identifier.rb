@@ -177,23 +177,14 @@ module Babosa
 
     # Normalize a string so that it can safely be used as a Ruby method name.
     def to_ruby_method!(allow_bangs = true)
-      leader, trailer = @wrapped_string.strip.scan(/\A(.+)(.)\z/).flatten
-      leader          = leader.to_s.dup
-      trailer         = trailer.to_s.dup
-      trailer.downcase!
-      if allow_bangs
-        trailer.gsub!(/[^a-z0-9!=\\?]/, "")
-      else
-        trailer.gsub!(/[^a-z0-9]/, "")
-      end
-      id = leader.to_identifier
-      id.transliterate!
-      id.to_ascii!
-      id.clean!
-      id.word_chars!
-      id.clean!
-      @wrapped_string = id.to_s + trailer
-      raise Error, "Input generates impossible Ruby method name" if @wrapped_string == ""
+      last_char = self[-1]
+      transliterate!
+      to_ascii!
+      clean!
+      word_chars!
+      clean!
+      @wrapped_string += last_char if allow_bangs && ["!", "?"].include?(last_char)
+      raise Error, "Input generates impossible Ruby method name" if self == ""
 
       with_separators!("_")
     end
