@@ -224,7 +224,7 @@ module Babosa
 
     # The default options for {#normalize!}. Override to set your own defaults.
     def default_normalize_options
-      {transliterate: true, max_length: 255, separator: "-"}
+      {transliterate: :latin, max_length: 255, separator: "-"}
     end
 
     alias approximate_ascii transliterate
