@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "benchmark"
 require "rubygems"
 require "bundler/setup"

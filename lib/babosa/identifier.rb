@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Babosa
   # This class provides some string-manipulation methods specific to slugs.
   #

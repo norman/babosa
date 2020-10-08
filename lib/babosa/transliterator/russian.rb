@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Babosa
   module Transliterator
     class Russian < Cyrillic
