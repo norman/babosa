@@ -3,7 +3,7 @@
 module Babosa
   module Transliterator
     class Spanish < Latin
-      APPROXIMATIONS = { "ñ" => "ni", "Ñ" => "Ni" }.freeze
+      APPROXIMATIONS = {"ñ" => "ni", "Ñ" => "Ni"}.freeze
     end
   end
 end
