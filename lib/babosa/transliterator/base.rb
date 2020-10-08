@@ -71,7 +71,7 @@ module Babosa
         end
         self.class.const_get(:APPROXIMATIONS).inject(@approximations) do |memo, object|
           index       = object[0].codepoints.shift
-          value       = object[1].unpack("C*")
+          value       = object[1].codepoints
           memo[index] = value.length == 1 ? value[0] : value
           memo
         end
