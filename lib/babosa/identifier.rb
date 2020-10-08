@@ -105,7 +105,7 @@ module Babosa
       # `\P{L}` = Any non-Unicode letter
       # `&&` = add the following character class
       # `[^ _\n\r]` = Anything other than space, underscore, newline or linefeed
-      gsub!(/[\P{L}&&[^ _\-\n\r]]/, "")
+      gsub!(/[[^\p{letter}]&&[^ _\-\n\r]]/, "")
       to_s
     end
 
