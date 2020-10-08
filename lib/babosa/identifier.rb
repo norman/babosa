@@ -172,9 +172,7 @@ module Babosa
     # @return String
     def truncate_bytes!(max)
       truncate!(max)
-      until bytesize <= max do
-        chop!
-      end
+      chop! until bytesize <= max
     end
 
     # Replaces whitespace with dashes ("-").
