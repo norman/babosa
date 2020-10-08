@@ -160,7 +160,7 @@ module Babosa
     #   "üéøá".to_identifier.truncate(3) #=> "üéø"
     # @return String
     def truncate!(max)
-      @wrapped_string = chars.first(max).join
+      @wrapped_string = slice(0, max)
     end
 
     # Truncate the string to +max+ bytes. This can be useful for ensuring that
