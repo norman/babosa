@@ -138,11 +138,11 @@ describe Babosa::Identifier do
       expect("¿¿¿hello... world???".to_slug.to_ruby_method).to eql("hello_world?")
       expect("カタカナ: katakana is über cool".to_slug.to_ruby_method).to eql("katakana_is_uber_cool")
       expect("カタカナ: katakana is über cool!".to_slug.to_ruby_method).to eql("katakana_is_uber_cool!")
-      expect("カタカナ: katakana is über cool".to_slug.to_ruby_method(false)).to eql("katakana_is_uber_cool")
+      expect("カタカナ: katakana is über cool".to_slug.to_ruby_method(allow_bangs: false)).to eql("katakana_is_uber_cool")
     end
 
     it "should optionally remove trailing punctuation" do
-      expect("¿¿¿hello... world???".to_slug.to_ruby_method(false)).to eql("hello_world")
+      expect("¿¿¿hello... world???".to_slug.to_ruby_method(allow_bangs: false)).to eql("hello_world")
     end
 
     it "should raise an error when it would generate an impossible method name" do
