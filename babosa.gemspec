@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require File.expand_path("lib/babosa/version", __dir__)
 
 Gem::Specification.new do |s|
@@ -20,6 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec", ">= 3.7.0"
-  s.add_development_dependency "rubocop", ">= 0.92.0"
+  s.add_development_dependency "rubocop", ">= 0.93.0"
   s.add_development_dependency "simplecov"
 end
