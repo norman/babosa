@@ -33,7 +33,7 @@ module Babosa
 
     # @param string [#to_s] The string to use as the basis of the Identifier.
     def initialize(string)
-      @wrapped_string = string.to_s
+      @wrapped_string = string.to_s.dup
       tidy_bytes!
       normalize_utf8!
     end
