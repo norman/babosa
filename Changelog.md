@@ -6,6 +6,7 @@
 * Use built-in Ruby UTF-8 support in places of other gems.
 * Drop support for Ruby < 2.5.0.
 * `Babosa::Identifier#word_chars` no longer removes dashes
+* `Babosa::Identifier#to_ruby_method` default argument `allow_bangs` is now a keyword argument
 
 ## 1.0.4
 

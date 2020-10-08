@@ -136,7 +136,7 @@ module Babosa
     end
 
     # Normalize a string so that it can safely be used as a Ruby method name.
-    def to_ruby_method!(allow_bangs = true)
+    def to_ruby_method!(allow_bangs: true)
       last_char = self[-1]
       transliterate!
       to_ascii!
