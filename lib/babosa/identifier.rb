@@ -171,17 +171,10 @@ module Babosa
     #   "üéøá".to_identifier.truncate_bytes(3) #=> "ü"
     # @return String
     def truncate_bytes!(max)
-      return to_s if bytesize <= max
-
-      curr = 0
-      new = []
-      each_char do |char|
-        break if curr > max
-
-        curr += char.bytesize
-        new << char if curr <= max
+      truncate!(max)
+      until bytesize <= max do
+        chop!
       end
-      @wrapped_string = new.join
     end
 
     # Replaces whitespace with dashes ("-").
