@@ -6,8 +6,8 @@ require "rake/clean"
 require "rubygems/package_task"
 require "rubocop/rake_task"
 
-task :default => [:rubocop, :spec]
-task :test    => :spec
+task default: [:rubocop, :spec]
+task test: :spec
 
 CLEAN << "pkg" << "doc" << "coverage" << ".yardoc"
 
