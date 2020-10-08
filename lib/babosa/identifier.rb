@@ -116,8 +116,8 @@ module Babosa
     # truncating to 255 bytes and converting whitespace to dashes.
     # @param Options
     # @return String
-    def normalize!(options = nil)
-      options = default_normalize_options.merge(options || {})
+    def normalize!(options = {})
+      options = default_normalize_options.merge(options)
 
       if options[:transliterate]
         option = options[:transliterate]
