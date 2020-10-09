@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path("spec_helper", __dir__)
+require "spec_helper"
 
 describe Babosa::Identifier do
   it "should respond_to :empty?" do

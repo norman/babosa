@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path("lib/babosa/version", __dir__)
+require_relative "lib/babosa/version"
 
 Gem::Specification.new do |s|
   s.name                  = "babosa"
