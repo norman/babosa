@@ -107,7 +107,7 @@ module Babosa
     #
     # @return String
     def word_chars!
-      # `\P{L}` = Any non-Unicode letter
+      # `^\p{letter}` = Any non-Unicode letter
       # `&&` = add the following character class
       # `[^ _\n\r]` = Anything other than space, underscore, newline or linefeed
       gsub!(/[[^\p{letter}]&&[^ _\-\n\r]]/, "")
