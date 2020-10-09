@@ -2,6 +2,10 @@
 
 ## 2.0.0
 
+This release contains no important changes. I had a week off from work and
+decided to refactor the code.  However there are some small breaking changes so
+I have released it as 2.0.0.
+
 * Refactor internals for simplicity
 * Use built-in Ruby UTF-8 support in places of other gems.
 * Drop support for Ruby < 2.5.0.

@@ -10,7 +10,7 @@ module Babosa
   # it is generated dynamically.
   #
   # All of the bang methods return an instance of String, while the bangless
-  # versions return an instance of Babosa::Identifier, so that calls to methods
+  # versions return an instance of {Babosa::Identifier}, so that calls to methods
   # specific to this class can be chained:
   #
   #   string = Identifier.new("hello world")
@@ -47,18 +47,19 @@ module Babosa
       self == other
     end
 
-    # Approximate an ASCII string. This works only for Western strings using
-    # characters that are Roman-alphabet characters + diacritics. Non-letter
-    # characters are left unmodified.
+    # Approximate an ASCII string. This works only for strings using characters
+    # that are Roman-alphabet characters + diacritics. Non-letter characters
+    # are left unmodified.
     #
     #   string = Identifier.new "Łódź, Poland"
     #   string.transliterate                 # => "Lodz, Poland"
     #   string = Identifier.new "日本"
     #   string.transliterate                 # => "日本"
     #
-    # You can pass any key(s) from +Characters.approximations+ as arguments. This allows
-    # for contextual approximations. Various languages are supported, you can see which ones
-    # by looking at the source of {Babosa::Transliterator::Base}.
+    # You can pass the names of any transliterator class as arguments. This
+    # allows for contextual approximations. Various languages are supported,
+    # you can see which ones by looking at the source of
+    # {Babosa::Transliterator::Base}.
     #
     #   string = Identifier.new "Jürgen Müller"
     #   string.transliterate                 # => "Jurgen Muller"
@@ -92,6 +93,7 @@ module Babosa
 
     # Converts dashes to spaces, removes leading and trailing spaces, and
     # replaces multiple whitespace characters with a single space.
+    #
     # @return String
     def clean!
       gsub!(/[- ]+/, " ")
@@ -102,6 +104,7 @@ module Babosa
     # Remove any non-word characters. For this library's purposes, this means
     # anything other than letters, numbers, spaces, underscores, dashes,
     # newlines, and linefeeds.
+    #
     # @return String
     def word_chars!
       # `\P{L}` = Any non-Unicode letter
@@ -114,7 +117,8 @@ module Babosa
     # Normalize the string for use as a URL slug. Note that in this context,
     # +normalize+ means, strip, remove non-letters/numbers, downcasing,
     # truncating to 255 bytes and converting whitespace to dashes.
-    # @param Options
+    #
+    # @param options [Hash]
     # @return String
     def normalize!(options = {})
       options = default_normalize_options.merge(options)
@@ -136,6 +140,9 @@ module Babosa
     end
 
     # Normalize a string so that it can safely be used as a Ruby method name.
+    #
+    # @param allow_bangs [Boolean]
+    # @return String
     def to_ruby_method!(allow_bangs: true)
       last_char = self[-1]
       transliterate!
@@ -149,6 +156,7 @@ module Babosa
     end
 
     # Delete any non-ascii characters.
+    #
     # @return String
     def to_ascii!
       gsub!(/[^\x00-\x7f]/u, "")
@@ -156,8 +164,11 @@ module Babosa
     end
 
     # Truncate the string to +max+ characters.
+    #
     # @example
     #   "üéøá".to_identifier.truncate(3) #=> "üéø"
+    #
+    # @param max [Integer] The maximum number of characters.
     # @return String
     def truncate!(max)
       @wrapped_string = slice(0, max)
@@ -167,8 +178,11 @@ module Babosa
     # a UTF-8 string will always fit into a database column with a certain max
     # byte length. The resulting string may be less than +max+ if the string must
     # be truncated at a multibyte character boundary.
+    #
     # @example
     #   "üéøá".to_identifier.truncate_bytes(3) #=> "ü"
+    #
+    # @param max [Integer] The maximum number of bytes.
     # @return String
     def truncate_bytes!(max)
       truncate!(max)
@@ -176,6 +190,8 @@ module Babosa
     end
 
     # Replaces whitespace with dashes ("-").
+    #
+    # @param char [String] the separator character to use.
     # @return String
     def with_separators!(char = "-")
       gsub!(/\s/u, char)
@@ -183,6 +199,7 @@ module Babosa
     end
 
     # Perform Unicode composition on the wrapped string.
+    #
     # @return String
     def normalize_utf8!
       unicode_normalize!(:nfc)

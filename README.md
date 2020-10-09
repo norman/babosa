@@ -15,12 +15,16 @@ FriendlyId.
 
 ### Transliterate UTF-8 characters to ASCII
 
-    "Gölcük, Turkey".to_slug.transliterate.to_s #=> "Golcuk, Turkey"
+```ruby
+"Gölcük, Turkey".to_slug.transliterate.to_s #=> "Golcuk, Turkey"
+```
 
 ### Locale sensitive transliteration, with support for many languages
 
-    "Jürgen Müller".to_slug.transliterate.to_s           #=> "Jurgen Muller"
-    "Jürgen Müller".to_slug.transliterate(:german).to_s  #=> "Juergen Mueller"
+```ruby
+"Jürgen Müller".to_slug.transliterate.to_s           #=> "Jurgen Muller"
+"Jürgen Müller".to_slug.transliterate(:german).to_s  #=> "Juergen Mueller"
+```
 
 Currently supported languages include:
 
@@ -28,6 +32,7 @@ Currently supported languages include:
 * Danish
 * German
 * Greek
+* Hindi
 * Macedonian
 * Norwegian
 * Romanian
@@ -35,104 +40,125 @@ Currently supported languages include:
 * Serbian
 * Spanish
 * Swedish
+* Turkish
 * Ukrainian
 * Vietnamese
+
+Additionally there are generic transliterators for transliterating from the
+Cyrillic alphabet and Latin alphabet with diacritics. The Latin transliterator
+can be used, for example, with Czech. There is also a transliterator named
+"Hindi" which may be sufficient for other Indic languages using Devanagari, but
+I do not know enough to say whether the transliterations would make sense.
 
 I'll gladly accept contributions from fluent speakers to support more languages.
 
 ### Strip non-ASCII characters
 
-    "Gölcük, Turkey".to_slug.to_ascii.to_s #=> "Glck, Turkey"
+```ruby
+"Gölcük, Turkey".to_slug.to_ascii.to_s #=> "Glck, Turkey"
+```
 
 ### Truncate by characters
 
-    "üüü".to_slug.truncate(2).to_s #=> "üü"
+```ruby
+"üüü".to_slug.truncate(2).to_s #=> "üü"
+```
 
 ### Truncate by bytes
 
 This can be useful to ensure the generated slug will fit in a database column
 whose length is limited by bytes rather than UTF-8 characters.
 
-    "üüü".to_slug.truncate_bytes(2).to_s #=> "ü"
+```ruby
+"üüü".to_slug.truncate_bytes(2).to_s #=> "ü"
+```
 
 ### Remove punctuation chars
 
-    "this is, um, **really** cool, huh?".to_slug.word_chars.to_s #=> "this is um really cool huh"
+```ruby
+"this is, um, **really** cool, huh?".to_slug.word_chars.to_s #=> "this is um really cool huh"
+```
 
 ### All-in-one
 
-    "Gölcük, Turkey".to_slug.normalize.to_s #=> "golcuk-turkey"
+```ruby
+"Gölcük, Turkey".to_slug.normalize.to_s #=> "golcuk-turkey"
+```
 
 ### Other stuff
 
 #### Using Babosa With FriendlyId 4+
 
-    require "babosa"
+```ruby
+require "babosa"
 
-    class Person < ActiveRecord::Base
-      friendly_id :name, use: :slugged
+class Person < ActiveRecord::Base
+  friendly_id :name, use: :slugged
 
-      def normalize_friendly_id(input)
-        input.to_s.to_slug.normalize(transliterations: :russian).to_s
-      end
-    end
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
+  end
+end
+```
 
 #### UTF-8 support
 
-Babosa goes out of its way to handle [nasty Unicode issues you might never think
-you would have](https://github.com/norman/enc/blob/master/equivalence.rb) by
-checking, sanitizing and normalizing your string input.
+Babosa normalizes all input strings [to NFC](https://en.wikipedia.org/wiki/Unicode_equivalence#Normal_forms).
 
 #### Ruby Method Names
 
-Babosa can also generate strings for Ruby method names. (Yes, Ruby 1.9+ can use
+Babosa can generate strings for Ruby method names. (Yes, Ruby 1.9+ can use
 UTF-8 chars in method names, but you may not want to):
 
 
-    "this is a method".to_slug.to_ruby_method! #=> this_is_a_method
-    "über cool stuff!".to_slug.to_ruby_method! #=> uber_cool_stuff!
+```ruby
+"this is a method".to_slug.to_ruby_method! #=> this_is_a_method
+"über cool stuff!".to_slug.to_ruby_method! #=> uber_cool_stuff!
 
-    # You can also disallow trailing punctuation chars
-    "über cool stuff!".to_slug.to_ruby_method(false) #=> uber_cool_stuff
+# You can also disallow trailing punctuation chars
+"über cool stuff!".to_slug.to_ruby_method(allow_bangs: false) #=> uber_cool_stuff
+```
 
 #### Easy to Extend
 
 You can add custom transliterators for your language with very little code. For
 example here's the transliterator for German:
 
-    # encoding: utf-8
-    module Babosa
-      module Transliterator
-        class German < Latin
-          APPROXIMATIONS = {
-            "ä" => "ae",
-            "ö" => "oe",
-            "ü" => "ue",
-            "Ä" => "Ae",
-            "Ö" => "Oe",
-            "Ü" => "Ue"
-          }
-        end
-      end
+```ruby
+module Babosa
+  module Transliterator
+    class German < Latin
+      APPROXIMATIONS = {
+        "ä" => "ae",
+        "ö" => "oe",
+        "ü" => "ue",
+        "Ä" => "Ae",
+        "Ö" => "Oe",
+        "Ü" => "Ue"
+      }
     end
+  end
+end
+```
 
 And a spec (you can use this as a template):
 
-    require "spec_helper"
+```ruby
+require "spec_helper"
 
-    describe Babosa::Transliterator::German do
-      let(:t) { described_class.instance }
-      it_behaves_like "a latin transliterator"
+describe Babosa::Transliterator::German do
+  let(:t) { described_class.instance }
+  it_behaves_like "a latin transliterator"
 
-      it "should transliterate Eszett" do
-        t.transliterate("ß").should eql("ss")
-      end
+  it "should transliterate Eszett" do
+    t.transliterate("ß").should eql("ss")
+  end
 
-      it "should transliterate vowels with umlauts" do
-        t.transliterate("üöä").should eql("ueoeae")
-      end
-    end
-
+  it "should transliterate vowels with umlauts" do
+    t.transliterate("üöä").should eql("ueoeae")
+  end
+end
+```
 
 ### Rails 3.x and higher
 
@@ -146,45 +172,6 @@ look at Active Support's
 and
 [parameterize](http://api.rubyonrails.org/classes/ActiveSupport/Inflector.html#method-i-parameterize)
 to see if they suit your needs.
-
-### Babosa vs. Stringex
-
-Babosa provides much of the functionality provided by the
-[Stringex](https://github.com/rsl/stringex) gem, but in the subjective opinion
-of the author, is for most use cases a better choice.
-
-#### Fewer Features
-
-Stringex offers functionality for storing slugs in an Active Record model, like
-a simple version of [FriendlyId](http://github.com/norman/friendly_id), in
-addition to string processing. Babosa only does string processing.
-
-#### Less Aggressive Unicode Transliteration
-
-Stringex uses an agressive Unicode to ASCII mapping which outputs gibberish for
-almost anything but Western European langages and Mandarin Chinese. Babosa
-supports only languages for which fluent speakers have provided
-transliterations, to ensure that the output makes sense to users.
-
-#### Unicode Support
-
-Stringex does no Unicode normalization or validation before transliterating
-strings, so if you pass in strings with encoding errors or with different
-Unicode normalizations, you'll get unpredictable results.
-
-#### No Locale Assumptions
-
-Babosa avoids making assumptions about locales like Stringex does, so it doesn't
-offer transliterations like this out of the box:
-
-    "$12 worth of Ruby power".to_url => "12-dollars-worth-of-ruby-power"
-
-This is because the symbol "$" is used in many Latin American countries for the
-peso. Stringex does this in many places, for example, transliterating all Han
-characters into Pinyin, effectively treating Japanese text as if it were
-Mandarin Chinese.
-
-### More info
 
 Please see the [API docs](http://rubydoc.info/github/norman/babosa/master/frames) and source code for
 more info.
