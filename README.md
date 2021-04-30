@@ -1,5 +1,7 @@
 # Babosa
 
+[![Build Status](https://github.com/norman/babosa/actions/workflows/main.yml/badge.svg)](https://github.com/norman/babosa/actions)
+
 Babosa is a library for creating human-friendly identifiers, aka "slugs". It can
 also be useful for normalizing and sanitizing data.
 
