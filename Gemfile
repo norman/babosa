@@ -5,4 +5,4 @@
 source "https://rubygems.org"
 gemspec
 
-gem 'racc', platform: :jruby
+gem "racc", platform: :jruby
