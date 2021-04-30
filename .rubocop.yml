@@ -1758,15 +1758,6 @@ Lint/RedundantSafeNavigation:
   Enabled: pending
   VersionAdded: '0.93'
   Safe: false
-  IgnoredMethods:
-    - to_c
-    - to_f
-    - to_i
-    - to_r
-    - rationalize
-    - public_send
-    - send
-    - __send__
 
 Lint/RedundantSplatExpansion:
   Description: 'Checks for splat unnecessarily being called on literals.'
@@ -1905,12 +1896,6 @@ Lint/SuppressedException:
   AllowComments: true
   VersionAdded: '0.9'
   VersionChanged: '0.81'
-
-Lint/Syntax:
-  Description: 'Checks syntax error.'
-  Enabled: true
-  VersionAdded: '0.9'
-
 
 Lint/ToJSON:
   Description: 'Ensure #to_json includes an optional argument.'
@@ -2053,10 +2038,6 @@ Metrics/BlockLength:
   CountComments: false  # count full line comments?
   Max: 25
   CountAsOne: []
-  ExcludedMethods:
-    # By default, exclude the `#refine` method, as it tends to have larger
-    # associated blocks.
-    - refine
   Exclude:
     - '**/*.gemspec'
     - 'spec/**/*'
@@ -2099,7 +2080,6 @@ Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 15
   CountAsOne: []
-  ExcludedMethods: []
 
 Metrics/ModuleLength:
   Description: 'Avoid modules longer than 100 lines of code.'
@@ -2937,6 +2917,9 @@ Style/DocumentationMethod:
     - 'test/**/*'
   RequireForNonPublicMethods: false
 
+Style/DocumentDynamicEvalDefinition:
+  Enabled: false
+
 Style/DoubleCopDisableDirective:
   Description: 'Checks for double rubocop:disable comments on a single line.'
   Enabled: true
@@ -3050,8 +3033,6 @@ Style/ExplicitBlockArgument:
                   that just passes its arguments to another block.
   StyleGuide: '#block-argument'
   Enabled: pending
-  # May change the yielding arity.
-  Safe: false
   VersionAdded: '0.89'
 
 Style/ExponentialNotation:
@@ -3279,7 +3260,6 @@ Style/InfiniteLoop:
   Enabled: true
   VersionAdded: '0.26'
   VersionChanged: '0.61'
-  SafeAutoCorrect: true
 
 Style/InlineComment:
   Description: 'Avoid trailing inline comments.'

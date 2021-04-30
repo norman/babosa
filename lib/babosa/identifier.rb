@@ -125,10 +125,10 @@ module Babosa
 
       if options[:transliterate]
         option = options[:transliterate]
-        if option != true
-          transliterate!(*option)
-        else
+        if option == true
           transliterate!(*options[:transliterations])
+        else
+          transliterate!(*option)
         end
       end
       to_ascii! if options[:to_ascii]
