@@ -4,3 +4,5 @@
 # easily install gems. However, Babosa does not use Bundler internally.
 source "https://rubygems.org"
 gemspec
+
+gem 'racc', platform: :jruby
