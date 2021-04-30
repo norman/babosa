@@ -1,6 +1,6 @@
 # Babosa
 
-[![Build Status](https://travis-ci.org/norman/babosa.png?branch=master)](https://travis-ci.org/norman/babosa)
+[![Build Status](https://api.travis-ci.com/norman/babosa.svg?branch=master)](https://travis-ci.com/norman/babosa)
 
 
 Babosa is a library for creating human-friendly identifiers, aka "slugs". It can
