@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.email                 = "norman@njclarke.com"
   s.homepage              = "http://github.com/norman/babosa"
   s.required_ruby_version = ">= 2.5.0"
+  s.license               = "MIT"  
 
   s.summary           = "A library for creating slugs."
   s.description       = <<-TEXT
