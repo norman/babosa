@@ -216,14 +216,18 @@ module Babosa
       to_s
     end
 
-    %w[transliterate clean downcase word_chars normalize normalize_utf8
-       tidy_bytes to_ascii to_ruby_method truncate truncate_bytes upcase
-       with_separators].each do |method|
+    %w[clean downcase normalize normalize_utf8 tidy_bytes to_ascii
+       transliterate truncate truncate_bytes upcase with_separators
+       word_chars].each do |method|
       class_eval(<<-METHOD, __FILE__, __LINE__ + 1)
         def #{method}(*args)
-          send_to_new_instance(:#{method}!, *args)
+          with_new_instance { |id| id.send(:#{method}!, *args) }
         end
       METHOD
+    end
+
+    def to_ruby_method(allow_bangs: true)
+      with_new_instance { |id| id.to_ruby_method!(allow_bangs: allow_bangs) }
     end
 
     def to_identifier
@@ -243,12 +247,13 @@ module Babosa
 
     private
 
-    # Used as the basis of the bangless methods.
-    def send_to_new_instance(*args)
-      id = Identifier.allocate
-      id.instance_variable_set :@wrapped_string, to_s
-      id.send(*args)
-      id
+    # Used as the basis of the non-mutating (bangless) methods.
+    def with_new_instance
+      Identifier.allocate.tap do |id|
+        id.instance_variable_set :@wrapped_string, to_s
+
+        yield id
+      end
     end
   end
 end
