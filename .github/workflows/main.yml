@@ -16,8 +16,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BUNDLE_JOBS: 4
-      BUNDLE_PATH: vendor/bundle
       CI: true
 
     name: ${{ matrix.ruby }}
@@ -27,5 +25,4 @@ jobs:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
       - uses: actions/checkout@v2
-      - run: bundle install --path vendor/bundle
       - run: bundle exec rake
