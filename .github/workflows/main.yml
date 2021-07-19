@@ -20,9 +20,9 @@ jobs:
 
     name: ${{ matrix.ruby }}
     steps:
+      - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
-      - uses: actions/checkout@v2
       - run: bundle exec rake
