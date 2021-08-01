@@ -148,8 +148,8 @@ module Babosa
       transliterate!
       to_ascii!
       word_chars!
-      clean!
       strip_leading_digits!
+      clean!
       @wrapped_string += last_char if allow_bangs && ["!", "?"].include?(last_char)
       raise Error, "Input generates impossible Ruby method name" if self == ""
 
