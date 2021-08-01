@@ -195,8 +195,8 @@ tracker](http://github.com/norman/babosa/issues).
 
 ## Maintainers
 
-[Philip Arndt](https://github.com/parndt)
-[Norman Clarke](https://github.com/norman/)
+* [Philip Arndt](https://github.com/parndt)
+* [Norman Clarke](https://github.com/norman/)
 
 ## Contributors
 
