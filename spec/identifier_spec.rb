@@ -16,9 +16,9 @@ describe Babosa::Identifier do
   end
 
   describe "#word_chars" do
-    it "word_chars! should leave only letters and spaces" do
-      string = "a*$%^$@!@b$%^&*()*!c"
-      expect(string.to_slug.word_chars!).to match(/[a-z ]*/i)
+    it "word_chars! should leave only letters, numbers, and spaces" do
+      string = "a*$%^$@!@b$%^&*()*!c 123"
+      expect(string.to_slug.word_chars!).to eq "abc 123"
     end
   end
 
@@ -139,6 +139,7 @@ describe Babosa::Identifier do
       expect("カタカナ: katakana is über cool".to_slug.to_ruby_method).to eql("katakana_is_uber_cool")
       expect("カタカナ: katakana is über cool!".to_slug.to_ruby_method).to eql("katakana_is_uber_cool!")
       expect("カタカナ: katakana is über cool".to_slug.to_ruby_method(allow_bangs: false)).to eql("katakana_is_uber_cool")
+      expect("not 2 much 4 ruby".to_slug.to_ruby_method).to eql("not_2_much_4_ruby")
     end
 
     it "should optionally remove trailing punctuation" do
@@ -146,7 +147,6 @@ describe Babosa::Identifier do
     end
 
     it "should raise an error when it would generate an impossible method name" do
-      # "1".to_identifier.to_ruby_method
       expect { "1".to_identifier.to_ruby_method }.to raise_error(Babosa::Identifier::Error)
     end
 
