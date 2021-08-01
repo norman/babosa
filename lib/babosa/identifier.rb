@@ -110,7 +110,7 @@ module Babosa
       # `^\p{letter}` = Any non-Unicode letter
       # `&&` = add the following character class
       # `[^ _\n\r]` = Anything other than space, underscore, newline or linefeed
-      gsub!(/[[^\p{letter}]&&[^ _\-\n\r]]/, "")
+      gsub!(/[[^\p{letter}]&&[^ \d_\-\n\r]]/, "")
       to_s
     end
 
@@ -149,6 +149,7 @@ module Babosa
       to_ascii!
       word_chars!
       clean!
+      strip_leading_digits!
       @wrapped_string += last_char if allow_bangs && ["!", "?"].include?(last_char)
       raise Error, "Input generates impossible Ruby method name" if self == ""
 
@@ -206,6 +207,14 @@ module Babosa
       to_s
     end
 
+    # Strip any leading digits.
+    #
+    # @return String
+    def strip_leading_digits!
+      gsub!(/^\d+/, "")
+      to_s
+    end
+
     # Attempt to convert characters encoded using CP1252 and IS0-8859-1 to
     # UTF-8.
     # @return String
@@ -216,9 +225,9 @@ module Babosa
       to_s
     end
 
-    %w[clean downcase normalize normalize_utf8 tidy_bytes to_ascii
-       transliterate truncate truncate_bytes upcase with_separators
-       word_chars].each do |method|
+    %w[clean downcase normalize normalize_utf8 strip_leading_digits
+       tidy_bytes to_ascii transliterate truncate truncate_bytes upcase
+       with_separators word_chars].each do |method|
       class_eval(<<-METHOD, __FILE__, __LINE__ + 1)
         def #{method}(*args)
           with_new_instance { |id| id.send(:#{method}!, *args) }
