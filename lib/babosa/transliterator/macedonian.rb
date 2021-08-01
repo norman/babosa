@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "cyrillic"
+
 module Babosa
   module Transliterator
     class Macedonian < Cyrillic

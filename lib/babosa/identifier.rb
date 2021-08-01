@@ -22,7 +22,7 @@ module Babosa
     Error = Class.new(StandardError)
 
     attr_reader :wrapped_string
-    alias to_s wrapped_string
+    alias_method :to_s, :wrapped_string
 
     def method_missing(symbol, *args, &block)
       @wrapped_string.__send__(symbol, *args, &block)
@@ -226,8 +226,8 @@ module Babosa
     end
 
     %w[clean downcase normalize normalize_utf8 strip_leading_digits
-       tidy_bytes to_ascii transliterate truncate truncate_bytes upcase
-       with_separators word_chars].each do |method|
+      tidy_bytes to_ascii transliterate truncate truncate_bytes upcase
+      with_separators word_chars].each do |method|
       class_eval(<<-METHOD, __FILE__, __LINE__ + 1)
         def #{method}(*args)
           with_new_instance { |id| id.send(:#{method}!, *args) }
@@ -248,11 +248,11 @@ module Babosa
       {transliterate: :latin, max_length: 255, separator: "-"}
     end
 
-    alias approximate_ascii transliterate
-    alias approximate_ascii! transliterate!
-    alias with_dashes with_separators
-    alias with_dashes! with_separators!
-    alias to_slug to_identifier
+    alias_method :approximate_ascii, :transliterate
+    alias_method :approximate_ascii!, :transliterate!
+    alias_method :with_dashes, :with_separators
+    alias_method :with_dashes!, :with_separators!
+    alias_method :to_slug, :to_identifier
 
     private
 

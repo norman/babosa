@@ -40,40 +40,36 @@ module Babosa
         "；" => ";",
         "：" => ":",
         "《" => "<",
-        "》" => ">"
-      }.merge(
-        {
-          # various kinds of space characters
-          "\xc2\xa0"     => " ",
-          "\xe2\x80\x80" => " ",
-          "\xe2\x80\x81" => " ",
-          "\xe2\x80\x82" => " ",
-          "\xe2\x80\x83" => " ",
-          "\xe2\x80\x84" => " ",
-          "\xe2\x80\x85" => " ",
-          "\xe2\x80\x86" => " ",
-          "\xe2\x80\x87" => " ",
-          "\xe2\x80\x88" => " ",
-          "\xe2\x80\x89" => " ",
-          "\xe2\x80\x8a" => " ",
-          "\xe2\x81\x9f" => " ",
-          "\xe3\x80\x80" => " "
-        }
-      ).freeze
+        "》" => ">",
+        # various kinds of space characters
+        "\xc2\xa0" => " ",
+        "\xe2\x80\x80" => " ",
+        "\xe2\x80\x81" => " ",
+        "\xe2\x80\x82" => " ",
+        "\xe2\x80\x83" => " ",
+        "\xe2\x80\x84" => " ",
+        "\xe2\x80\x85" => " ",
+        "\xe2\x80\x86" => " ",
+        "\xe2\x80\x87" => " ",
+        "\xe2\x80\x88" => " ",
+        "\xe2\x80\x89" => " ",
+        "\xe2\x80\x8a" => " ",
+        "\xe2\x81\x9f" => " ",
+        "\xe3\x80\x80" => " "
+      }.freeze
 
       attr_reader :approximations
 
       def initialize
-        if self.class < Base
-          @approximations = self.class.superclass.instance.approximations.dup
+        @approximations = if self.class < Base
+          self.class.superclass.instance.approximations.dup
         else
-          @approximations = {}
+          {}
         end
-        self.class.const_get(:APPROXIMATIONS).inject(@approximations) do |memo, object|
-          index       = object[0].codepoints.shift
-          value       = object[1].codepoints
+        self.class.const_get(:APPROXIMATIONS).each_with_object(@approximations) do |object, memo|
+          index = object[0].codepoints.shift
+          value = object[1].codepoints
           memo[index] = value.length == 1 ? value[0] : value
-          memo
         end
         @approximations.freeze
       end
@@ -92,20 +88,7 @@ module Babosa
   end
 end
 
-require "babosa/transliterator/cyrillic"
-require "babosa/transliterator/latin"
-require "babosa/transliterator/bulgarian"
-require "babosa/transliterator/danish"
-require "babosa/transliterator/german"
-require "babosa/transliterator/hindi"
-require "babosa/transliterator/macedonian"
-require "babosa/transliterator/norwegian"
-require "babosa/transliterator/romanian"
-require "babosa/transliterator/russian"
-require "babosa/transliterator/serbian"
-require "babosa/transliterator/spanish"
-require "babosa/transliterator/swedish"
-require "babosa/transliterator/ukrainian"
-require "babosa/transliterator/greek"
-require "babosa/transliterator/vietnamese"
-require "babosa/transliterator/turkish"
+Dir[File.expand_path("*.rb", __dir__)]
+  .reject { |f| f.end_with?("base.rb") }
+  .sort
+  .each(&method(:require))

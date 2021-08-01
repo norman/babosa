@@ -4,9 +4,8 @@ require "rubygems"
 require "rake/testtask"
 require "rake/clean"
 require "rubygems/package_task"
-require "rubocop/rake_task"
 
-task default: [:rubocop, :spec]
+task default: [:spec]
 task test: :spec
 
 CLEAN << "pkg" << "doc" << "coverage" << ".yardoc"
@@ -32,4 +31,3 @@ end
 
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
-RuboCop::RakeTask.new

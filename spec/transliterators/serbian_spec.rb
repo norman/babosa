@@ -9,15 +9,15 @@ describe Babosa::Transliterator::Serbian do
 
   it "should transliterate Latin characters" do
     examples = {
-      "Ðorđe"  => "Djordje",
+      "Ðorđe" => "Djordje",
       "Inđija" => "Indjija",
       "Četiri" => "Chetiri",
       "četiri" => "chetiri",
-      "Škola"  => "Shkola",
-      "škola"  => "shkola",
-      "Ђорђе"  => "Djordje",
+      "Škola" => "Shkola",
+      "škola" => "shkola",
+      "Ђорђе" => "Djordje",
       "Инђија" => "Indjija",
-      "Школа"  => "Shkola"
+      "Школа" => "Shkola"
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end

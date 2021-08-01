@@ -8,10 +8,10 @@ describe Babosa::Transliterator::Bulgarian do
 
   it "should transliterate Cyrillic characters" do
     examples = {
-      "Ютия"    => "Iutiia",
-      "Чушка"   => "Chushka",
-      "кьорав"  => "kiorav",
-      "Щъркел"  => "Shturkel",
+      "Ютия" => "Iutiia",
+      "Чушка" => "Chushka",
+      "кьорав" => "kiorav",
+      "Щъркел" => "Shturkel",
       "полицай" => "policai"
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }

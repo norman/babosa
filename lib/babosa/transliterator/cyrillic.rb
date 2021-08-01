@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "base"
+
 module Babosa
   module Transliterator
     # Approximations are based on GOST 7.79, System B:

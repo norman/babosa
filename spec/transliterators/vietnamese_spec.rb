@@ -8,10 +8,10 @@ describe Babosa::Transliterator::Vietnamese do
 
   it "should transliterate various characters" do
     examples = {
-      "làm"     => "lam",
+      "làm" => "lam",
       "đàn ông" => "dan ong",
-      "thật"    => "that",
-      "khổ"     => "kho"
+      "thật" => "that",
+      "khổ" => "kho"
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end
