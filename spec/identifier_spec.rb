@@ -139,7 +139,7 @@ describe Babosa::Identifier do
       expect("カタカナ: katakana is über cool".to_slug.to_ruby_method).to eql("katakana_is_uber_cool")
       expect("カタカナ: katakana is über cool!".to_slug.to_ruby_method).to eql("katakana_is_uber_cool!")
       expect("カタカナ: katakana is über cool".to_slug.to_ruby_method(allow_bangs: false)).to eql("katakana_is_uber_cool")
-      expect("not 2 much 4 ruby".to_slug.to_ruby_method(allow_bangs: false)).to eql("not_2_much_4_ruby")
+      expect("not 2 much 4 ruby".to_slug.to_ruby_method).to eql("not_2_much_4_ruby")
     end
 
     it "should optionally remove trailing punctuation" do
