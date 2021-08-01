@@ -7,7 +7,7 @@ class String
   def to_identifier
     Babosa::Identifier.new self
   end
-  alias to_slug to_identifier
+  alias_method :to_slug, :to_identifier
 end
 
 require "babosa/transliterator/base"

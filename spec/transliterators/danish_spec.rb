@@ -9,7 +9,7 @@ describe Babosa::Transliterator::Danish do
   it "should transliterate various characters" do
     examples = {
       "Ærøskøbing" => "Aeroeskoebing",
-      "Årslev"     => "Aarslev"
+      "Årslev" => "Aarslev"
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end

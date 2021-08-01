@@ -8,16 +8,16 @@ describe Babosa::Transliterator::Turkish do
 
   it "should transliterate various characters" do
     examples = {
-      "Nâzım"          => "Nazim",
-      "sükûnet"        => "sukunet",
+      "Nâzım" => "Nazim",
+      "sükûnet" => "sukunet",
       "millîleştirmek" => "millilestirmek",
-      "mêmur"          => "memur",
-      "lôkman"         => "lokman",
-      "yoğurt"         => "yogurt",
-      "şair"           => "sair",
-      "İzmir"          => "Izmir",
-      "yığın"          => "yigin",
-      "çarşı"          => "carsi"
+      "mêmur" => "memur",
+      "lôkman" => "lokman",
+      "yoğurt" => "yogurt",
+      "şair" => "sair",
+      "İzmir" => "Izmir",
+      "yığın" => "yigin",
+      "çarşı" => "carsi"
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end

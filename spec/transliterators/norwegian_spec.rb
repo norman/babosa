@@ -9,9 +9,9 @@ describe Babosa::Transliterator::Norwegian do
   it "should transliterate various characters" do
     examples = {
       "Øivind" => "Oeivind",
-      "Bø"     => "Boe",
-      "Åre"    => "Aare",
-      "Håkon"  => "Haakon"
+      "Bø" => "Boe",
+      "Åre" => "Aare",
+      "Håkon" => "Haakon"
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end

@@ -8,10 +8,10 @@ describe Babosa::Transliterator::Romanian do
 
   it "should transliterate various characters" do
     examples = {
-      "Iași"      => "Iasi",
+      "Iași" => "Iasi",
       "Mehedinți" => "Mehedinti",
-      "Țară"      => "Tara",
-      "Șanț"      => "Sant"
+      "Țară" => "Tara",
+      "Șanț" => "Sant"
     }
     examples.each { |k, v| expect(t.transliterate(k)).to eql(v) }
   end
