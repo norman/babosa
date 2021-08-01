@@ -193,9 +193,10 @@ tracker](http://github.com/norman/babosa/issues).
 
 "Babosa" means "slug" in Spanish.
 
-## Author
+## Maintainers
 
-[Norman Clarke](http://njclarke.com)
+[Philip Arndt](https://github.com/parndt)
+[Norman Clarke](https://github.com/norman/)
 
 ## Contributors
 
@@ -217,10 +218,11 @@ Many thanks to the following people for their help:
 * [Martin Petrov](https://github.com/martin-petrov) - Bulgarian support
 * [Molte Emil Strange Andersen](https://github.com/molte) - Danish support
 * [Milan Dobrota](https://github.com/milandobrota) - Serbian support
+* [Norman Clarke](https://github.com/norman) - Original author
 
 ## Copyright
 
-Copyright (c) 2010-2020 Norman Clarke
+Copyright (c) 2010-2021 Norman Clarke and contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
