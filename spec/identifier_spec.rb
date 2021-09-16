@@ -98,6 +98,10 @@ describe Babosa::Identifier do
       expect("検 索".to_slug.normalize).to eql("検-索")
     end
 
+    it "should work with emoji chars" do
+      expect("Emojis on slug 😋".to_slug.normalize).to eql("emojis-on-slug-😋")
+    end
+    
     context "with to_ascii option" do
       it "should approximate and strip non ascii" do
         ss = "カタカナ: katakana is über cool".to_slug
