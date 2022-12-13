@@ -108,9 +108,10 @@ module Babosa
     # @return String
     def word_chars!
       # `^\p{letter}` = Any non-Unicode letter
+      # `\p{Extended_Pictographic}` - Emojis
       # `&&` = add the following character class
       # `[^ _\n\r]` = Anything other than space, underscore, newline or linefeed
-      gsub!(/[[^\p{letter}]&&[^ \d_\-\n\r]]/, "")
+      gsub!(/[[^(\p{letter}|\p{Extended_Pictographic})]&&[^ \d_\-\n\r]]/, "")
       to_s
     end
 
