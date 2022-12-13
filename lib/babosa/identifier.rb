@@ -109,7 +109,7 @@ module Babosa
     def word_chars!
       # `^\p{letter}` = Any non-Unicode letter
       # `&&` = add the following character class
-      # `[^ _\n\r]` = Anything other than space, underscore, newline, linefeed and emojis
+      # `[^ _\n\r]` = Anything other than space, underscore, newline, linefeed or emojis
       gsub!(/[[^\p{letter}]&&[^ \d_\-\n\r\p{Extended_Pictographic}]]/, "")
       to_s
     end
