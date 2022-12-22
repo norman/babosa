@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "base"
-
 module Babosa
   module Transliterator
     class Greek < Base
