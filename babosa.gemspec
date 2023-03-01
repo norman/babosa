@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", ">= 3.7.0"
   s.add_development_dependency "standard", ">= 1.1.7"
   s.add_development_dependency "simplecov"
+  
+  s.required_ruby_version = ">= 2.6.0"
 
   s.cert_chain = [File.expand_path("certs/parndt.pem", __dir__)]
   if $PROGRAM_NAME.end_with?("gem") && ARGV.include?("build") && ARGV.include?(__FILE__)
