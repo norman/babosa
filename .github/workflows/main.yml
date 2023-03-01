@@ -10,7 +10,7 @@ jobs:
   test:
     strategy:
       matrix:
-        ruby: [ 2.5, 2.6, 2.7, 3.0, jruby, truffleruby-head ]
+        ruby: [ 2.6, 2.7, 3.0, jruby, truffleruby-head ]
       fail-fast: false
       max-parallel: 10
     runs-on: ubuntu-latest
