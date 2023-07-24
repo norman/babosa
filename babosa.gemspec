@@ -28,8 +28,8 @@ Gem::Specification.new do |s|
   
   s.required_ruby_version = ">= 2.6.0"
 
-  s.cert_chain = [File.expand_path("certs/parndt.pem", __dir__)]
   if $PROGRAM_NAME.end_with?("gem") && ARGV.include?("build") && ARGV.include?(__FILE__)
+    s.cert_chain = [File.expand_path("certs/parndt.pem", __dir__)]
     s.signing_key = File.expand_path("~/.ssh/gem-private_key.pem")
   end
 end
