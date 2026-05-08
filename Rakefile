@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rubygems"
+require "bundler/gem_helper"
 require "rake/testtask"
 require "rake/clean"
 require "rubygems/package_task"
@@ -31,3 +32,5 @@ end
 
 require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:spec)
+
+Bundler::GemHelper.install_tasks(name: "babosa")
