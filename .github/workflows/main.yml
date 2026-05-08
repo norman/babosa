@@ -10,9 +10,8 @@ jobs:
   test:
     strategy:
       matrix:
-        ruby: [ 2.6, 2.7, 3.0, 3.1, 3.2, jruby, truffleruby-head ]
+        ruby: [ 2.6, 2.7, 3.0, 3.1, 3.2, 3.3, 3.4, 4.0, jruby, truffleruby-head ]
       fail-fast: false
-      max-parallel: 10
     runs-on: ubuntu-latest
 
     env:
@@ -20,7 +19,7 @@ jobs:
 
     name: ${{ matrix.ruby }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
